@@ -2,18 +2,13 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
 function App() {
+  const role = "Admin";
+
   return (
-    <>
-      <Navbar role="Admin" />
-
-      <div className="app-layout">
-        <Sidebar />
-
-        <main className="main-content">
-          <h1>Welcome to SkillAxis</h1>
-        </main>
-      </div>
-    </>
+    <div className="app">
+      <Navbar role={role} />
+      <Sidebar role={role} />
+    </div>
   );
 }
 

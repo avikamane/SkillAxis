@@ -6,71 +6,75 @@ import {
   FaClipboardCheck,
   FaTasks,
   FaChartLine,
-  FaFileAlt,
   FaUserCircle,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaBook,
 } from "react-icons/fa";
 
-function Sidebar() {
+const menuItems = {
+  Admin: [
+    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "Trainers", icon: FaChalkboardTeacher },
+    { label: "Trainees", icon: FaUserGraduate },
+    { label: "Attendance", icon: FaClipboardCheck },
+    { label: "Assessments", icon: FaTasks },
+    { label: "Sessions", icon: FaCalendarAlt },
+    { label: "Progress", icon: FaChartLine },
+    { label: "Reports", icon: FaBook },
+    { label: "Profile", icon: FaUserCircle },
+  ],
+
+  Trainer: [
+    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "Sessions", icon: FaCalendarAlt },
+    { label: "Trainees", icon: FaUserGraduate },
+    { label: "Attendance", icon: FaClipboardCheck },
+    { label: "Assessments", icon: FaTasks },
+    { label: "Progress", icon: FaChartLine },
+    { label: "Profile", icon: FaUserCircle },
+  ],
+
+  Trainee: [
+    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "My Sessions", icon: FaCalendarAlt },
+    { label: "Attendance", icon: FaClipboardCheck },
+    { label: "Assessments", icon: FaTasks },
+    { label: "Progress", icon: FaChartLine },
+    { label: "Profile", icon: FaUserCircle },
+  ],
+};
+
+function Sidebar({ role = "Admin" }) {
+  const items = menuItems[role] || menuItems.Admin;
+
   return (
     <aside className="sidebar">
-
       <nav className="sidebar-menu">
+        {items.map((item) => {
+          const Icon = item.icon;
 
-        <a href="#" className="sidebar-item active">
-          <FaTachometerAlt />
-          <span>Dashboard</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaChalkboardTeacher />
-          <span>Trainers</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaUserGraduate />
-          <span>Trainees</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaCalendarAlt />
-          <span>Sessions</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaClipboardCheck />
-          <span>Attendance</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaTasks />
-          <span>Assessments</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaChartLine />
-          <span>Progress</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaFileAlt />
-          <span>Reports</span>
-        </a>
-
-        <a href="#" className="sidebar-item">
-          <FaUserCircle />
-          <span>Profile</span>
-        </a>
-
+          return (
+            <a
+              href="#"
+              className="sidebar-item"
+              key={item.label}
+            >
+              <Icon className="sidebar-icon" />
+              <span>{item.label}</span>
+            </a>
+          );
+        })}
       </nav>
-        <div className="sidebar-divider"></div>
+
+      <div className="sidebar-divider"></div>
+
       <button className="logout-button">
-        <FaSignOutAlt />
+        <FaSignOutAlt className="sidebar-icon" />
         <span>Logout</span>
       </button>
-
     </aside>
   );
 }
 
 export default Sidebar;
+

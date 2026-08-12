@@ -1,64 +1,39 @@
-/* ========================================
-   SkillAxis - Common Design System
-   ======================================== */
-
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 /* ===============================
-   CSS VARIABLES
+   GLOBAL VARIABLES
    =============================== */
 
 :root {
-  /* Brand Colors */
-  --primary: #2563EB;
   --primary-dark: #172554;
-  --primary-light: #EFF6FF;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
 
-  /* Background Colors */
-  --background: #F8FAFC;
-  --white: #FFFFFF;
+  --white: #ffffff;
 
-  /* Text Colors */
-  --text-primary: #111827;
-  --text-secondary: #64748B;
-  --text-muted: #94A3B8;
+  --sidebar-bg: #ffffff;
+  --hover-bg: #f1f5f9;
 
-  /* Border */
-  --border: #E2E8F0;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
 
-  /* Status Colors */
-  --success: #16A34A;
-  --success-bg: #DCFCE7;
+  --border: #e2e8f0;
+  --border-color: #e2e8f0;
 
-  --warning: #F59E0B;
-  --warning-bg: #FEF3C7;
+  --success: #16a34a;
+  --success-bg: #dcfce7;
 
-  --danger: #DC2626;
-  --danger-bg: #FEE2E2;
+  --inactive: #64748b;
+  --inactive-bg: #f1f5f9;
 
-  --inactive: #64748B;
-  --inactive-bg: #F1F5F9;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
 
-  /* Accent */
-  --orange: #EA580C;
-  --orange-light: #FFF7ED;
-
-  --purple: #7C3AED;
-  --purple-light: #F5F3FF;
-
-  /* Radius */
   --radius-sm: 6px;
   --radius-md: 8px;
-  --radius-lg: 10px;
-
-  /* Shadows */
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+
 /* ===============================
-   RESET
+   GLOBAL RESET
    =============================== */
 
 * {
@@ -67,114 +42,300 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text-primary);
-  font-size: 14px;
-}
-
-/* ===============================
-   COMMON HEADINGS
-   =============================== */
-
-h1 {
-  font-size: 28px;
-  font-weight: 700;
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
   color: var(--text-primary);
 }
 
-h2 {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-p {
-  color: var(--text-secondary);
-}
-
-/* ===============================
-   COMMON BUTTONS
-   =============================== */
-
-.btn {
-  border: none;
-  cursor: pointer;
+button,
+input,
+select,
+textarea {
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: var(--radius-md);
-  padding: 10px 18px;
-  transition: 0.2s ease;
 }
 
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--white);
+a {
+  text-decoration: none;
 }
 
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
-.btn-secondary {
-  background-color: var(--white);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
-}
 
 /* ===============================
-   COMMON CARD
+   APP
    =============================== */
 
-.card {
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+.app {
+  min-height: 100vh;
 }
 
+
 /* ===============================
-   SEARCH BAR
+   NAVBAR
    =============================== */
 
-.search-bar {
-  width: 300px;
-  height: 48px;
+.navbar {
+  height: 64px;
+  width: 100%;
+
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
 
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  padding: 0 24px;
 
-  padding: 0 14px;
-  box-shadow: var(--shadow-sm);
-}
+  background-color: var(--primary-dark);
+  color: var(--white);
 
-.search-bar input {
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+
   border: none;
-  outline: none;
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--text-primary);
 }
 
-.search-bar input::placeholder {
-  color: var(--text-muted);
+
+/* ===============================
+   LOGO
+   =============================== */
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+.skillaxis-logo {
+  width: 300px;
+  height: 200px;
+
+  object-fit: contain;
+  display: block;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ===============================
+   USER SECTION
+   =============================== */
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-left: auto;
+}
+
+
+/* Admin / Trainer / Trainee */
+
+.user-role {
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #e2e8f0;
+
+  white-space: nowrap;
+}
+
+
+/* ===============================
+   PROFILE ICON
+   =============================== */
+
+.profile-button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: transparent;
+
+  padding: 0;
+
+  color: #cbd5e1;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.profile-button:hover {
+  color: #ffffff;
+}
+
+
+/* ===============================
+   SIDEBAR
+   =============================== */
+
+.sidebar {
+  width: 200px;
+  height: calc(100vh - 64px);
+
+  background-color: var(--primary-dark);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 14px;
+
+  position: fixed;
+
+  left: 0;
+  top: 64px;
+
+  z-index: 999;
+
+  border: none !important;
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===============================
+   SIDEBAR MENU
+   =============================== */
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* ===============================
+   SIDEBAR ITEM
+   =============================== */
+
+.sidebar-item {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
+  gap: 12px;
+
+  padding: 10px 14px;
+
+  color: #cbd5e1;
+
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #2563eb;
+  color: blue;
+
+  transform: translateX(3px);
+}
+
+/* Hover */
+
+.sidebar-item:hover {
+  background-color: #263b63;
+
+  color: #ffffff;
+
+  transform: translateX(3px);
+}
+
+
+/* ===============================
+   SIDEBAR ICON
+   =============================== */
+
+.sidebar-icon {
+  font-size: 17px;
+  min-width: 18px;
+}
+
+
+/* ===============================
+   ACTIVE ITEM
+   =============================== */
+
+.sidebar-item.active {
+  background-color: #2563eb;
+  color: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+
+/* ===============================
+   SIDEBAR DIVIDER
+   =============================== */
+
+.sidebar-divider {
+  width: 85%;
+  height: 1px;
+
+  background-color: rgba(255, 255, 255, 0.18);
+
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   LOGOUT
+   =============================== */
+
+.logout-button {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 10px 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: transparent;
+
+  color: #dc2626;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Logout Hover */
+
+.logout-button:hover {
+  background-color: #263b63;
+  color: red;
 }
 
 /* ===============================
@@ -184,9 +345,11 @@ p {
 .status-badge {
   display: inline-flex;
   align-items: center;
+
   gap: 6px;
 
   padding: 6px 12px;
+
   border-radius: 20px;
 
   font-size: 12px;
@@ -208,36 +371,44 @@ p {
   color: var(--warning);
 }
 
+
 /* ===============================
    TABLE
    =============================== */
 
 .common-table {
   width: 100%;
+
   border-collapse: collapse;
+
   background-color: var(--white);
 }
 
 .common-table th {
-  background-color: #F1F5F9;
-  color: #1E293B;
+  background-color: #f1f5f9;
+
+  color: #1e293b;
 
   font-size: 13px;
   font-weight: 600;
 
   padding: 14px 16px;
+
   text-align: left;
 }
 
 .common-table td {
   padding: 16px;
+
   font-size: 13px;
+
   color: var(--text-primary);
 }
 
 .common-table tbody tr {
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid #f1f5f9;
 }
+
 
 /* ===============================
    FORM ELEMENTS
@@ -246,13 +417,17 @@ p {
 .form-group {
   display: flex;
   flex-direction: column;
+
   gap: 6px;
+
   margin-bottom: 16px;
 }
 
 .form-group label {
   font-size: 13px;
+
   font-weight: 500;
+
   color: var(--text-primary);
 }
 
@@ -260,14 +435,19 @@ p {
 .form-group select,
 .form-group textarea {
   width: 100%;
+
   padding: 11px 12px;
 
   border: 1px solid var(--border);
+
   border-radius: var(--radius-md);
 
   outline: none;
+
   font-family: inherit;
+
   font-size: 14px;
+
   background-color: var(--white);
 }
 
@@ -276,6 +456,7 @@ p {
 .form-group textarea:focus {
   border-color: var(--primary);
 }
+
 
 /* ===============================
    PAGE LAYOUT
@@ -291,8 +472,10 @@ p {
 
 .page-header p {
   margin-top: 6px;
+
   font-size: 14px;
 }
+
 
 /* ===============================
    ACTION ICONS
@@ -307,15 +490,20 @@ p {
   justify-content: center;
 
   background-color: var(--white);
+
   border: 1px solid var(--border);
+
   border-radius: var(--radius-sm);
 
   cursor: pointer;
+
+  transition: 0.2s ease;
 }
 
 .action-icon:hover {
   background-color: var(--primary-light);
 }
+
 
 /* ===============================
    RESPONSIVE
@@ -333,246 +521,8 @@ p {
   .common-table {
     min-width: 700px;
   }
-}
-/* ===============================
-   NAVBAR
-   =============================== */
 
-.navbar {
-  height: 64px;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 24px;
-
-  background-color: var(--primary-dark);
-  color: var(--white);
-
-  border-bottom: 1px solid #263B63;
-}
-
-/* Logo */
-
-.navbar-logo {
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.logo-mark {
-  width: 34px;
-  height: 34px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid #60A5FA;
-  border-radius: 8px;
-
-  color: #60A5FA;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.logo-text {
-  font-size: 18px;
-  font-weight: 700;
-  color: #60A5FA;
-}
-
-/* User section */
-
-.navbar-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.user-role {
-  font-size: 14px;
-  font-weight: 600;
-  color: #E2E8F0;
-}
-
-/* Profile */
-
-.profile-button {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid #CBD5E1;
-  border-radius: 50%;
-
-  background-color: #CBD5E1;
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.profile-button:hover {
-  background-color: #E2E8F0;
-}
-
-.profile-icon {
-  font-size: 18px;
-}
-.skillaxis-logo {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  display: block;
-  padding: 0 10px 0 2px;
-}
-.navbar-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-role {
-  font-size: 15px;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-
-.profile-button {
-  border: none;
-  background: transparent;
-  padding: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #cbd5e1;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.profile-button:hover {
-  color: #ffffff;
-}
-/* ===============================
-   SIDEBAR
-   =============================== */
-
-.sidebar {
-  width: 230px;
-  min-height: calc(100vh - 64px);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  padding: 22px 12px;
-
-  background-color: var(--primary-dark);
-
-  border-right: 1px solid #263B63;
-}
-
-.sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-
-  padding: 12px 14px;
-
-  border-radius: 8px;
-
-  color: #CBD5E1;
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  transition: all 0.2s ease;
-}
-
-.sidebar-item svg {
-  width: 17px;
-  min-width: 17px;
-  font-size: 16px;
-}
-
-.sidebar-item:hover {
-  background-color: #263B63;
-  color: #FFFFFF;
-}
-
-.sidebar-item.active {
-  background-color: #2563EB;
-  color: #FFFFFF;
-}
-
-/* Logout */
-
-.logout-button {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-
-  width: 100%;
-  padding: 12px 14px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: transparent;
-
-  color: #FCA5A5;
-
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.logout-button:hover {
-  background-color: rgba(220, 38, 38, 0.12);
-  color: #F87171;
-}
-.sidebar-divider {
-  height: 1px;
-  width: 100%;
-  margin: 15px 0;
-
-  background-color: #334A70;
-}
-@media (max-width: 768px) {
   .sidebar {
-    width: 70px;
-    padding: 20px 8px;
-  }
-
-  .sidebar-item span,
-  .logout-button span {
-    display: none;
-  }
-
-  .sidebar-item,
-  .logout-button {
-    justify-content: center;
-  }
-
-  .sidebar-item svg,
-  .logout-button svg {
-    margin: 0;
+    width: 210px;
   }
 }
