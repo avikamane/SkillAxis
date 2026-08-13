@@ -1,0 +1,488 @@
+/* =========================================
+   TRAINER DASHBOARD
+========================================= */
+
+.trainer-dashboard {
+  min-height: calc(100vh - 80px);
+
+  background: #f5f6fa;
+
+  /*
+    Layout is already handled by Layout.jsx.
+    Do NOT add margin-left or margin-top here
+    because the Sidebar and Navbar are fixed.
+  */
+
+  padding: 35px 40px 50px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome-section {
+  margin-bottom: 35px;
+}
+
+.welcome-section h1 {
+  margin: 0 0 10px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #111;
+}
+
+.welcome-section p {
+  margin: 0;
+
+  font-size: 18px;
+
+  color: #444;
+}
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats-container {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 25px;
+
+  margin-bottom: 45px;
+}
+
+.stat-card {
+  min-height: 135px;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card h2 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #111;
+}
+
+.stat-number {
+  display: block;
+
+  font-size: 34px;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   STAT ICONS
+========================================= */
+
+.stat-icon {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+}
+
+.blue-icon {
+  background: #d9efff;
+
+  color: #07588d;
+}
+
+.green-icon {
+  background: #d9f0e8;
+
+  color: #43827d;
+}
+
+.yellow-icon {
+  background: #f8edc8;
+
+  color: #9a8a4e;
+}
+
+.purple-icon {
+  background: #eadcf0;
+
+  color: #7d6b82;
+}
+
+/* =========================================
+   NUMBER COLORS
+========================================= */
+
+.blue {
+  color: #07588d;
+}
+
+.green {
+  color: #43827d;
+}
+
+.yellow {
+  color: #9a8a4e;
+}
+
+.purple {
+  color: #7d6b82;
+}
+
+/* =========================================
+   MIDDLE SECTION
+========================================= */
+
+.middle-section {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 30px;
+
+  margin-bottom: 45px;
+}
+
+/* =========================================
+   RECENT ACTIVITIES
+========================================= */
+
+.recent-activities {
+  background: #d8dfed;
+
+  border-radius: 12px;
+
+  padding: 25px 30px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.recent-activities h2,
+.quick-actions h2 {
+  margin: 0 0 25px;
+
+  text-align: center;
+
+  font-size: 25px;
+
+  color: #111;
+}
+
+.activities-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.activity-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 45px;
+
+  font-size: 17px;
+
+  color: #111;
+}
+
+.activity-icon {
+  width: 38px;
+  height: 38px;
+
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #5775aa;
+}
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.quick-actions {
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 25px 30px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.actions-container {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.action-card {
+  width: 145px;
+
+  min-height: 115px;
+
+  border: none;
+
+  border-radius: 17px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  text-align: center;
+
+  color: #000;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.action-card svg {
+  font-size: 38px;
+}
+
+/* Trainer Quick Actions */
+
+.action-blue {
+  background: #a9e6e3;
+}
+
+.action-yellow {
+  background: #fae7b3;
+}
+
+.action-purple {
+  background: #e0c6e8;
+}
+
+/* =========================================
+   SESSIONS
+========================================= */
+
+.sessions-section {
+  width: 100%;
+}
+
+.sessions-section h2 {
+  margin: 0 0 18px;
+
+  font-size: 25px;
+
+  color: #111;
+}
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-radius: 8px;
+}
+
+.sessions-section table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+  background: #e5e9f2;
+
+  font-size: 16px;
+}
+
+.sessions-section thead {
+  background: #5775aa;
+
+  color: #ffffff;
+}
+
+.sessions-section th {
+  padding: 15px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  border-right: 1px solid #4c6289;
+}
+
+.sessions-section td {
+  padding: 18px 15px;
+
+  text-align: center;
+
+  border-right: 1px solid #68748b;
+
+  border-bottom: 1px solid #68748b;
+}
+
+.sessions-section tbody tr {
+  height: 65px;
+}
+
+.sessions-section tbody tr:hover {
+  background: #dce2ee;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
+  display: inline-block;
+
+  padding: 7px 14px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.status.upcoming {
+  background: #c6edcd;
+
+  color: #215c2c;
+}
+
+.status.completed {
+  background: #d8d8d8;
+
+  color: #444;
+}
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
+
+.view-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #2682c5;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.view-button:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+  .stats-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .middle-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .trainer-dashboard {
+    padding: 25px 20px 40px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-container {
+    flex-direction: column;
+  }
+
+  .action-card {
+    width: 100%;
+  }
+
+  .welcome-section h1 {
+    font-size: 24px;
+  }
+
+  .welcome-section p {
+    font-size: 16px;
+  }
+}
