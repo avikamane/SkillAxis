@@ -1,0 +1,342 @@
+/* =========================================
+   SKILLAXIS ADMIN DASHBOARD
+   ========================================= */
+
+.dashboard {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 28px 30px;
+  box-sizing: border-box;
+  background: #f1f4f8;
+}
+
+
+/* =========================================
+   WELCOME HEADER
+   ========================================= */
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.dashboard-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #222222;
+}
+
+
+/* =========================================
+   STATISTICS CARDS
+   ========================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin-bottom: 27px;
+}
+
+.stat-card {
+  height: 58px;
+  background: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+  border: 1px solid transparent;
+}
+
+.stat-card.active-stat {
+  border: 2px solid #0098ff;
+}
+
+.stat-content {
+  text-align: center;
+}
+
+.stat-content h3 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.stat-content span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #075b98;
+}
+
+.stat-content .trainer-number {
+  color: #4b807e;
+}
+
+.stat-content .trainee-number {
+  color: #8a8154;
+}
+
+.stat-content .session-number {
+  color: #7e7089;
+}
+
+
+/* =========================================
+   MIDDLE SECTION
+   ========================================= */
+
+.dashboard-middle {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.dashboard-box {
+  min-height: 110px;
+  background: #d8deea;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   RECENT ACTIVITIES
+   ========================================= */
+
+.recent-activities {
+  padding: 0 18px 15px;
+}
+
+.dashboard-box h2 {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.recent-activities h2 {
+  padding: 7px 0 13px;
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 0;
+  font-size: 10px;
+  color: #111111;
+}
+
+.activity svg {
+  font-size: 10px;
+  color: #111111;
+}
+
+
+/* =========================================
+   QUICK ACTIONS
+   ========================================= */
+
+.quick-actions {
+  background: #ffffff;
+  padding: 0 18px 15px;
+}
+
+.quick-actions h2 {
+  padding: 7px 0 15px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 82px;
+  height: 50px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.action-btn svg {
+  font-size: 17px;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.add-trainer {
+  background: #a9e8e5;
+}
+
+.add-trainee {
+  background: #ffe6ad;
+}
+
+.create-session {
+  background: #dfc8ea;
+}
+
+
+/* =========================================
+   SESSIONS
+   ========================================= */
+
+.sessions-section {
+  width: 100%;
+}
+
+.sessions-section h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.sessions-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #e1e6ef;
+  font-size: 11px;
+}
+
+.sessions-section th {
+  height: 25px;
+  background: #526e9d;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  border-right: 1px solid #405b87;
+}
+
+.sessions-section td {
+  height: 58px;
+  text-align: center;
+  border-right: 1px solid #aeb8c8;
+  border-bottom: 1px solid #aeb8c8;
+  color: #111111;
+}
+
+.sessions-section th:last-child,
+.sessions-section td:last-child {
+  border-right: none;
+}
+
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 4px 7px;
+  border-radius: 10px;
+
+  font-size: 10px;
+}
+
+.status.upcoming {
+  background: #c7e8ca;
+  color: #1c3d22;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #20bd57;
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+   ========================================= */
+
+.view-btn {
+  border: none;
+  background: transparent;
+  color: #2771bd;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.view-btn:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-middle {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .dashboard {
+    padding: 20px 15px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .dashboard-middle {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .sessions-section {
+    overflow-x: auto;
+  }
+
+}
