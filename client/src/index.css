@@ -559,3 +559,32 @@ a {
   margin-left: 220px;
   padding-top: 60px;
 }
+/* ===============================
+   FIX DASHBOARD SPACING
+   =============================== */
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 200px;
+  height: calc(100vh - 64px);
+  margin: 0;
+}
+
+/* Main content */
+.main-content {
+  margin-left: 200px;
+  margin-top: 64px;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 64px);
+}
+
+/* Dashboard */
+.dashboard {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
