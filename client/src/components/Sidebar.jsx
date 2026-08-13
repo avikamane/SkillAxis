@@ -1,5 +1,5 @@
 import {
-  FaDesktop,
+  FaHome,
   FaChalkboardTeacher,
   FaUserGraduate,
   FaCalendarAlt,
@@ -10,11 +10,12 @@ import {
   FaSignOutAlt,
   FaBook,
   FaUsers,
+  FaFolderOpen,
 } from "react-icons/fa";
 
 const menuItems = {
   Admin: [
-    { label: "Dashboard", icon: FaDesktop },
+    { label: "Dashboard", icon: FaHome },
     { label: "Trainers", icon: FaChalkboardTeacher },
     { label: "Trainees", icon: FaUserGraduate },
     { label: "Attendance", icon: FaUserCheck },
@@ -26,7 +27,7 @@ const menuItems = {
   ],
 
   Trainer: [
-    { label: "Dashboard", icon: FaDesktop },
+    { label: "Dashboard", icon: FaHome },
     { label: "Sessions", icon: FaCalendarAlt },
     { label: "Trainees", icon: FaUserGraduate },
     { label: "Attendance", icon: FaUserCheck },
@@ -36,12 +37,12 @@ const menuItems = {
   ],
 
   Trainee: [
-    { label: "Dashboard", icon: FaDesktop },
+    { label: "Dashboard", icon: FaHome },
     { label: "My Sessions", icon: FaCalendarAlt },
     { label: "Attendance", icon: FaUserCheck },
     { label: "Assessments", icon: FaClipboardList },
     { label: "Teams", icon: FaUsers },
-    { label: "Resources", icon: FaBook },
+    { label: "Resources", icon: FaFolderOpen },
     { label: "Profile", icon: FaUserCircle },
   ],
 };
@@ -56,7 +57,11 @@ function Sidebar({ role = "Admin" }) {
           const Icon = item.icon;
 
           return (
-            <a href="#" className="sidebar-item" key={item.label}>
+            <a
+              href="#"
+              className="sidebar-item"
+              key={item.label}
+            >
               <Icon className="sidebar-icon" />
               <span>{item.label}</span>
             </a>
