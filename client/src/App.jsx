@@ -3,8 +3,6 @@ import Sidebar from "./components/Sidebar";
 import AdminDashboard from "./Pages/AdminDashboard";
 
 function App() {
-  const role = "Admin";
-
   return (
     <div className="app">
       <Navbar role={role} />
