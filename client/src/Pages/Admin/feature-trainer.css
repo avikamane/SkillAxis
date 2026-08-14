@@ -1,0 +1,271 @@
+/* =================================
+   TRAINER MANAGEMENT
+   ================================= */
+
+.trainers-page {
+  width: 100%;
+  padding: 18px 24px 30px;
+  box-sizing: border-box;
+  background: #f4f6fa;
+  min-height: calc(100vh - 64px);
+}
+
+/* =================================
+   HEADER
+   ================================= */
+
+.trainers-header {
+  margin-bottom: 14px;
+}
+
+.trainers-header h1 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.trainers-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #222;
+}
+
+/* =================================
+   ACTION BAR
+   ================================= */
+
+.trainer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.trainer-search {
+  width: 150px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #d6dce5;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.trainer-search svg {
+  font-size: 13px;
+  color: #9aa8bd;
+}
+
+.trainer-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  color: #333;
+}
+
+.trainer-search input::placeholder {
+  color: #9aa8bd;
+}
+
+/* =================================
+   BUTTONS
+   ================================= */
+
+.trainer-buttons {
+  display: flex;
+  gap: 18px;
+}
+
+.trainer-buttons button {
+  height: 36px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.delete-all-btn {
+  background: #ff3b3b;
+}
+
+.delete-all-btn:hover {
+  background: #e52e2e;
+}
+
+.add-trainer-btn {
+  background: #0789f9;
+}
+
+.add-trainer-btn:hover {
+  background: #0578df;
+}
+
+/* =================================
+   TABLE
+   ================================= */
+
+.trainer-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: #f1f4f8;
+}
+
+.trainer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.trainer-table thead {
+  background: #eef2f7;
+}
+
+.trainer-table th {
+  height: 40px;
+  padding: 0 14px;
+  border-bottom: 2px solid #c9d0da;
+  color: #243247;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.trainer-table td {
+  height: 46px;
+  padding: 0 14px;
+  border-bottom: 1px solid #d8dee7;
+  color: #202020;
+  background: #f4f6fa;
+}
+
+/* =================================
+   TRAINER NAME
+   ================================= */
+
+.trainer-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trainer-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0e3e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #555;
+  flex-shrink: 0;
+}
+
+/* =================================
+   ACTION ICONS
+   ================================= */
+
+.action-icons {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.action-icons button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.view-btn {
+  color: #111;
+}
+
+.delete-btn {
+  color: #ff3333;
+}
+
+.edit-btn {
+  color: #333;
+}
+
+.action-icons button:hover {
+  transform: scale(1.1);
+}
+
+/* =================================
+   EMPTY STATE
+   ================================= */
+
+.no-trainers {
+  text-align: center !important;
+  padding: 30px !important;
+  color: #777 !important;
+}
+
+/* =================================
+   PAGINATION
+   ================================= */
+
+.trainer-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.trainer-pagination button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.trainer-pagination .active-page {
+  background: #2463eb;
+  color: white;
+  border-radius: 2px;
+}
+
+/* =================================
+   RESPONSIVE
+   ================================= */
+
+@media (max-width: 800px) {
+  .trainer-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .trainer-search {
+    width: 100%;
+  }
+
+  .trainer-buttons {
+    justify-content: flex-end;
+  }
+
+  .trainer-table {
+    min-width: 650px;
+  }
+}
