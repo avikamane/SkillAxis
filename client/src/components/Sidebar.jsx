@@ -15,8 +15,6 @@ import {
   FaFolderOpen,
 } from "react-icons/fa";
 
-
-
 const menuItems = {
   Admin: [
     { label: "Dashboard", icon: FaHome },
@@ -102,7 +100,7 @@ const routes = {
   },
 
   Trainer: {
-    Dashboard: "/trainer",
+    Dashboard: "/trainer/dashboard",
     Sessions: "/trainer/sessions",
     Trainees: "/trainer/trainees",
     Attendance: "/trainer/attendance",
@@ -112,7 +110,7 @@ const routes = {
   },
 
   Trainee: {
-    Dashboard: "/trainee",
+    Dashboard: "/trainee/dashboard",
     "My Sessions": "/trainee/sessions",
     Attendance: "/trainee/attendance",
     Assessments: "/trainee/assessments",
@@ -130,7 +128,6 @@ function Sidebar({ role = "Admin" }) {
 
   return (
     <aside className="sidebar">
-
       {/* ===============================
           MENU
           =============================== */}
@@ -148,9 +145,7 @@ function Sidebar({ role = "Admin" }) {
           return (
             <Link
               to={path || "#"}
-              className={`sidebar-item ${
-                isActive ? "active" : ""
-              }`}
+              className={`sidebar-item ${isActive ? "active" : ""}`}
               key={item.label}
             >
               <Icon className="sidebar-icon" />
@@ -181,7 +176,6 @@ function Sidebar({ role = "Admin" }) {
 
         <span>Logout</span>
       </button>
-
     </aside>
   );
 }
