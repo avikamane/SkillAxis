@@ -1,29 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./components/Layout";
-import AdminDashboard from "./Pages/Admin/AdminDashboard";
-import FeatureTrainer from "./Pages/Admin/feature-trainer";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout role="Admin">
-        <Routes>
-          {/* Admin Dashboard */}
-          <Route path="/admin" element={<AdminDashboard />} />
-
-          {/* Trainer Management */}
-          <Route
-            path="/admin/trainers"
-            element={<FeatureTrainer />}
-          />
-
-          {/* Default page */}
-          <Route
-            path="*"
-            element={<Navigate to="/admin" replace />}
-          />
-        </Routes>
+        <AppRoutes />
       </Layout>
     </BrowserRouter>
   );
