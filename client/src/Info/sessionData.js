@@ -1,3 +1,5 @@
+// src/Info/sessionData.js
+
 export const sessions = [
   {
     id: 1,
@@ -42,7 +44,7 @@ export const sessions = [
     traineeIds: [1, 4],
     date: "10-08-26",
     time: "10:00 AM",
-    status: "upcoming",
+    status: "Completed",
   },
   {
     id: 6,

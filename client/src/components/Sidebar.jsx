@@ -1,23 +1,25 @@
 import {
-  FaTachometerAlt,
+  FaHome,
   FaChalkboardTeacher,
   FaUserGraduate,
   FaCalendarAlt,
-  FaClipboardCheck,
-  FaTasks,
+  FaUserCheck,
+  FaClipboardList,
   FaChartLine,
   FaUserCircle,
   FaSignOutAlt,
   FaBook,
+  FaUsers,
+  FaFolderOpen,
 } from "react-icons/fa";
 
 const menuItems = {
   Admin: [
-    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "Dashboard", icon: FaHome },
     { label: "Trainers", icon: FaChalkboardTeacher },
     { label: "Trainees", icon: FaUserGraduate },
-    { label: "Attendance", icon: FaClipboardCheck },
-    { label: "Assessments", icon: FaTasks },
+    { label: "Attendance", icon: FaUserCheck },
+    { label: "Assessments", icon: FaClipboardList },
     { label: "Sessions", icon: FaCalendarAlt },
     { label: "Progress", icon: FaChartLine },
     { label: "Reports", icon: FaBook },
@@ -25,21 +27,22 @@ const menuItems = {
   ],
 
   Trainer: [
-    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "Dashboard", icon: FaHome },
     { label: "Sessions", icon: FaCalendarAlt },
     { label: "Trainees", icon: FaUserGraduate },
-    { label: "Attendance", icon: FaClipboardCheck },
-    { label: "Assessments", icon: FaTasks },
+    { label: "Attendance", icon: FaUserCheck },
+    { label: "Assessments", icon: FaClipboardList },
     { label: "Progress", icon: FaChartLine },
     { label: "Profile", icon: FaUserCircle },
   ],
 
   Trainee: [
-    { label: "Dashboard", icon: FaTachometerAlt },
+    { label: "Dashboard", icon: FaHome },
     { label: "My Sessions", icon: FaCalendarAlt },
-    { label: "Attendance", icon: FaClipboardCheck },
-    { label: "Assessments", icon: FaTasks },
-    { label: "Progress", icon: FaChartLine },
+    { label: "Attendance", icon: FaUserCheck },
+    { label: "Assessments", icon: FaClipboardList },
+    { label: "Teams", icon: FaUsers },
+    { label: "Resources", icon: FaFolderOpen },
     { label: "Profile", icon: FaUserCircle },
   ],
 };
@@ -77,4 +80,3 @@ function Sidebar({ role = "Admin" }) {
 }
 
 export default Sidebar;
-
