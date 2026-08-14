@@ -1,19 +1,12 @@
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import Layout from "./components/layout.jsx";
+import TraineeDashboard from "./Pages/Trainee/TraineeDashboard.jsx";
 
 function App() {
-  const role = "Admin";
-
+  
   return (
-    <div className="app">
-      <Navbar role={role} />
-      <Sidebar role={role} />
-
-      <main className="main-content">
-        <AdminDashboard />
-      </main>
-    </div>
+    <Layout role="Trainee">
+      <TraineeDashboard />
+    </Layout>
   );
 }
 

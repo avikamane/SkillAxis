@@ -10,7 +10,6 @@ export const sessions = [
     time: "10:00 AM",
     status: "Completed",
   },
-
   {
     id: 2,
     title: "Node.js",
@@ -20,7 +19,6 @@ export const sessions = [
     time: "11:00 AM",
     status: "Upcoming",
   },
-
   {
     id: 3,
     title: "JavaScript",
@@ -30,7 +28,6 @@ export const sessions = [
     time: "10:00 AM",
     status: "Completed",
   },
-
   {
     id: 4,
     title: "MongoDB",
@@ -40,7 +37,6 @@ export const sessions = [
     time: "2:00 PM",
     status: "Upcoming",
   },
-
   {
     id: 5,
     title: "HTML & CSS",
@@ -50,7 +46,6 @@ export const sessions = [
     time: "10:00 AM",
     status: "Completed",
   },
-
   {
     id: 6,
     title: "JavaScript",
