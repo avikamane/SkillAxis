@@ -1,4 +1,3 @@
-import "./feature-trainer.css";
 import { useState } from "react";
 import {
   FaSearch,
@@ -9,6 +8,8 @@ import {
 } from "react-icons/fa";
 
 import "./feature-trainer.css";
+
+
 function Trainers() {
   const [search, setSearch] = useState("");
 

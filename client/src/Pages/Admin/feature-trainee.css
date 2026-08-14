@@ -1,0 +1,280 @@
+/* ================================
+   TRAINEE MANAGEMENT
+================================ */
+
+.trainees-page {
+  width: 100%;
+  padding: 20px 48px;
+  box-sizing: border-box;
+}
+
+.trainees-header {
+  margin-bottom: 20px;
+}
+
+.trainees-header h1 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.trainees-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #222;
+}
+
+
+/* ================================
+   ACTION BAR
+================================ */
+
+.trainee-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 15px;
+}
+
+.trainee-search {
+  width: 280px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 12px;
+
+  background: white;
+  border: 1px solid #d5dbe5;
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+.trainee-search svg {
+  color: #9aa8ba;
+  font-size: 13px;
+}
+
+.trainee-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+.trainee-search input::placeholder {
+  color: #9aa8ba;
+}
+
+.trainee-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.delete-all-trainee-btn,
+.add-trainee-btn {
+  height: 38px;
+
+  border: none;
+  border-radius: 5px;
+
+  padding: 0 18px;
+
+  color: white;
+
+  font-size: 13px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  cursor: pointer;
+}
+
+.delete-all-trainee-btn {
+  background: #ff3b3b;
+}
+
+.add-trainee-btn {
+  background: #087ff5;
+}
+
+.delete-all-trainee-btn:hover {
+  background: #e52f2f;
+}
+
+.add-trainee-btn:hover {
+  background: #066fd5;
+}
+
+
+/* ================================
+   TABLE
+================================ */
+
+.trainee-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.trainee-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.trainee-table th {
+  height: 42px;
+  padding: 0 14px;
+
+  text-align: left;
+
+  background: #eef2f7;
+  border-bottom: 2px solid #cbd3df;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trainee-table td {
+  height: 46px;
+  padding: 0 14px;
+
+  border-bottom: 1px solid #d8dee8;
+
+  font-size: 13px;
+}
+
+
+/* ================================
+   TRAINEE NAME
+================================ */
+
+.trainee-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trainee-avatar {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  background: #e7ebf0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 9px;
+  color: #657080;
+}
+
+
+/* ================================
+   ACTION ICONS
+================================ */
+
+.trainee-action-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.trainee-action-icons button {
+  border: none;
+  background: transparent;
+
+  padding: 0;
+  cursor: pointer;
+}
+
+.trainee-view-btn {
+  color: #111;
+}
+
+.trainee-delete-btn {
+  color: #ff3030;
+}
+
+.trainee-edit-btn {
+  color: #333;
+}
+
+.trainee-action-icons button:hover {
+  opacity: 0.7;
+}
+
+
+/* ================================
+   STATUS
+================================ */
+
+.trainee-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.trainee-status.active {
+  background: #e7f7ed;
+  color: #168544;
+}
+
+.trainee-status.inactive {
+  background: #fce8e8;
+  color: #d83232;
+}
+
+
+/* ================================
+   NO TRAINEES
+================================ */
+
+.no-trainees {
+  text-align: center !important;
+  padding: 25px !important;
+  color: #777;
+}
+
+
+/* ================================
+   PAGINATION
+================================ */
+
+.trainee-pagination {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 5px;
+  margin-top: 18px;
+}
+
+.trainee-pagination button {
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid #ddd;
+  background: white;
+
+  cursor: pointer;
+}
+
+.trainee-pagination .active-trainee-page {
+  background: #1769e0;
+  color: white;
+}

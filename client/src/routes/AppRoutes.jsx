@@ -1,9 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import AdminDashboard from "../Pages/AdminDashboard";
+import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
-import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
-import TrainerSessions from "../Pages/Trainer/TrainerSession";
+import FeatureTrainee from "../Pages/Admin/feature-trainee";
 
 function AppRoutes() {
   return (
@@ -24,29 +23,12 @@ function AppRoutes() {
         path="/admin/trainers"
         element={<FeatureTrainer />}
       />
-      {/* Trainer */}
-        <Route
-          path="/trainer/dashboard"
-          element={
-            <Layout role="Trainer">
-              <TrainerDashboard />
-            </Layout>
-          }
-        />
 
-        <Route
-          path="/trainer/sessions"
-          element={
-            <Layout role="Trainer">
-              <TrainerSessions />
-            </Layout>
-          }
-        />
-        <Layout role="Trainee">
-        <Routes>
-          <Route path="/trainee/dashboard" element={<TraineeDashboard />} />
-        </Routes>
-      </Layout> 
+      {/* Trainee Management */}
+      <Route
+        path="/admin/trainees"
+        element={<FeatureTrainee />}
+      />
 
       {/* =========================
           DEFAULT ROUTE
@@ -56,7 +38,6 @@ function AppRoutes() {
         path="*"
         element={<Navigate to="/admin" replace />}
       />
-
 
     </Routes>
   );
