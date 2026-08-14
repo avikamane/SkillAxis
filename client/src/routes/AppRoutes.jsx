@@ -5,6 +5,7 @@ import FeatureTrainer from "../Pages/Admin/feature-trainer";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
+import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 
 function AppRoutes() {
   return (
@@ -53,6 +54,15 @@ function AppRoutes() {
         element={
           <Layout role="Trainee">
             <TraineeDashboard />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/trainee/sessions"
+        element={
+          <Layout role="Trainee">
+            <TraineeSessions />
           </Layout>
         }
       />
