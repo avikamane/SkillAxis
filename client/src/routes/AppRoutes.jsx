@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
+import FeatureTrainee from "../Pages/Admin/feature-trainee";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
@@ -26,6 +27,16 @@ function AppRoutes() {
             <FeatureTrainer />
           </Layout>
         }
+      />
+        <Route
+        path="/admin/trainees"
+        element={
+          <Layout role="Admin">
+            <FeatureTrainee />
+          </Layout>
+        }
+        
+
       />
       {/* Trainer */}
       <Route
