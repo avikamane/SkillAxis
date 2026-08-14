@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import AdminDashboard from "../Pages/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
+import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
+import TrainerSessions from "../Pages/Trainer/TrainerSession";
 
 function AppRoutes() {
   return (
