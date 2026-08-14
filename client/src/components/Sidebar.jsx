@@ -110,7 +110,7 @@ const routes = {
   },
 
   Trainee: {
-    Dashboard: "/trainee",
+    Dashboard: "/trainee/dashboard",
     "My Sessions": "/trainee/sessions",
     Attendance: "/trainee/attendance",
     Assessments: "/trainee/assessments",
