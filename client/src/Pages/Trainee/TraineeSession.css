@@ -1,0 +1,156 @@
+/* =========================================
+   TRAINEE SESSIONS PAGE
+   ========================================= */
+
+.trainee-sessions {
+  padding: 24px 30px 40px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* =========================================
+   PAGE HEADER
+   ========================================= */
+
+.sessions-header {
+  margin-bottom: 24px;
+}
+
+.sessions-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sessions-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* =========================================
+   TABLE CONTAINER
+   ========================================= */
+
+.sessions-table-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+}
+
+/* =========================================
+   TABLE
+   ========================================= */
+
+.sessions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.sessions-table th {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 600;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.sessions-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+}
+
+.sessions-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.sessions-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.sessions-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================
+   SESSION STATUS BADGES
+   ========================================= */
+
+.session-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.session-status.upcoming {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.session-status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* =========================================
+   ACTION BUTTON
+   ========================================= */
+
+.view-session-btn {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.view-session-btn:hover {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+
+.no-sessions-row {
+  text-align: center !important;
+  padding: 32px 16px !important;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .trainee-sessions {
+    padding: 18px 16px;
+  }
+
+  .sessions-header h1 {
+    font-size: 22px;
+  }
+
+  .sessions-table {
+    min-width: 650px;
+  }
+}
