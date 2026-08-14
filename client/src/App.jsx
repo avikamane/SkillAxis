@@ -1,19 +1,31 @@
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Layout from "./components/Layout";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import FeatureTrainer from "./Pages/Admin/feature-trainer";
 
 function App() {
-  const role = "Admin";
-
   return (
-    <div className="app">
-      <Navbar role={role} />
-      <Sidebar role={role} />
+    <BrowserRouter>
+      <Layout role="Admin">
+        <Routes>
+          {/* Admin Dashboard */}
+          <Route path="/admin" element={<AdminDashboard />} />
 
-      <main className="main-content">
-        <AdminDashboard />
-      </main>
-    </div>
+          {/* Trainer Management */}
+          <Route
+            path="/admin/trainers"
+            element={<FeatureTrainer />}
+          />
+
+          {/* Default page */}
+          <Route
+            path="*"
+            element={<Navigate to="/admin" replace />}
+          />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

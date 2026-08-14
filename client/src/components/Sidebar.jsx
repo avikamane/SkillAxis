@@ -1,3 +1,5 @@
+import { Link, useLocation } from "react-router-dom";
+
 import {
   FaHome,
   FaChalkboardTeacher,
@@ -47,34 +49,104 @@ const menuItems = {
   ],
 };
 
+/* ==========================================
+   ROLE-WISE ROUTES
+   ========================================== */
+
+const routes = {
+  Admin: {
+    Dashboard: "/admin",
+    Trainers: "/admin/trainers",
+    Trainees: "/admin/trainees",
+    Attendance: "/admin/attendance",
+    Assessments: "/admin/assessments",
+    Sessions: "/admin/sessions",
+    Progress: "/admin/progress",
+    Reports: "/admin/reports",
+    Profile: "/admin/profile",
+  },
+
+  Trainer: {
+    Dashboard: "/trainer",
+    Sessions: "/trainer/sessions",
+    Trainees: "/trainer/trainees",
+    Attendance: "/trainer/attendance",
+    Assessments: "/trainer/assessments",
+    Progress: "/trainer/progress",
+    Profile: "/trainer/profile",
+  },
+
+  Trainee: {
+    Dashboard: "/trainee",
+    "My Sessions": "/trainee/sessions",
+    Attendance: "/trainee/attendance",
+    Assessments: "/trainee/assessments",
+    Teams: "/trainee/teams",
+    Resources: "/trainee/resources",
+    Profile: "/trainee/profile",
+  },
+};
+
 function Sidebar({ role = "Admin" }) {
+  const location = useLocation();
+
   const items = menuItems[role] || menuItems.Admin;
+  const roleRoutes = routes[role] || routes.Admin;
 
   return (
     <aside className="sidebar">
+
+      {/* ===============================
+          MENU
+          =============================== */}
+
       <nav className="sidebar-menu">
         {items.map((item) => {
           const Icon = item.icon;
+          const path = roleRoutes[item.label];
+
+          const isActive =
+            location.pathname === path ||
+            (item.label === "Dashboard" &&
+              location.pathname === `/${role.toLowerCase()}`);
 
           return (
-            <a
-              href="#"
-              className="sidebar-item"
+            <Link
+              to={path || "#"}
+              className={`sidebar-item ${
+                isActive ? "active" : ""
+              }`}
               key={item.label}
             >
               <Icon className="sidebar-icon" />
+
               <span>{item.label}</span>
-            </a>
+            </Link>
           );
         })}
       </nav>
 
+      {/* ===============================
+          DIVIDER
+          =============================== */}
+
       <div className="sidebar-divider"></div>
 
-      <button className="logout-button">
+      {/* ===============================
+          LOGOUT
+          =============================== */}
+
+      <button
+        className="logout-button"
+        onClick={() => {
+          console.log("Logout clicked");
+        }}
+      >
         <FaSignOutAlt className="sidebar-icon" />
+
         <span>Logout</span>
       </button>
+
     </aside>
   );
 }
