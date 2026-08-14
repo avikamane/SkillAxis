@@ -1,9 +1,9 @@
-import { 
-  FaCalendarAlt, 
-  FaCheckCircle, 
-  FaChartLine, 
-  FaClipboardList, 
-  FaEye 
+import {
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaChartLine,
+  FaClipboardList,
+  FaEye,
 } from "react-icons/fa";
 
 // Import mock data directly from Info directory
@@ -24,20 +24,23 @@ const TraineeDashboard = () => {
   const currentTrainee = traineesList.find((t) => t.id === currentTraineeId);
 
   // Filter sessions assigned to current trainee
-  const assignedSessions = sessionsList.filter((session) =>
-    Array.isArray(session?.traineeIds) && session.traineeIds.includes(currentTraineeId)
+  const assignedSessions = sessionsList.filter(
+    (session) =>
+      Array.isArray(session?.traineeIds) &&
+      session.traineeIds.includes(currentTraineeId),
   );
 
   // Use assigned sessions if available, otherwise display all imported sessions
-  const displaySessions = assignedSessions.length > 0 ? assignedSessions : sessionsList;
+  const displaySessions =
+    assignedSessions.length > 0 ? assignedSessions : sessionsList;
 
   // Dynamic Statistics
   const upcomingCount = displaySessions.filter(
-    (s) => s?.status && String(s.status).toLowerCase() === "upcoming"
+    (s) => s?.status && String(s.status).toLowerCase() === "upcoming",
   ).length;
 
   const completedCount = displaySessions.filter(
-    (s) => s?.status && String(s.status).toLowerCase() === "completed"
+    (s) => s?.status && String(s.status).toLowerCase() === "completed",
   ).length;
 
   // Helper to map trainerId to Trainer Name safely
@@ -50,8 +53,13 @@ const TraineeDashboard = () => {
     <div className="dashboard">
       {/* WELCOME SECTION */}
       <section className="welcome-section">
-        <h1>WELCOME, {currentTrainee?.name ? currentTrainee.name.toUpperCase() : "TRAINEE"}</h1>
-        <p>Keep learning, track your progress, and stay on top of your training.</p>
+        <h1>
+          WELCOME,{" "}
+          {currentTrainee?.name ? currentTrainee.name.toUpperCase() : "TRAINEE"}
+        </h1>
+        <p>
+          Keep learning, track your progress, and stay on top of your training.
+        </p>
       </section>
 
       {/* STATS SECTION */}
@@ -153,7 +161,9 @@ const TraineeDashboard = () => {
             </thead>
             <tbody>
               {displaySessions.map((session, index) => {
-                const statusString = session?.status ? String(session.status) : "Upcoming";
+                const statusString = session?.status
+                  ? String(session.status)
+                  : "Upcoming";
                 const isUpcoming = statusString.toLowerCase() === "upcoming";
 
                 return (
@@ -161,9 +171,11 @@ const TraineeDashboard = () => {
                     <td>{session?.title || "Untitled Session"}</td>
                     <td>{getTrainerName(session?.trainerId)}</td>
                     <td>{session?.date || "N/A"}</td>
-                    <td>{session?.time || "N/A"}</td>
+                    <td>{session?.startTime || "N/A"}</td>
                     <td>
-                      <span className={`status ${isUpcoming ? "upcoming" : "completed"}`}>
+                      <span
+                        className={`status ${isUpcoming ? "upcoming" : "completed"}`}
+                      >
                         {statusString}
                       </span>
                     </td>
