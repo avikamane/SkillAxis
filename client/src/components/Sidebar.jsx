@@ -15,6 +15,8 @@ import {
   FaFolderOpen,
 } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
+
 const menuItems = {
   Admin: [
     { label: "Dashboard", icon: FaHome },
@@ -29,13 +31,46 @@ const menuItems = {
   ],
 
   Trainer: [
-    { label: "Dashboard", icon: FaHome },
-    { label: "Sessions", icon: FaCalendarAlt },
-    { label: "Trainees", icon: FaUserGraduate },
-    { label: "Attendance", icon: FaUserCheck },
-    { label: "Assessments", icon: FaClipboardList },
-    { label: "Progress", icon: FaChartLine },
-    { label: "Profile", icon: FaUserCircle },
+    {
+      label: "Dashboard",
+      icon: FaHome,
+      path: "/trainer/dashboard",
+    },
+    {
+      label: "Sessions",
+      icon: FaCalendarAlt,
+      path: "/trainer/sessions",
+    },
+    {
+      label: "Teams",
+      icon: FaUsers,
+      path: "/trainer/teams",
+    },
+    {
+      label: "Trainees",
+      icon: FaUserGraduate,
+      path: "/trainer/trainees",
+    },
+    {
+      label: "Attendance",
+      icon: FaUserCheck,
+      path: "/trainer/attendance",
+    },
+    {
+      label: "Assessments",
+      icon: FaClipboardList,
+      path: "/trainer/assessments",
+    },
+    {
+      label: "Progress",
+      icon: FaChartLine,
+      path: "/trainer/progress",
+    },
+    {
+      label: "Profile",
+      icon: FaUserCircle,
+      path: "/trainer/profile",
+    },
   ],
 
   Trainee: [
