@@ -12,7 +12,6 @@ export const sessions = [
     description: "Introduction to React JS and component-based development.",
     status: "Completed",
   },
-
   {
     id: 2,
     title: "Node.js",
@@ -24,7 +23,6 @@ export const sessions = [
     description: "Introduction to Node.js and backend development.",
     status: "Upcoming",
   },
-
   {
     id: 3,
     title: "JavaScript",
@@ -36,7 +34,6 @@ export const sessions = [
     description: "JavaScript fundamentals and modern JavaScript concepts.",
     status: "Completed",
   },
-
   {
     id: 4,
     title: "MongoDB",
@@ -48,7 +45,6 @@ export const sessions = [
     description: "Introduction to MongoDB and database operations.",
     status: "Upcoming",
   },
-
   {
     id: 5,
     title: "HTML & CSS",
@@ -60,7 +56,6 @@ export const sessions = [
     description: "Fundamentals of HTML and CSS for web development.",
     status: "Completed",
   },
-
   {
     id: 6,
     title: "JavaScript",
