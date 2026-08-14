@@ -312,7 +312,7 @@ function TrainerDashboard() {
 
                   {/* Time */}
 
-                  <td>{session.time}</td>
+                  <td>{session.startTime}</td>
 
                   {/* Status */}
 
