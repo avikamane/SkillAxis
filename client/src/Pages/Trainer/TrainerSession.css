@@ -37,7 +37,11 @@
 
 .sessions-table th {
   background: #f8f9fa;
+  color: #222 !important;
   font-weight: 600;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
 }
 
 .session-status {
@@ -61,4 +65,8 @@
   background: transparent;
   cursor: pointer;
   font-weight: 600;
+}
+
+.view-session-btn:hover {
+  text-decoration: underline;
 }
