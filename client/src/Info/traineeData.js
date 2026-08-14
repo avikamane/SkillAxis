@@ -6,6 +6,7 @@ export const trainees = [
     name: "Aarav Sharma",
     email: "aarav@example.com",
     status: "Active",
+    joiningDate: "10 June 2026",
   },
 
   {
@@ -13,6 +14,7 @@ export const trainees = [
     name: "Ananya Patil",
     email: "ananya@example.com",
     status: "Active",
+    joiningDate: "12 June 2026",
   },
 
   {
@@ -20,6 +22,7 @@ export const trainees = [
     name: "Rohan Deshmukh",
     email: "rohan@example.com",
     status: "Active",
+    joiningDate: "15 June 2026",
   },
 
   {
@@ -27,6 +30,7 @@ export const trainees = [
     name: "Sneha Kulkarni",
     email: "sneha@example.com",
     status: "Active",
+    joiningDate: "18 June 2026",
   },
 
   {
@@ -34,6 +38,7 @@ export const trainees = [
     name: "Aditya Joshi",
     email: "aditya@example.com",
     status: "Inactive",
+    joiningDate: "20 June 2026",
   },
 
   {
@@ -41,5 +46,6 @@ export const trainees = [
     name: "Priya Shah",
     email: "priya@example.com",
     status: "Active",
+    joiningDate: "22 June 2026",
   },
 ];

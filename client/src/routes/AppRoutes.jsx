@@ -6,6 +6,7 @@ import FeatureTrainee from "../Pages/Admin/feature-trainee";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TrainerTeams from "../Pages/Trainer/TrainerTeams";
+import TrainerTrainees from "../Pages/Trainer/TrainerTrainees";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 
@@ -60,6 +61,14 @@ function AppRoutes() {
         element={
           <Layout role="Trainer">
             <TrainerSessions />
+          </Layout>
+        }
+      />
+      <Route
+        path="/trainer/trainees"
+        element={
+          <Layout role="Trainer">
+            <TrainerTrainees />
           </Layout>
         }
       />
