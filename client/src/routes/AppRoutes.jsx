@@ -1,44 +1,67 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-
+import Layout from "../components/Layout";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
-import FeatureTrainee from "../Pages/Admin/feature-trainee";
+import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
+import TrainerSessions from "../Pages/Trainer/TrainerSession";
+import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 
 function AppRoutes() {
   return (
     <Routes>
-
-      {/* =========================
-          ADMIN ROUTES
-          ========================= */}
-
-      {/* Admin Dashboard */}
       <Route
         path="/admin"
-        element={<AdminDashboard />}
+        element={
+          <Layout role="Admin">
+            <AdminDashboard />
+          </Layout>
+        }
       />
 
-      {/* Trainer Management */}
       <Route
         path="/admin/trainers"
-        element={<FeatureTrainer />}
+        element={
+          <Layout role="Admin">
+            <FeatureTrainer />
+          </Layout>
+        }
+      />
+      {/* Trainer */}
+      <Route
+        path="/trainer/dashboard"
+        element={
+          <Layout role="Trainer">
+            <TrainerDashboard />
+          </Layout>
+        }
       />
 
-      {/* Trainee Management */}
       <Route
-        path="/admin/trainees"
-        element={<FeatureTrainee />}
+        path="/trainer/sessions"
+        element={
+          <Layout role="Trainer">
+            <TrainerSessions />
+          </Layout>
+        }
+      />
+      {/* =========================
+          TRAINEE ROUTES
+          ========================= */}
+
+      <Route
+        path="/trainee/dashboard"
+        element={
+          <Layout role="Trainee">
+            <TraineeDashboard />
+          </Layout>
+        }
       />
 
       {/* =========================
           DEFAULT ROUTE
           ========================= */}
 
-      <Route
-        path="*"
-        element={<Navigate to="/admin" replace />}
-      />
-
+      <Route path="*" element={<Navigate to="/admin" replace />} />
     </Routes>
   );
 }
