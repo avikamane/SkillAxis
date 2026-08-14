@@ -102,6 +102,7 @@ const routes = {
   Trainer: {
     Dashboard: "/trainer/dashboard",
     Sessions: "/trainer/sessions",
+    Teams: "/trainer/teams",
     Trainees: "/trainer/trainees",
     Attendance: "/trainer/attendance",
     Assessments: "/trainer/assessments",
