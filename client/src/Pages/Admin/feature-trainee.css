@@ -1,145 +1,172 @@
-/* ================================
+/* =================================
    TRAINEE MANAGEMENT
-================================ */
+   Same styling as Trainer
+   ================================= */
 
 .trainees-page {
   width: 100%;
-  padding: 20px 48px;
+  padding: 18px 24px 30px;
   box-sizing: border-box;
+  background: #f4f6fa;
+  min-height: calc(100vh - 64px);
 }
 
+
+/* =================================
+   HEADER
+   ================================= */
+
 .trainees-header {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .trainees-header h1 {
-  margin: 0 0 5px;
-  font-size: 20px;
+  margin: 0 0 4px;
+  font-size: 18px;
   font-weight: 700;
+  color: #111827;
 }
 
 .trainees-header p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #222;
 }
 
 
-/* ================================
+/* =================================
    ACTION BAR
-================================ */
+   ================================= */
 
 .trainee-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 18px;
-  gap: 15px;
 }
 
 .trainee-search {
-  width: 280px;
-  height: 38px;
+  width: 150px;
+  height: 36px;
+
+  background: #ffffff;
+  border: 1px solid #d6dce5;
+  border-radius: 5px;
 
   display: flex;
   align-items: center;
   gap: 8px;
 
-  padding: 0 12px;
-
-  background: white;
-  border: 1px solid #d5dbe5;
-  border-radius: 5px;
-
+  padding: 0 10px;
   box-sizing: border-box;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .trainee-search svg {
-  color: #9aa8ba;
   font-size: 13px;
+  color: #9aa8bd;
 }
 
 .trainee-search input {
   width: 100%;
   border: none;
   outline: none;
-  font-size: 13px;
+
+  font-size: 12px;
+  color: #333;
 }
 
 .trainee-search input::placeholder {
-  color: #9aa8ba;
+  color: #9aa8bd;
 }
+
+
+/* =================================
+   BUTTONS
+   ================================= */
 
 .trainee-buttons {
   display: flex;
-  gap: 14px;
+  gap: 18px;
 }
 
+.trainee-buttons button {
+  height: 36px;
 
-/* ================================
-   BUTTONS
-================================ */
-
-.delete-all-trainee-btn,
-.add-trainee-btn {
-  height: 38px;
+  padding: 0 18px;
 
   border: none;
   border-radius: 5px;
 
-  padding: 0 18px;
-
   color: white;
 
-  font-size: 13px;
+  font-size: 12px;
 
   display: flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+
+  gap: 8px;
 
   cursor: pointer;
+  transition: 0.2s ease;
 }
+
+
+/* Delete button */
 
 .delete-all-trainee-btn {
   background: #ff3b3b;
 }
 
-.add-trainee-btn {
-  background: #087ff5;
+.delete-all-trainee-btn:hover {
+  background: #e52e2e;
 }
 
-.delete-all-trainee-btn:hover {
-  background: #e52f2f;
+
+/* Add button */
+
+.add-trainee-btn {
+  background: #0789f9;
 }
 
 .add-trainee-btn:hover {
-  background: #066fd5;
+  background: #0578df;
 }
 
 
-/* ================================
+/* =================================
    TABLE
-================================ */
+   ================================= */
 
 .trainee-table-container {
   width: 100%;
   overflow-x: auto;
+  background: #f1f4f8;
 }
 
 .trainee-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  font-size: 12px;
+}
+
+.trainee-table thead {
+  background: #eef2f7;
 }
 
 .trainee-table th {
   height: 42px;
   padding: 0 14px;
-
   text-align: left;
 
-  background: #eef2f7;
-  border-bottom: 2px solid #cbd3df;
+  background: #f5f7fa;
+  color: #000000;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 2px solid #c9d0da;
 
   font-size: 13px;
   font-weight: 600;
@@ -149,47 +176,54 @@
   height: 46px;
   padding: 0 14px;
 
-  border-bottom: 1px solid #d8dee8;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #d8dee7;
+
+  color: #202020;
+  background: #f4f6fa;
 
   font-size: 13px;
 }
 
-
-/* ================================
+/* =================================
    TRAINEE NAME
-================================ */
+   ================================= */
 
 .trainee-name {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .trainee-avatar {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 
   border-radius: 50%;
 
-  background: #e7ebf0;
+  background: #e0e3e8;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 9px;
-  color: #657080;
+  font-size: 8px;
+
+  color: #555;
+
+  flex-shrink: 0;
 }
 
 
-/* ================================
+/* =================================
    ACTION ICONS
-================================ */
+   ================================= */
 
 .trainee-action-icons {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
 }
 
 .trainee-action-icons button {
@@ -197,7 +231,10 @@
   background: transparent;
 
   padding: 0;
+
   cursor: pointer;
+
+  font-size: 13px;
 }
 
 .trainee-view-btn {
@@ -205,7 +242,7 @@
 }
 
 .trainee-delete-btn {
-  color: #ff3030;
+  color: #ff3333;
 }
 
 .trainee-edit-btn {
@@ -213,17 +250,19 @@
 }
 
 .trainee-action-icons button:hover {
-  opacity: 0.7;
+  transform: scale(1.1);
 }
 
 
-/* ================================
+/* =================================
    STATUS
-================================ */
+   ================================= */
 
 .trainee-status {
   display: inline-block;
+
   padding: 4px 10px;
+
   border-radius: 12px;
 
   font-size: 12px;
@@ -241,40 +280,78 @@
 }
 
 
-/* ================================
-   NO TRAINEES
-================================ */
+/* =================================
+   EMPTY STATE
+   ================================= */
 
 .no-trainees {
   text-align: center !important;
-  padding: 25px !important;
-  color: #777;
+
+  padding: 30px !important;
+
+  color: #777 !important;
 }
 
 
-/* ================================
+/* =================================
    PAGINATION
-================================ */
+   ================================= */
 
 .trainee-pagination {
   display: flex;
-  justify-content: flex-end;
 
-  gap: 5px;
-  margin-top: 18px;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 16px;
 }
 
 .trainee-pagination button {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 
-  border: 1px solid #ddd;
-  background: white;
+  border: none;
+
+  background: transparent;
+
+  color: #555;
 
   cursor: pointer;
+
+  font-size: 12px;
 }
 
 .trainee-pagination .active-trainee-page {
-  background: #1769e0;
+  background: #2463eb;
+
   color: white;
+
+  border-radius: 2px;
+}
+
+
+/* =================================
+   RESPONSIVE
+   ================================= */
+
+@media (max-width: 800px) {
+  .trainee-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .trainee-search {
+    width: 100%;
+  }
+
+  .trainee-buttons {
+    justify-content: flex-end;
+  }
+
+  .trainee-table {
+    min-width: 650px;
+  }
 }

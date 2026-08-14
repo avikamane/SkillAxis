@@ -134,21 +134,32 @@
 }
 
 .trainer-table th {
-  height: 40px;
+  height: 42px;
   padding: 0 14px;
-  border-bottom: 2px solid #c9d0da;
-  color: #243247;
-  font-size: 12px;
-  font-weight: 700;
   text-align: left;
-}
 
+  background: #f5f7fa;
+  color: #000000;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 2px solid #c9d0da;
+
+  font-size: 13px;
+  font-weight: 600;
+}
 .trainer-table td {
   height: 46px;
   padding: 0 14px;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
   border-bottom: 1px solid #d8dee7;
+
   color: #202020;
   background: #f4f6fa;
+
+  font-size: 13px;
 }
 
 /* =================================
