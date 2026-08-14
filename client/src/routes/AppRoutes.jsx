@@ -1,34 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Layout from "../components/layout";
-
-import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
-import TrainerSessions from "../Pages/Trainer/TrainerSession";
+import AdminDashboard from "../Pages/Admin/AdminDashboard";
+import FeatureTrainer from "../Pages/Admin/feature-trainer";
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Trainer */}
-        <Route
-          path="/trainer/dashboard"
-          element={
-            <Layout role="Trainer">
-              <TrainerDashboard />
-            </Layout>
-          }
-        />
+    <Routes>
+      {/* Admin */}
+      <Route path="/admin" element={<AdminDashboard />} />
 
-        <Route
-          path="/trainer/sessions"
-          element={
-            <Layout role="Trainer">
-              <TrainerSessions />
-            </Layout>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="/admin/trainers"
+        element={<FeatureTrainer />}
+      />
+
+      {/* Default */}
+      <Route
+        path="*"
+        element={<Navigate to="/admin" replace />}
+      />
+    </Routes>
   );
 }
 
