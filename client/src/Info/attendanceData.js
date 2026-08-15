@@ -93,3 +93,69 @@ export const monthlyTrends = [
   { month: "July", percentage: 88 },
   { month: "August", percentage: 83.3 },
 ];
+
+/// =========================================
+// TRAINER ATTENDANCE
+// =========================================
+
+export const trainerAttendanceData = [
+  {
+    sessionId: 1,
+    session: "React JS",
+    date: "14 Aug 2026",
+    time: "10:00 AM - 12:00 PM",
+    trainerId: 1,
+    status: "Completed",
+
+    trainees: [
+      {
+        traineeId: 1,
+        status: null,
+      },
+      {
+        traineeId: 2,
+        status: null,
+      },
+      {
+        traineeId: 3,
+        status: null,
+      },
+      {
+        traineeId: 6,
+        status: null,
+      },
+    ],
+
+    isSaved: false,
+  },
+
+  {
+    sessionId: 7,
+    session: "JS",
+    date: "14 Aug 2026",
+    time: "11:00 AM - 01:00 PM",
+    trainerId: 1,
+    status: "Upcoming",
+
+    trainees: [
+      {
+        traineeId: 1,
+        status: null,
+      },
+      {
+        traineeId: 2,
+        status: null,
+      },
+      {
+        traineeId: 3,
+        status: null,
+      },
+      {
+        traineeId: 4,
+        status: null,
+      },
+    ],
+
+    isSaved: false,
+  },
+];
