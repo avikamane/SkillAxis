@@ -2,13 +2,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
-import FeatureTrainee from "../Pages/Admin/feature-trainee";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
-import TrainerTeams from "../Pages/Trainer/TrainerTeams";
-import TrainerTrainees from "../Pages/Trainer/TrainerTrainees";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 import TraineeSessions from "../Pages/Trainee/TraineeSessions";
+import TraineeAttendance from "../Pages/Trainee/TraineeAttendance"; // <-- IMPORT HERE
 
 function AppRoutes() {
   return (
@@ -30,22 +28,7 @@ function AppRoutes() {
           </Layout>
         }
       />
-      <Route
-        path="/admin/trainees"
-        element={
-          <Layout role="Admin">
-            <FeatureTrainee />
-          </Layout>
-        }
-      />
-      <Route
-        path="/trainer/teams"
-        element={
-          <Layout role="Trainer">
-            <TrainerTeams />
-          </Layout>
-        }
-      />
+      
       {/* Trainer */}
       <Route
         path="/trainer/dashboard"
@@ -64,14 +47,7 @@ function AppRoutes() {
           </Layout>
         }
       />
-      <Route
-        path="/trainer/trainees"
-        element={
-          <Layout role="Trainer">
-            <TrainerTrainees />
-          </Layout>
-        }
-      />
+      
       {/* =========================
           TRAINEE ROUTES
           ========================= */}
@@ -90,6 +66,16 @@ function AppRoutes() {
         element={
           <Layout role="Trainee">
             <TraineeSessions />
+          </Layout>
+        }
+      />
+
+      {/* Trainee Attendance Route */}
+      <Route
+        path="/trainee/attendance"
+        element={
+          <Layout role="Trainee">
+            <TraineeAttendance />
           </Layout>
         }
       />
