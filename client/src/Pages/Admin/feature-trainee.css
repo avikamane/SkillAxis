@@ -48,18 +48,14 @@
 .trainee-search {
   width: 150px;
   height: 36px;
-
   background: #ffffff;
   border: 1px solid #d6dce5;
   border-radius: 5px;
-
   display: flex;
   align-items: center;
   gap: 8px;
-
   padding: 0 10px;
   box-sizing: border-box;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
@@ -72,7 +68,6 @@
   width: 100%;
   border: none;
   outline: none;
-
   font-size: 12px;
   color: #333;
 }
@@ -93,28 +88,18 @@
 
 .trainee-buttons button {
   height: 36px;
-
   padding: 0 18px;
-
   border: none;
   border-radius: 5px;
-
   color: white;
-
   font-size: 12px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 8px;
-
   cursor: pointer;
   transition: 0.2s ease;
 }
-
-
-/* Delete button */
 
 .delete-all-trainee-btn {
   background: #ff3b3b;
@@ -123,9 +108,6 @@
 .delete-all-trainee-btn:hover {
   background: #e52e2e;
 }
-
-
-/* Add button */
 
 .add-trainee-btn {
   background: #0789f9;
@@ -186,6 +168,7 @@
   font-size: 13px;
 }
 
+
 /* =================================
    TRAINEE NAME
    ================================= */
@@ -199,19 +182,13 @@
 .trainee-avatar {
   width: 22px;
   height: 22px;
-
   border-radius: 50%;
-
   background: #e0e3e8;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 8px;
-
   color: #555;
-
   flex-shrink: 0;
 }
 
@@ -229,11 +206,8 @@
 .trainee-action-icons button {
   border: none;
   background: transparent;
-
   padding: 0;
-
   cursor: pointer;
-
   font-size: 13px;
 }
 
@@ -260,11 +234,8 @@
 
 .trainee-status {
   display: inline-block;
-
   padding: 4px 10px;
-
   border-radius: 12px;
-
   font-size: 12px;
   font-weight: 500;
 }
@@ -286,9 +257,7 @@
 
 .no-trainees {
   text-align: center !important;
-
   padding: 30px !important;
-
   color: #777 !important;
 }
 
@@ -299,35 +268,25 @@
 
 .trainee-pagination {
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
-
   gap: 8px;
-
   margin-top: 16px;
 }
 
 .trainee-pagination button {
   width: 24px;
   height: 24px;
-
   border: none;
-
   background: transparent;
-
   color: #555;
-
   cursor: pointer;
-
   font-size: 12px;
 }
 
 .trainee-pagination .active-trainee-page {
   background: #2463eb;
-
   color: white;
-
   border-radius: 2px;
 }
 
@@ -354,4 +313,49 @@
   .trainee-table {
     min-width: 650px;
   }
+}
+
+/* FORCE TRAINEE TABLE TO MATCH TRAINER TABLE */
+
+.trainees-page .trainees-header h1 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+  color: #111827 !important;
+}
+
+.trainees-page .trainees-header p {
+  font-size: 13px !important;
+  margin: 0 !important;
+  color: #222 !important;
+}
+
+.trainees-page .trainee-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 12px !important;
+}
+
+.trainees-page .trainee-table th {
+  height: 42px !important;
+  padding: 0 14px !important;
+  background: #f5f7fa !important;
+  color: #000000 !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 2px solid #c9d0da !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+
+.trainees-page .trainee-table td {
+  height: 46px !important;
+  padding: 0 14px !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 1px solid #d8dee7 !important;
+  color: #202020 !important;
+  background: #f4f6fa !important;
+  font-size: 13px !important;
 }
