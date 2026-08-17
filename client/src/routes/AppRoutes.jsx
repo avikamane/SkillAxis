@@ -9,6 +9,7 @@ import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TrainerTeams from "../Pages/Trainer/TrainerTeams";
 import TrainerTrainees from "../Pages/Trainer/TrainerTrainees";
 import TrainerAttendance from "../Pages/Trainer/TrainerAttendance";
+import TrainerAssessments from "../Pages/Trainer/TrainerAssessments";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 import TraineeAttendance from "../Pages/Trainee/TraineeAttendance";
@@ -42,13 +43,13 @@ function AppRoutes() {
         }
       />
       <Route
-  path="/admin/attendance"
-  element={
-    <Layout role="Admin">
-      <FeatureAttendance />
-    </Layout>
-  }
-/>
+        path="/admin/attendance"
+        element={
+          <Layout role="Admin">
+            <FeatureAttendance />
+          </Layout>
+        }
+      />
 
       {/* Trainer */}
       <Route
@@ -89,6 +90,14 @@ function AppRoutes() {
         element={
           <Layout role="Trainer">
             <TrainerAttendance />
+          </Layout>
+        }
+      />
+      <Route
+        path="/trainer/assessments"
+        element={
+          <Layout role="Trainer">
+            <TrainerAssessments />
           </Layout>
         }
       />
