@@ -10,6 +10,7 @@ import TrainerTeams from "../Pages/Trainer/TrainerTeams";
 import TrainerTrainees from "../Pages/Trainer/TrainerTrainees";
 import TrainerAttendance from "../Pages/Trainer/TrainerAttendance";
 import TrainerAssessments from "../Pages/Trainer/TrainerAssessments";
+import TrainerResources from "../Pages/Trainer/TrainerResources";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 import TraineeAttendance from "../Pages/Trainee/TraineeAttendance";
@@ -101,6 +102,7 @@ function AppRoutes() {
           </Layout>
         }
       />
+      <Route path="/trainer/resources" element={<TrainerResources />} />
 
       {/* =========================
           TRAINEE ROUTES

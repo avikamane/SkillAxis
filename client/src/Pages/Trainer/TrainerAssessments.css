@@ -820,3 +820,543 @@
     gap: 10px;
   }
 }
+
+/* =====================================================
+   RESOURCES CARD
+===================================================== */
+
+.resources-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resources-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.resources-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resources-main-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background: #e5eaf5;
+  color: #5775aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.resources-heading h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: #111;
+}
+
+.resources-heading p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.add-resource-icon-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  background: #5775aa;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.add-resource-icon-btn:hover {
+  background: #4b6795;
+}
+
+/* =====================================================
+   RESOURCE FORM
+===================================================== */
+
+.resource-form {
+  border-top: 1px solid #e4e6eb;
+  padding-top: 18px;
+}
+
+.resource-form-title {
+  margin-bottom: 17px;
+}
+
+.resource-form-title h3 {
+  margin: 0;
+  font-size: 17px;
+  color: #222;
+}
+
+.resource-form .form-group {
+  margin-bottom: 14px;
+}
+
+.resource-form .form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.resource-form .form-group label span {
+  color: #d9534f;
+}
+
+.resource-form input,
+.resource-form select,
+.resource-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d2d6df;
+  border-radius: 7px;
+  padding: 9px 10px;
+  font-size: 13px;
+  background: #fff;
+  color: #222;
+  outline: none;
+}
+
+.resource-form textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.resource-form input:focus,
+.resource-form select:focus,
+.resource-form textarea:focus {
+  border-color: #5775aa;
+}
+
+.resource-form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.save-resource-btn,
+.cancel-resource-btn {
+  flex: 1;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.save-resource-btn {
+  background: #5775aa;
+  color: white;
+}
+
+.save-resource-btn:hover {
+  background: #4c6798;
+}
+
+.cancel-resource-btn {
+  background: #e4e6eb;
+  color: #333;
+}
+
+.cancel-resource-btn:hover {
+  background: #d9dce2;
+}
+
+/* =====================================================
+   RESOURCE LIST
+===================================================== */
+
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* Important when there are many resources */
+  max-height: 520px;
+  overflow-y: auto;
+
+  padding-right: 5px;
+}
+
+/* =====================================================
+   RESOURCE ITEM
+===================================================== */
+
+.resource-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+
+  padding: 14px;
+
+  background: #f7f8fa;
+  border: 1px solid #e1e4e9;
+  border-radius: 9px;
+
+  box-sizing: border-box;
+
+  /* Prevent content from escaping the card */
+  min-width: 0;
+}
+
+/* =====================================================
+   RESOURCE ICON
+===================================================== */
+
+.resource-item-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: #e5eaf5;
+  color: #5775aa;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+}
+
+/* =====================================================
+   RESOURCE CONTENT
+===================================================== */
+
+.resource-item-content {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* TITLE */
+
+.resource-item-content h3 {
+  margin: 0 0 4px;
+
+  font-size: 14px;
+  line-height: 1.35;
+
+  font-weight: 700;
+  color: #222;
+
+  /* Prevent long titles from breaking layout */
+  overflow-wrap: anywhere;
+}
+
+/* SESSION */
+
+.resource-session {
+  margin: 0 0 6px;
+
+  font-size: 11px;
+  line-height: 1.4;
+
+  color: #5775aa;
+  font-weight: 600;
+}
+
+/* DESCRIPTION */
+
+.resource-description {
+  margin: 0 0 7px;
+
+  font-size: 12px;
+  line-height: 1.45;
+
+  color: #666;
+
+  /* Keep long text inside the card */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* RESOURCE TYPE */
+
+.resource-type {
+  display: inline-block;
+
+  padding: 3px 8px;
+
+  border-radius: 10px;
+
+  background: #e8ebf2;
+  color: #5775aa;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   FILE NAME
+===================================================== */
+
+.resource-file-name {
+  margin: 0 0 7px;
+
+  font-size: 11px;
+  line-height: 1.4;
+
+  color: #555;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =====================================================
+   RESOURCE ACTIONS
+===================================================== */
+
+.resource-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  flex-shrink: 0;
+}
+
+/* ACTION BUTTONS */
+
+.resource-item-actions a,
+.resource-item-actions button {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* VIEW */
+
+.resource-view-btn {
+  background: #d9f0e8;
+  color: #28715c;
+}
+
+/* EDIT */
+
+.resource-edit-btn {
+  background: #e5eaf5;
+  color: #46628f;
+}
+
+/* DELETE */
+
+.resource-delete-btn {
+  background: #f7dddd;
+  color: #a63b3b;
+}
+
+/* HOVER */
+
+.resource-view-btn:hover,
+.resource-edit-btn:hover,
+.resource-delete-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+
+/* =====================================================
+   RESOURCE SCROLLBAR
+===================================================== */
+
+.resource-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resource-list::-webkit-scrollbar-track {
+  background: #f1f2f5;
+  border-radius: 10px;
+}
+
+.resource-list::-webkit-scrollbar-thumb {
+  background: #c5cad3;
+  border-radius: 10px;
+}
+
+.resource-list::-webkit-scrollbar-thumb:hover {
+  background: #aeb4bf;
+}
+
+/* =====================================================
+   EMPTY RESOURCES
+===================================================== */
+
+.empty-resources {
+  border-top: 1px solid #e4e6eb;
+
+  padding-top: 25px;
+
+  text-align: center;
+}
+
+.empty-resources > svg {
+  font-size: 32px;
+
+  color: #5775aa;
+
+  margin-bottom: 10px;
+}
+
+.empty-resources h3 {
+  margin: 0 0 6px;
+
+  font-size: 16px;
+  color: #222;
+}
+
+.empty-resources p {
+  margin: 0 auto 15px;
+
+  max-width: 250px;
+
+  color: #666;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.resource-empty-add-btn {
+  border: none;
+
+  background: #5775aa;
+  color: white;
+
+  border-radius: 7px;
+
+  padding: 9px 13px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.resource-empty-add-btn:hover {
+  background: #4b6795;
+}
+
+/* =====================================================
+   SELECTED FILE
+===================================================== */
+
+.selected-file-name {
+  margin: 7px 0 0;
+
+  font-size: 12px;
+
+  color: #5775aa;
+
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+  .resource-list {
+    max-height: 500px;
+  }
+
+  .resource-item {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .resource-item-actions {
+    grid-column: 2;
+
+    width: 100%;
+
+    justify-content: flex-start;
+
+    padding-top: 8px;
+
+    border-top: 1px solid #e1e3e8;
+  }
+}
+/* =====================================================
+   VIEW MORE RESOURCES
+===================================================== */
+
+.view-more-resources-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid #d8deea;
+  border-radius: 7px;
+  background: #f5f7fb;
+  color: #5775aa;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  transition: 0.2s ease;
+}
+
+.view-more-resources-btn:hover {
+  background: #e9edf6;
+  border-color: #5775aa;
+}
+
+.view-more-resources-btn svg {
+  font-size: 11px;
+}

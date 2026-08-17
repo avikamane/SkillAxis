@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaPlus,
   FaEye,
@@ -8,17 +10,28 @@ import {
   FaTimes,
   FaSave,
   FaClipboardList,
+  FaBookOpen,
+  FaFilePdf,
+  FaVideo,
+  FaLink,
+  FaFileAlt,
 } from "react-icons/fa";
 
 import { assessments as initialAssessments } from "../../Info/assessmentData";
 import { sessions } from "../../Info/sessionData";
 import { trainees } from "../../Info/traineeData";
+import { resources as initialResources } from "../../Info/resourceData";
 
 import "./TrainerAssessments.css";
 
 function TrainerAssessments() {
   // Change this according to the logged-in trainer
   const loggedInTrainerId = 1;
+  const navigate = useNavigate();
+
+  // ==================================================
+  // ASSESSMENTS
+  // ==================================================
 
   const [assessments, setAssessments] = useState(initialAssessments);
 
@@ -43,25 +56,52 @@ function TrainerAssessments() {
     totalMarks: "",
   });
 
-  // --------------------------------------------------
+  // ==================================================
+  // RESOURCES
+  // ==================================================
+
+  const [resources, setResources] = useState(initialResources);
+
+  const [showResourceForm, setShowResourceForm] = useState(false);
+
+  const [editingResourceId, setEditingResourceId] = useState(null);
+
+  const [newResource, setNewResource] = useState({
+    title: "",
+    sessionId: "",
+    description: "",
+    type: "Link",
+    link: "",
+    file: null,
+  });
+
+  // ==================================================
   // TRAINER'S SESSIONS
-  // --------------------------------------------------
+  // ==================================================
 
   const trainerSessions = sessions.filter(
     (session) => session.trainerId === loggedInTrainerId,
   );
 
-  // --------------------------------------------------
+  // ==================================================
   // TRAINER'S ASSESSMENTS
-  // --------------------------------------------------
+  // ==================================================
 
   const trainerAssessments = assessments.filter(
     (assessment) => assessment.trainerId === loggedInTrainerId,
   );
 
-  // --------------------------------------------------
+  // ==================================================
+  // TRAINER'S RESOURCES
+  // ==================================================
+
+  const trainerResources = resources.filter(
+    (resource) => resource.trainerId === loggedInTrainerId,
+  );
+
+  // ==================================================
   // ADD ASSESSMENT
-  // --------------------------------------------------
+  // ==================================================
 
   const handleNewAssessmentChange = (e) => {
     const { name, value } = e.target;
@@ -132,9 +172,9 @@ function TrainerAssessments() {
     setShowAddForm(false);
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // DELETE ASSESSMENT
-  // --------------------------------------------------
+  // ==================================================
 
   const handleDeleteAssessment = (assessmentId) => {
     const confirmDelete = window.confirm(
@@ -152,9 +192,9 @@ function TrainerAssessments() {
     }
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // EDIT TOTAL MARKS
-  // --------------------------------------------------
+  // ==================================================
 
   const startEditingMarks = (assessment) => {
     setEditingMarksId(assessment.id);
@@ -177,7 +217,6 @@ function TrainerAssessments() {
 
         return {
           ...assessment,
-
           totalMarks: newTotalMarks,
 
           performance: assessment.performance.map((result) => ({
@@ -188,7 +227,6 @@ function TrainerAssessments() {
       }),
     );
 
-    // Update currently opened assessment too
     setSelectedAssessment((prev) => {
       if (!prev || prev.id !== assessmentId) {
         return prev;
@@ -197,6 +235,7 @@ function TrainerAssessments() {
       return {
         ...prev,
         totalMarks: newTotalMarks,
+
         performance: prev.performance.map((result) => ({
           ...result,
           totalMarks: newTotalMarks,
@@ -213,9 +252,9 @@ function TrainerAssessments() {
     setEditedTotalMarks("");
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // EDIT TRAINEE RESULT
-  // --------------------------------------------------
+  // ==================================================
 
   const startEditingResult = (assessmentId, traineeId, currentScore) => {
     setEditingResult({
@@ -292,25 +331,25 @@ function TrainerAssessments() {
     setEditedScore("");
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // GET SESSION
-  // --------------------------------------------------
+  // ==================================================
 
   const getSession = (sessionId) => {
     return sessions.find((session) => session.id === sessionId);
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // GET TRAINEE
-  // --------------------------------------------------
+  // ==================================================
 
   const getTrainee = (traineeId) => {
     return trainees.find((trainee) => trainee.id === traineeId);
   };
 
-  // --------------------------------------------------
+  // ==================================================
   // PERCENTAGE
-  // --------------------------------------------------
+  // ==================================================
 
   const calculatePercentage = (score, totalMarks) => {
     if (score === null || score === undefined) {
@@ -319,6 +358,250 @@ function TrainerAssessments() {
 
     return `${((score / totalMarks) * 100).toFixed(1)}%`;
   };
+
+  // ==================================================
+  // RESOURCE HANDLING
+  // ==================================================
+
+  const handleResourceChange = (e) => {
+    const { name, value } = e.target;
+
+    setNewResource((prev) => ({
+      ...prev,
+      [name]: value,
+
+      // Clear file when changing resource type
+      ...(name === "type" && {
+        file: null,
+      }),
+    }));
+  };
+
+  // ==================================================
+  // RESOURCE FILE UPLOAD
+  // ==================================================
+
+  const handleResourceFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    let isValidFile = false;
+
+    if (newResource.type === "PDF") {
+      isValidFile = file.type === "application/pdf";
+    }
+
+    if (newResource.type === "Word") {
+      isValidFile =
+        file.type === "application/msword" ||
+        file.type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    }
+
+    if (!isValidFile) {
+      alert(
+        newResource.type === "PDF"
+          ? "Please select a PDF file."
+          : "Please select a Word document (.doc or .docx).",
+      );
+
+      e.target.value = "";
+      return;
+    }
+
+    setNewResource((prev) => ({
+      ...prev,
+      file,
+    }));
+  };
+
+  // ==================================================
+  // SAVE RESOURCE
+  // ==================================================
+
+  const handleSaveResource = (e) => {
+    e.preventDefault();
+
+    if (!newResource.title || !newResource.sessionId) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    // PDF / Word require file
+    if (
+      (newResource.type === "PDF" || newResource.type === "Word") &&
+      !newResource.file &&
+      editingResourceId === null
+    ) {
+      alert(
+        newResource.type === "PDF"
+          ? "Please upload a PDF file."
+          : "Please upload a Word document.",
+      );
+      return;
+    }
+
+    // Link / Video require URL
+    if (
+      (newResource.type === "Link" || newResource.type === "Video") &&
+      !newResource.link
+    ) {
+      alert("Please enter a resource link.");
+      return;
+    }
+
+    let resourceLink = newResource.link || "";
+    let fileName = newResource.file?.name || "";
+
+    // Create temporary browser URL for PDF / Word files
+    if (
+      (newResource.type === "PDF" || newResource.type === "Word") &&
+      newResource.file
+    ) {
+      resourceLink = URL.createObjectURL(newResource.file);
+    }
+
+    // ==================================================
+    // EDIT RESOURCE
+    // ==================================================
+
+    if (editingResourceId !== null) {
+      setResources((prev) =>
+        prev.map((resource) =>
+          resource.id === editingResourceId
+            ? {
+                ...resource,
+                title: newResource.title,
+                sessionId: Number(newResource.sessionId),
+                description: newResource.description,
+                type: newResource.type,
+
+                // Keep old link if no new file was selected
+                link: newResource.file ? resourceLink : resource.link,
+
+                // Keep old filename if no new file was selected
+                fileName: fileName || resource.fileName || "",
+              }
+            : resource,
+        ),
+      );
+
+      setEditingResourceId(null);
+    }
+
+    // ==================================================
+    // ADD RESOURCE
+    // ==================================================
+    else {
+      const newId =
+        resources.length > 0
+          ? Math.max(...resources.map((resource) => resource.id)) + 1
+          : 1;
+
+      const newResourceObject = {
+        id: newId,
+        title: newResource.title,
+        sessionId: Number(newResource.sessionId),
+        trainerId: loggedInTrainerId,
+        description: newResource.description,
+        type: newResource.type,
+        link: resourceLink,
+        fileName,
+      };
+
+      setResources((prev) => [...prev, newResourceObject]);
+    }
+
+    // Reset form
+    setNewResource({
+      title: "",
+      sessionId: "",
+      description: "",
+      type: "Link",
+      link: "",
+      file: null,
+    });
+
+    setShowResourceForm(false);
+  };
+
+  // ==================================================
+  // EDIT RESOURCE
+  // ==================================================
+
+  const handleEditResource = (resource) => {
+    setNewResource({
+      title: resource.title,
+      sessionId: String(resource.sessionId),
+      description: resource.description || "",
+      type: resource.type || "Link",
+      link: resource.link || "",
+      file: null,
+    });
+
+    setEditingResourceId(resource.id);
+    setShowResourceForm(true);
+  };
+
+  // ==================================================
+  // DELETE RESOURCE
+  // ==================================================
+
+  const handleDeleteResource = (resourceId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this resource?",
+    );
+
+    if (!confirmDelete) return;
+
+    setResources((prev) =>
+      prev.filter((resource) => resource.id !== resourceId),
+    );
+  };
+
+  // ==================================================
+  // CANCEL RESOURCE FORM
+  // ==================================================
+
+  const cancelResourceForm = () => {
+    setShowResourceForm(false);
+    setEditingResourceId(null);
+
+    setNewResource({
+      title: "",
+      sessionId: "",
+      description: "",
+      type: "Link",
+      link: "",
+      file: null,
+    });
+  };
+
+  // ==================================================
+  // RESOURCE ICON
+  // ==================================================
+
+  const getResourceIcon = (type) => {
+    switch (type) {
+      case "PDF":
+        return <FaFilePdf />;
+
+      case "Word":
+        return <FaFileAlt />;
+
+      case "Video":
+        return <FaVideo />;
+
+      case "Link":
+      default:
+        return <FaLink />;
+    }
+  };
+
+  // ==================================================
+  // RETURN
+  // ==================================================
 
   return (
     <div className="trainer-assessments-page">
@@ -334,14 +617,6 @@ function TrainerAssessments() {
             Create assessments, share quizzes, and track trainee performance.
           </p>
         </div>
-
-        <button
-          className="add-assessment-btn"
-          onClick={() => setShowAddForm((prev) => !prev)}
-        >
-          <FaPlus />
-          Add Assessment
-        </button>
       </div>
 
       {/* ================================================= */}
@@ -350,15 +625,20 @@ function TrainerAssessments() {
 
       <div className="assessment-layout">
         {/* ================================================= */}
-        {/* LEFT SIDE - ADD ASSESSMENT */}
+        {/* LEFT SIDE */}
         {/* ================================================= */}
 
         <div className="assessment-left-column">
+          {/* ================================================= */}
+          {/* ADD ASSESSMENT */}
+          {/* ================================================= */}
+
           {showAddForm && (
             <div className="add-assessment-card">
               <div className="card-header">
                 <div>
                   <h2>Add Assessment</h2>
+
                   <p>Create a new assessment for your trainees.</p>
                 </div>
 
@@ -469,7 +749,10 @@ function TrainerAssessments() {
             </div>
           )}
 
-          {/* Empty left state */}
+          {/* ================================================= */}
+          {/* EMPTY ASSESSMENT STATE */}
+          {/* ================================================= */}
+
           {!showAddForm && (
             <div className="assessment-info-card">
               <FaClipboardList />
@@ -489,6 +772,273 @@ function TrainerAssessments() {
               </button>
             </div>
           )}
+
+          {/* ================================================= */}
+          {/* RESOURCES CARD */}
+          {/* ================================================= */}
+
+          <div className="resources-card">
+            <div className="resources-header">
+              <div className="resources-heading">
+                <div className="resources-main-icon">
+                  <FaBookOpen />
+                </div>
+
+                <div>
+                  <h2>Resources</h2>
+
+                  <p>Add learning materials for your sessions.</p>
+                </div>
+              </div>
+
+              <button
+                className="add-resource-icon-btn"
+                onClick={() => {
+                  if (showResourceForm) {
+                    cancelResourceForm();
+                  } else {
+                    setShowResourceForm(true);
+                  }
+                }}
+                title="Add Resource"
+              >
+                {showResourceForm ? <FaTimes /> : <FaPlus />}
+              </button>
+            </div>
+
+            {/* ================================================= */}
+            {/* RESOURCE FORM */}
+            {/* ================================================= */}
+
+            {showResourceForm && (
+              <form className="resource-form" onSubmit={handleSaveResource}>
+                <div className="resource-form-title">
+                  <h3>
+                    {editingResourceId !== null
+                      ? "Edit Resource"
+                      : "Add Resource"}
+                  </h3>
+                </div>
+
+                {/* TITLE */}
+
+                <div className="form-group">
+                  <label>
+                    Resource Title <span>*</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="e.g. React Hooks Notes"
+                    value={newResource.title}
+                    onChange={handleResourceChange}
+                  />
+                </div>
+
+                {/* SESSION */}
+
+                <div className="form-group">
+                  <label>
+                    Session <span>*</span>
+                  </label>
+
+                  <select
+                    name="sessionId"
+                    value={newResource.sessionId}
+                    onChange={handleResourceChange}
+                  >
+                    <option value="">Select Session</option>
+
+                    {trainerSessions.map((session) => (
+                      <option key={session.id} value={session.id}>
+                        {session.title} - {session.date}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* RESOURCE TYPE */}
+
+                <div className="form-group">
+                  <label>Resource Type</label>
+
+                  <select
+                    name="type"
+                    value={newResource.type}
+                    onChange={handleResourceChange}
+                  >
+                    <option value="Link">Link</option>
+
+                    <option value="PDF">PDF</option>
+
+                    <option value="Word">Word Document</option>
+
+                    <option value="Video">Video</option>
+                  </select>
+                </div>
+
+                {/* FILE / LINK */}
+
+                {newResource.type === "PDF" || newResource.type === "Word" ? (
+                  <div className="form-group">
+                    <label>
+                      Upload{" "}
+                      {newResource.type === "PDF" ? "PDF" : "Word Document"}
+                      <span>*</span>
+                    </label>
+
+                    <input
+                      type="file"
+                      accept={
+                        newResource.type === "PDF"
+                          ? ".pdf,application/pdf"
+                          : ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      }
+                      onChange={handleResourceFileChange}
+                    />
+
+                    {newResource.file && (
+                      <p className="selected-file-name">
+                        Selected: {newResource.file.name}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="form-group">
+                    <label>
+                      Resource Link <span>*</span>
+                    </label>
+
+                    <input
+                      type="url"
+                      name="link"
+                      placeholder="https://example.com/resource"
+                      value={newResource.link}
+                      onChange={handleResourceChange}
+                    />
+                  </div>
+                )}
+
+                {/* DESCRIPTION */}
+
+                <div className="form-group">
+                  <label>Description</label>
+
+                  <textarea
+                    name="description"
+                    placeholder="Briefly describe this resource..."
+                    value={newResource.description}
+                    onChange={handleResourceChange}
+                    rows="3"
+                  />
+                </div>
+
+                {/* ACTIONS */}
+
+                <div className="resource-form-actions">
+                  <button
+                    type="button"
+                    className="cancel-resource-btn"
+                    onClick={cancelResourceForm}
+                  >
+                    Cancel
+                  </button>
+
+                  <button type="submit" className="save-resource-btn">
+                    <FaSave />
+
+                    {editingResourceId !== null
+                      ? "Save Changes"
+                      : "Add Resource"}
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* ================================================= */}
+            {/* RESOURCE LIST */}
+            {/* ================================================= */}
+
+            {!showResourceForm && trainerResources.length > 0 && (
+              <>
+                <div className="resource-list">
+                  {trainerResources.slice(0, 3).map((resource) => {
+                    const session = getSession(resource.sessionId);
+
+                    return (
+                      <div className="resource-item" key={resource.id}>
+                        <div className="resource-item-icon">
+                          {getResourceIcon(resource.type)}
+                        </div>
+
+                        <div className="resource-item-content">
+                          <h3>{resource.title}</h3>
+
+                          <p className="resource-session">
+                            {session ? session.title : "Session unavailable"}
+                          </p>
+
+                          {resource.description && (
+                            <p className="resource-description">
+                              {resource.description}
+                            </p>
+                          )}
+
+                          {resource.fileName && (
+                            <p className="resource-file-name">
+                              📄 {resource.fileName}
+                            </p>
+                          )}
+
+                          <span className="resource-type">{resource.type}</span>
+                        </div>
+
+                        <div className="resource-item-actions">
+                          <a
+                            href={resource.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="resource-view-btn"
+                            title="Open Resource"
+                          >
+                            <FaExternalLinkAlt />
+                          </a>
+
+                          <button
+                            className="resource-edit-btn"
+                            onClick={() => handleEditResource(resource)}
+                            title="Edit Resource"
+                          >
+                            <FaEdit />
+                          </button>
+
+                          <button
+                            className="resource-delete-btn"
+                            onClick={() => handleDeleteResource(resource.id)}
+                            title="Delete Resource"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* VIEW MORE */}
+                {trainerResources.length > 3 && (
+                  <button
+                    className="view-more-resources-btn"
+                    onClick={() => navigate("/trainer/resources")}
+                  >
+                    View More
+                    <FaExternalLinkAlt />
+                  </button>
+                )}
+              </>
+            )}
+          </div>
         </div>
 
         {/* ================================================= */}
@@ -545,16 +1095,19 @@ function TrainerAssessments() {
                     <div className="assessment-meta">
                       <div>
                         <span>Due Date</span>
+
                         <strong>{assessment.dueDate}</strong>
                       </div>
 
                       <div>
                         <span>Total Marks</span>
+
                         <strong>{assessment.totalMarks}</strong>
                       </div>
 
                       <div>
                         <span>Trainees</span>
+
                         <strong>{assessment.performance.length}</strong>
                       </div>
                     </div>
@@ -598,6 +1151,8 @@ function TrainerAssessments() {
                         Edit Total Marks
                       </button>
                     )}
+
+                    {/* ASSESSMENT ACTIONS */}
 
                     <div className="assessment-actions">
                       <button
@@ -822,6 +1377,7 @@ function TrainerAssessments() {
                                   }
                                 >
                                   <FaEdit />
+
                                   {result.score === null
                                     ? "Add Result"
                                     : "Edit"}
