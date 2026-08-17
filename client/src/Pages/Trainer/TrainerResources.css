@@ -1,0 +1,709 @@
+/* =====================================================
+   PAGE
+===================================================== */
+
+.trainer-resources-page {
+  min-height: calc(100vh - 80px);
+
+  background: #f5f6fa;
+
+  padding: 35px 40px 50px;
+
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.resources-page-header {
+  margin-bottom: 28px;
+}
+
+.resources-page-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.resources-page-icon {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 11px;
+
+  background: #e5eaf5;
+  color: #5775aa;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+
+  flex-shrink: 0;
+}
+
+.resources-page-heading h1 {
+  margin: 0 0 5px;
+
+  font-size: 28px;
+
+  color: #111;
+}
+
+.resources-page-heading p {
+  margin: 0;
+
+  color: #666;
+
+  font-size: 14px;
+}
+
+/* =====================================================
+   SEARCH & FILTER CARD
+===================================================== */
+
+.resources-filter-card {
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.resource-search-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 18px;
+}
+
+.resource-search-wrapper > svg {
+  position: absolute;
+
+  left: 14px;
+
+  color: #777;
+
+  font-size: 15px;
+
+  pointer-events: none;
+}
+
+.resource-search-wrapper input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d2d6df;
+
+  border-radius: 8px;
+
+  padding: 12px 42px;
+
+  font-size: 14px;
+
+  color: #222;
+
+  outline: none;
+
+  background: #fff;
+}
+
+.resource-search-wrapper input:focus {
+  border-color: #5775aa;
+}
+
+.clear-search-btn {
+  position: absolute;
+
+  right: 10px;
+
+  width: 28px;
+  height: 28px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #eef0f4;
+
+  color: #666;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.clear-search-btn:hover {
+  background: #e1e4e9;
+}
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.resource-filters {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+.resource-filter-group {
+  min-width: 190px;
+}
+
+.resource-filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 7px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #444;
+}
+
+.resource-filter-group label svg {
+  color: #5775aa;
+
+  font-size: 11px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  width: 100%;
+
+  appearance: none;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d2d6df;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: #333;
+
+  padding: 10px 35px 10px 11px;
+
+  font-size: 13px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.select-wrapper select:focus {
+  border-color: #5775aa;
+}
+
+.select-wrapper > svg {
+  position: absolute;
+
+  right: 12px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #777;
+
+  font-size: 10px;
+
+  pointer-events: none;
+}
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+.clear-filters-btn {
+  height: 37px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #eef0f4;
+
+  color: #555;
+
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.clear-filters-btn:hover {
+  background: #e1e4e9;
+}
+
+/* =====================================================
+   RESULTS HEADER
+===================================================== */
+
+.resources-results-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.resources-results-header h2 {
+  margin: 0 0 4px;
+
+  font-size: 21px;
+
+  color: #111;
+}
+
+.resources-results-header p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+/* =====================================================
+   RESOURCE LIST
+===================================================== */
+
+.resources-page-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+/* =====================================================
+   RESOURCE CARD
+===================================================== */
+
+.resource-page-card {
+  display: grid;
+
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 15px;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  padding: 17px 18px;
+
+  border: 1px solid #e2e5ea;
+
+  box-sizing: border-box;
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.resource-page-card:hover {
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   RESOURCE ICON
+===================================================== */
+
+.resource-page-card-icon {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 9px;
+
+  background: #e5eaf5;
+
+  color: #5775aa;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 19px;
+}
+
+/* =====================================================
+   RESOURCE CONTENT
+===================================================== */
+
+.resource-page-card-content {
+  min-width: 0;
+}
+
+.resource-page-card-title-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 4px;
+}
+
+.resource-page-card-title-row h3 {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #222;
+
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.resource-page-type {
+  flex-shrink: 0;
+
+  padding: 4px 8px;
+
+  border-radius: 10px;
+
+  background: #e8ebf2;
+
+  color: #5775aa;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+/* =====================================================
+   SESSION
+===================================================== */
+
+.resource-page-session {
+  margin: 0 0 6px;
+
+  color: #5775aa;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.resource-page-description {
+  margin: 0 0 7px;
+
+  color: #666;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+/* =====================================================
+   FILE
+===================================================== */
+
+.resource-page-file {
+  margin: 0;
+
+  color: #555;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.resource-page-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+.resource-page-actions a,
+.resource-page-actions button {
+  height: 34px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  padding: 0 11px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+/* VIEW */
+
+.resource-page-view-btn {
+  background: #d9f0e8;
+
+  color: #28715c;
+}
+
+.resource-page-view-btn:hover {
+  background: #c9e9dd;
+}
+
+/* EDIT */
+
+.resource-page-edit-btn {
+  background: #e5eaf5;
+
+  color: #46628f;
+}
+
+.resource-page-edit-btn:hover {
+  background: #dce3f2;
+}
+
+/* DELETE */
+
+.resource-page-delete-btn {
+  background: #f7dddd;
+
+  color: #a63b3b;
+}
+
+.resource-page-delete-btn:hover {
+  background: #f1cdcd;
+}
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.resources-empty-state {
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 70px 30px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.resources-empty-icon {
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 15px;
+
+  border-radius: 12px;
+
+  background: #e5eaf5;
+
+  color: #5775aa;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+}
+
+.resources-empty-state h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+
+  color: #222;
+}
+
+.resources-empty-state p {
+  margin: 0 0 18px;
+
+  color: #666;
+
+  font-size: 13px;
+}
+
+.empty-clear-btn {
+  border: none;
+
+  background: #5775aa;
+
+  color: white;
+
+  border-radius: 7px;
+
+  padding: 9px 15px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.empty-clear-btn:hover {
+  background: #4b6795;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+  .resource-page-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .resource-page-actions {
+    grid-column: 2;
+
+    justify-content: flex-start;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #e4e6eb;
+  }
+}
+
+@media (max-width: 700px) {
+  .trainer-resources-page {
+    padding: 25px 20px 40px;
+  }
+
+  .resources-page-heading {
+    align-items: flex-start;
+  }
+
+  .resources-page-heading h1 {
+    font-size: 24px;
+  }
+
+  .resource-filters {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .resource-filter-group {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .clear-filters-btn {
+    width: 100%;
+  }
+
+  .resource-page-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+
+    padding: 14px;
+  }
+
+  .resource-page-card-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 17px;
+  }
+
+  .resource-page-card-title-row {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .resource-page-actions {
+    grid-column: 1 / -1;
+
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 450px) {
+  .resource-page-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    width: 100%;
+  }
+
+  .resource-page-actions a,
+  .resource-page-actions button {
+    width: 100%;
+  }
+}
