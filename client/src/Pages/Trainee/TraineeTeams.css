@@ -1,0 +1,217 @@
+.trainee-teams-container {
+  min-height: calc(100vh - 80px);
+  background: #f8fafc;
+  padding: 35px 40px 50px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.page-header p {
+  margin: 0;
+  font-size: 15px;
+  color: #64748b;
+}
+
+.teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.team-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  padding: 24px 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.team-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.team-title-group h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.team-description {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.team-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat-box {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.stat-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.team-card-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.team-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.count-badge {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 2px 8px;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trainee-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #e2e8f0;
+  color: #475569;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.trainee-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trainee-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.trainee-email {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.session-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.session-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.session-time {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.status-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.status-badge.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.upcoming {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+@media (max-width: 900px) {
+  .team-card-content {
+    grid-template-columns: 1fr;
+  }
+}

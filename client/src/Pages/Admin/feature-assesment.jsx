@@ -1,214 +1,204 @@
 import { useState } from "react";
 import {
   FaSearch,
-  FaPlus,
   FaEye,
-  FaEdit,
-  FaTrash,
+  FaClipboardList,
+  FaClock,
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaExternalLinkAlt,
   FaTimes,
-  FaClipboardCheck,
 } from "react-icons/fa";
 
-import { assesmentData } from "../../Info/assesmentData";
+import { assessments } from "../../Info/assessmentData";
+
 import "./feature-assesment.css";
 
 function FeatureAssesment() {
-  const [assessments, setAssessments] = useState(assesmentData);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState("create");
+
+  const [showView, setShowView] = useState(false);
   const [selectedAssessment, setSelectedAssessment] = useState(null);
 
-  const [formData, setFormData] = useState({
-    title: "",
-    course: "",
-    trainer: "",
-    date: "",
-    duration: "",
-    questions: "",
-    status: "Upcoming",
-  });
+  /* =========================================
+     FILTER ASSESSMENTS
+     ========================================= */
 
   const filteredAssessments = assessments.filter((assessment) => {
-    const searchText = `
-      ${assessment.title}
-      ${assessment.course}
-      ${assessment.trainer}
-      ${assessment.status}
-    `.toLowerCase();
+    const searchText = search.toLowerCase();
 
-    const matchesSearch = searchText.includes(search.toLowerCase());
+    const matchesSearch =
+      assessment.title.toLowerCase().includes(searchText) ||
+      assessment.description.toLowerCase().includes(searchText);
 
     const matchesStatus =
-      statusFilter === "All" || assessment.status === statusFilter;
+      statusFilter === "All" ||
+      assessment.status === statusFilter;
 
     return matchesSearch && matchesStatus;
   });
 
-  const openCreateModal = () => {
-    setModalType("create");
+  /* =========================================
+     PERFORMANCE
+     ========================================= */
 
-    setFormData({
-      title: "",
-      course: "",
-      trainer: "",
-      date: "",
-      duration: "",
-      questions: "",
-      status: "Upcoming",
-    });
+  const getPerformance = (assessment) => {
+    const performance = assessment.performance || [];
 
-    setShowModal(true);
+    const completed = performance.filter(
+      (trainee) => trainee.score !== null
+    ).length;
+
+    const notCompleted = performance.filter(
+      (trainee) => trainee.score === null
+    ).length;
+
+    return {
+      completed,
+      notCompleted,
+      total: performance.length,
+    };
   };
 
-  const openEditModal = (assessment) => {
-    setModalType("edit");
-    setSelectedAssessment(assessment);
+  /* =========================================
+     STATUS CLASS
+     ========================================= */
 
-    setFormData({
-      title: assessment.title,
-      course: assessment.course,
-      trainer: assessment.trainer,
-      date: assessment.date,
-      duration: assessment.duration,
-      questions: assessment.questions,
-      status: assessment.status,
-    });
+  const getStatusClass = (status) => {
+    if (status === "Open") return "status-open";
+    if (status === "Upcoming") return "status-upcoming";
+    if (status === "Completed") return "status-completed";
 
-    setShowModal(true);   
+    return "";
   };
+
+  /* =========================================
+     VIEW ASSESSMENT
+     ========================================= */
 
   const handleView = (assessment) => {
-    setModalType("view");
     setSelectedAssessment(assessment);
-    setShowModal(true);
+    setShowView(true);
   };
 
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this assessment?"
-    );
+  /* =========================================
+     CLOSE MODAL
+     ========================================= */
 
-    if (!confirmDelete) return;
-
-    setAssessments((previous) =>
-      previous.filter((assessment) => assessment.id !== id)
-    );
+  const closeView = () => {
+    setShowView(false);
+    setSelectedAssessment(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  /* =========================================
+     OPEN QUIZ
+     ========================================= */
 
-    if (
-      !formData.title ||
-      !formData.course ||
-      !formData.trainer ||
-      !formData.date
-    ) {
-      alert("Please fill all required fields.");
+  const handleOpenQuiz = () => {
+    if (!selectedAssessment?.quizLink) {
+      alert("Assessment link is not available.");
       return;
     }
 
-    if (modalType === "create") {
-      const newAssessment = {
-        id: Date.now(),
-        ...formData,
-      };
-
-      setAssessments((previous) => [...previous, newAssessment]);
-    } else {
-      setAssessments((previous) =>
-        previous.map((assessment) =>
-          assessment.id === selectedAssessment.id
-            ? {
-                ...assessment,
-                ...formData,
-              }
-            : assessment
-        )
-      );
-    }
-
-    setShowModal(false);
+    window.open(
+      selectedAssessment.quizLink,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setSelectedAssessment(null);
-  };
+  /* =========================================
+     STATS
+     ========================================= */
+
+  const totalAssessments = assessments.length;
+
+  const openAssessments = assessments.filter(
+    (item) => item.status === "Open"
+  ).length;
+
+  const upcomingAssessments = assessments.filter(
+    (item) => item.status === "Upcoming"
+  ).length;
+
+  const completedAssessments = assessments.filter(
+    (item) => item.status === "Completed"
+  ).length;
 
   return (
     <div className="assessment-page">
 
-      {/* HEADER */}
-      <div className="assessment-header">
-        <div>
-          <h1>Assessment Management</h1>
-          <p>Manage and monitor assessments for all training programs</p>
-        </div>
+      {/* =========================================
+          HEADER
+          ========================================= */}
 
-        <button
-          className="create-assessment-btn"
-          onClick={openCreateModal}
-        >
-          <FaPlus />
-          Create Assessment
-        </button>
+      <div className="assessment-page-header">
+        <div>
+          <h1>Assessments</h1>
+          <p>
+            Monitor assessments and trainee performance
+          </p>
+        </div>
       </div>
 
-      {/* SUMMARY CARDS */}
-      <div className="assessment-summary">
+      {/* =========================================
+          STAT CARDS
+          ========================================= */}
 
-        <div className="assessment-card total">
+      <div className="assessment-stats">
+
+        <div className="assessment-stat-card">
+          <div className="assessment-stat-icon">
+            <FaClipboardList />
+          </div>
+
           <div>
             <span>Total Assessments</span>
-            <strong>{assessments.length}</strong>
-            <small>All assessments</small>
+            <strong>{totalAssessments}</strong>
           </div>
-
-          <FaClipboardCheck />
         </div>
 
-        <div className="assessment-card active">
+        <div className="assessment-stat-card">
+          <div className="assessment-stat-icon">
+            <FaClock />
+          </div>
+
           <div>
-            <span>Active</span>
-            <strong>
-              {assessments.filter((a) => a.status === "Active").length}
-            </strong>
-            <small>Currently running</small>
+            <span>Open</span>
+            <strong>{openAssessments}</strong>
           </div>
-
-          <FaClipboardCheck />
         </div>
 
-        <div className="assessment-card upcoming">
+        <div className="assessment-stat-card">
+          <div className="assessment-stat-icon">
+            <FaCalendarAlt />
+          </div>
+
           <div>
             <span>Upcoming</span>
-            <strong>
-              {assessments.filter((a) => a.status === "Upcoming").length}
-            </strong>
-            <small>Scheduled assessments</small>
+            <strong>{upcomingAssessments}</strong>
           </div>
-
-          <FaClipboardCheck />
         </div>
 
-        <div className="assessment-card completed">
-          <div>
-            <span>Completed</span>
-            <strong>
-              {assessments.filter((a) => a.status === "Completed").length}
-            </strong>
-            <small>Finished assessments</small>
+        <div className="assessment-stat-card">
+          <div className="assessment-stat-icon">
+            <FaCheckCircle />
           </div>
 
-          <FaClipboardCheck />
+          <div>
+            <span>Completed</span>
+            <strong>{completedAssessments}</strong>
+          </div>
         </div>
 
       </div>
 
-      {/* FILTER BAR */}
+      {/* =========================================
+          SEARCH + FILTER
+          ========================================= */}
+
       <div className="assessment-toolbar">
 
         <div className="assessment-search">
@@ -222,373 +212,388 @@ function FeatureAssesment() {
           />
         </div>
 
-        <div className="assessment-filters">
-          <button
-            className={statusFilter === "All" ? "active-filter" : ""}
-            onClick={() => setStatusFilter("All")}
-          >
-            All
-          </button>
+        <select
+          className="assessment-filter"
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
+          <option value="All">All Status</option>
+          <option value="Open">Open</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="Completed">Completed</option>
+        </select>
 
-          <button
-            className={statusFilter === "Active" ? "active-filter" : ""}
-            onClick={() => setStatusFilter("Active")}
-          >
-            Active
-          </button>
+      </div>
 
-          <button
-            className={statusFilter === "Upcoming" ? "active-filter" : ""}
-            onClick={() => setStatusFilter("Upcoming")}
-          >
-            Upcoming
-          </button>
+      {/* =========================================
+          ASSESSMENT TABLE
+          ========================================= */}
 
-          <button
-            className={statusFilter === "Completed" ? "active-filter" : ""}
-            onClick={() => setStatusFilter("Completed")}
-          >
-            Completed
-          </button>
+      <div className="assessment-section">
+
+        <div className="assessment-section-header">
+
+          <div>
+            <h2>Assessment Overview</h2>
+            <p>
+              View assessment completion and trainee performance
+            </p>
+          </div>
+
+          <span className="assessment-count">
+            {filteredAssessments.length} assessments
+          </span>
+
+        </div>
+
+        <div className="assessment-table-container">
+
+          <table className="assessment-table">
+
+            <thead>
+              <tr>
+                <th>Assessment</th>
+                <th>Session</th>
+                <th>Trainer</th>
+                <th>Due Date</th>
+                <th>Marks</th>
+                <th>Status</th>
+                <th>Completed</th>
+                <th>Not Completed</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {filteredAssessments.length > 0 ? (
+
+                filteredAssessments.map((assessment) => {
+
+                  const performance =
+                    getPerformance(assessment);
+
+                  return (
+                    <tr key={assessment.id}>
+
+                      {/* ASSESSMENT */}
+
+                      <td>
+                        <div className="assessment-title-cell">
+
+                          <div className="assessment-mini-icon">
+                            <FaClipboardList />
+                          </div>
+
+                          <div>
+                            <strong>
+                              {assessment.title}
+                            </strong>
+
+                            <small>
+                              Assessment #{assessment.id}
+                            </small>
+                          </div>
+
+                        </div>
+                      </td>
+
+                      {/* SESSION */}
+
+                      <td>
+                        Session #{assessment.sessionId}
+                      </td>
+
+                      {/* TRAINER */}
+
+                      <td>
+                        Trainer #{assessment.trainerId}
+                      </td>
+
+                      {/* DATE */}
+
+                      <td>
+                        {assessment.dueDate}
+                      </td>
+
+                      {/* MARKS */}
+
+                      <td>
+                        <strong>
+                          {assessment.totalMarks}
+                        </strong>
+                      </td>
+
+                      {/* STATUS */}
+
+                      <td>
+                        <span
+                          className={`assessment-status ${getStatusClass(
+                            assessment.status
+                          )}`}
+                        >
+                          {assessment.status}
+                        </span>
+                      </td>
+
+                      {/* COMPLETED */}
+
+                      <td>
+                        <span className="completion completed">
+                          <FaCheckCircle />
+                          {performance.completed}
+                        </span>
+                      </td>
+
+                      {/* NOT COMPLETED */}
+
+                      <td>
+                        <span className="completion not-completed">
+                          <FaTimesCircle />
+                          {performance.notCompleted}
+                        </span>
+                      </td>
+
+                      {/* ACTION */}
+
+                      <td>
+                        <button
+                          className="action-view"
+                          title="View Assessment"
+                          onClick={() =>
+                            handleView(assessment)
+                          }
+                        >
+                          <FaEye />
+                        </button>
+                      </td>
+
+                    </tr>
+                  );
+                })
+
+              ) : (
+
+                <tr>
+                  <td
+                    colSpan="9"
+                    className="assessment-empty"
+                  >
+                    No assessments found.
+                  </td>
+                </tr>
+
+              )}
+
+            </tbody>
+
+          </table>
+
         </div>
 
       </div>
 
-      {/* TABLE */}
-      <div className="assessment-table-container">
+      {/* =========================================
+          VIEW ASSESSMENT MODAL
+          ========================================= */}
 
-        <table className="assessment-table">
+      {showView && selectedAssessment && (
 
-          <thead>
-            <tr>
-              <th>Assessment</th>
-              <th>Course</th>
-              <th>Trainer</th>
-              <th>Date</th>
-              <th>Duration</th>
-              <th>Questions</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            {filteredAssessments.length > 0 ? (
-              filteredAssessments.map((assessment) => (
-                <tr key={assessment.id}>
-
-                  <td>
-                    <div className="assessment-name">
-                      <div className="assessment-icon">
-                        <FaClipboardCheck />
-                      </div>
-
-                      <strong>{assessment.title}</strong>
-                    </div>
-                  </td>
-
-                  <td>{assessment.course}</td>
-
-                  <td>{assessment.trainer}</td>
-
-                  <td>{assessment.date}</td>
-
-                  <td>{assessment.duration}</td>
-
-                  <td>{assessment.questions}</td>
-
-                  <td>
-                    <span
-                      className={`assessment-status ${assessment.status.toLowerCase()}`}
-                    >
-                      {assessment.status}
-                    </span>
-                  </td>
-
-                  <td>
-                    <div className="assessment-actions">
-
-                      <button
-                        className="view-assessment"
-                        title="View"
-                        onClick={() => handleView(assessment)}
-                      >
-                        <FaEye />
-                      </button>
-
-                      <button
-                        className="edit-assessment"
-                        title="Edit"
-                        onClick={() => openEditModal(assessment)}
-                      >
-                        <FaEdit />
-                      </button>
-
-                      <button
-                        className="delete-assessment"
-                        title="Delete"
-                        onClick={() => handleDelete(assessment.id)}
-                      >
-                        <FaTrash />
-                      </button>
-
-                    </div>
-                  </td>
-
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan="8"
-                  className="no-assessments"
-                >
-                  No assessments found
-                </td>
-              </tr>
-            )}
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-      {/* PAGINATION */}
-      <div className="assessment-pagination">
-
-        <button
-          onClick={() => alert("Previous page")}
+        <div
+          className="assessment-modal-overlay"
+          onClick={closeView}
         >
-          &lt;
-        </button>
 
-        <button className="active-page">
-          1
-        </button>
+          <div
+            className="assessment-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
 
-        <button
-          onClick={() => alert("Next page")}
-        >
-          &gt;
-        </button>
-
-      </div>
-
-      {/* MODAL */}
-      {showModal && (
-        <div className="assessment-modal-overlay">
-
-          <div className="assessment-modal">
+            {/* HEADER */}
 
             <div className="assessment-modal-header">
 
-              <h2>
-                {modalType === "create"
-                  ? "Create Assessment"
-                  : modalType === "edit"
-                  ? "Edit Assessment"
-                  : "Assessment Details"}
-              </h2>
+              <div>
+                <h2>
+                  {selectedAssessment.title}
+                </h2>
 
-              <button onClick={closeModal}>
+                <p>
+                  Assessment Performance
+                </p>
+              </div>
+
+              <button
+                className="assessment-close-btn"
+                onClick={closeView}
+              >
                 <FaTimes />
               </button>
 
             </div>
 
-            {modalType === "view" ? (
-              <div className="assessment-details">
+            {/* DETAILS */}
 
-                <h3>{selectedAssessment?.title}</h3>
+            <div className="assessment-details">
 
-                <p>
-                  <strong>Course:</strong>{" "}
-                  {selectedAssessment?.course}
-                </p>
+              <div className="assessment-description-box">
+                <span>Description</span>
 
                 <p>
-                  <strong>Trainer:</strong>{" "}
-                  {selectedAssessment?.trainer}
+                  {selectedAssessment.description}
                 </p>
+              </div>
 
-                <p>
-                  <strong>Date:</strong>{" "}
-                  {selectedAssessment?.date}
-                </p>
+              <div className="assessment-detail-grid">
 
-                <p>
-                  <strong>Duration:</strong>{" "}
-                  {selectedAssessment?.duration}
-                </p>
+                <div className="assessment-detail-card">
+                  <span>Session</span>
+                  <strong>
+                    #{selectedAssessment.sessionId}
+                  </strong>
+                </div>
 
-                <p>
-                  <strong>Questions:</strong>{" "}
-                  {selectedAssessment?.questions}
-                </p>
+                <div className="assessment-detail-card">
+                  <span>Trainer</span>
+                  <strong>
+                    #{selectedAssessment.trainerId}
+                  </strong>
+                </div>
 
-                <p>
-                  <strong>Status:</strong>{" "}
-                  {selectedAssessment?.status}
-                </p>
+                <div className="assessment-detail-card">
+                  <span>Due Date</span>
+                  <strong>
+                    {selectedAssessment.dueDate}
+                  </strong>
+                </div>
 
-                <button
-                  className="modal-close-btn"
-                  onClick={closeModal}
-                >
-                  Close
-                </button>
+                <div className="assessment-detail-card">
+                  <span>Total Marks</span>
+                  <strong>
+                    {selectedAssessment.totalMarks}
+                  </strong>
+                </div>
+
+                <div className="assessment-detail-card">
+                  <span>Status</span>
+
+                  <strong
+                    className={`assessment-status ${getStatusClass(
+                      selectedAssessment.status
+                    )}`}
+                  >
+                    {selectedAssessment.status}
+                  </strong>
+                </div>
 
               </div>
-            ) : (
-              <form
-                className="assessment-form"
-                onSubmit={handleSubmit}
+
+              {/* TRAINEE PERFORMANCE */}
+
+              <div className="performance-section">
+
+                <h3>
+                  Trainee Performance
+                </h3>
+
+                {selectedAssessment.performance &&
+                selectedAssessment.performance.length > 0 ? (
+
+                  <div className="performance-list">
+
+                    {selectedAssessment.performance.map(
+                      (trainee) => {
+
+                        const completed =
+                          trainee.score !== null;
+
+                        return (
+                          <div
+                            className="performance-row"
+                            key={trainee.traineeId}
+                          >
+
+                            <div className="trainee-performance-name">
+
+                              <div className="trainee-performance-avatar">
+                                T
+                              </div>
+
+                              <span>
+                                Trainee #{trainee.traineeId}
+                              </span>
+
+                            </div>
+
+                            <div className="trainee-performance-result">
+
+                              {completed ? (
+                                <>
+                                  <strong>
+                                    {trainee.score}/
+                                    {
+                                      selectedAssessment.totalMarks
+                                    }
+                                  </strong>
+
+                                  <span className="completed-label">
+                                    <FaCheckCircle />
+                                    Completed
+                                  </span>
+                                </>
+                              ) : (
+                                <span className="not-completed-label">
+                                  <FaTimesCircle />
+                                  Not Completed
+                                </span>
+                              )}
+
+                            </div>
+
+                          </div>
+                        );
+                      }
+                    )}
+
+                  </div>
+
+                ) : (
+
+                  <p className="no-performance">
+                    No trainee performance available yet.
+                  </p>
+
+                )}
+
+              </div>
+
+            </div>
+
+            {/* FOOTER */}
+
+            <div className="assessment-modal-footer">
+
+              <button
+                className="assessment-cancel-btn"
+                onClick={closeView}
               >
+                Close
+              </button>
 
-                <label>
-                  Assessment Name *
-                  <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        title: e.target.value,
-                      })
-                    }
-                    placeholder="Enter assessment name"
-                  />
-                </label>
+              <button
+                className="assessment-open-btn"
+                onClick={handleOpenQuiz}
+              >
+                <FaExternalLinkAlt />
+                Open Assessment
+              </button>
 
-                <label>
-                  Course *
-                  <input
-                    type="text"
-                    value={formData.course}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        course: e.target.value,
-                      })
-                    }
-                    placeholder="Enter course"
-                  />
-                </label>
-
-                <label>
-                  Trainer *
-                  <input
-                    type="text"
-                    value={formData.trainer}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        trainer: e.target.value,
-                      })
-                    }
-                    placeholder="Enter trainer name"
-                  />
-                </label>
-
-                <div className="form-row">
-
-                  <label>
-                    Date *
-                    <input
-                      type="text"
-                      value={formData.date}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          date: e.target.value,
-                        })
-                      }
-                      placeholder="20 Aug 2026"
-                    />
-                  </label>
-
-                  <label>
-                    Duration
-                    <input
-                      type="text"
-                      value={formData.duration}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          duration: e.target.value,
-                        })
-                      }
-                      placeholder="60 min"
-                    />
-                  </label>
-
-                </div>
-
-                <div className="form-row">
-
-                  <label>
-                    Questions
-                    <input
-                      type="number"
-                      value={formData.questions}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          questions: e.target.value,
-                        })
-                      }
-                      placeholder="30"
-                    />
-                  </label>
-
-                  <label>
-                    Status
-                    <select
-                      value={formData.status}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          status: e.target.value,
-                        })
-                      }
-                    >
-                      <option>Upcoming</option>
-                      <option>Active</option>
-                      <option>Completed</option>
-                    </select>
-                  </label>
-
-                </div>
-
-                <div className="modal-buttons">
-
-                  <button
-                    type="button"
-                    className="cancel-btn"
-                    onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="save-assessment-btn"
-                  >
-                    {modalType === "create"
-                      ? "Create Assessment"
-                      : "Save Changes"}
-                  </button>
-
-                </div>
-
-              </form>
-            )}
+            </div>
 
           </div>
 
         </div>
+
       )}
 
     </div>
