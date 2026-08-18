@@ -11,6 +11,8 @@ import TrainerTrainees from "../Pages/Trainer/TrainerTrainees";
 import TrainerAttendance from "../Pages/Trainer/TrainerAttendance";
 import TrainerAssessments from "../Pages/Trainer/TrainerAssessments";
 import TrainerResources from "../Pages/Trainer/TrainerResources";
+import TrainerAllAssessments from "../Pages/Trainer/TrainerAllAssessments";
+import TrainerProgress from "../Pages/Trainer/TrainerProgress";
 import TraineeDashboard from "../Pages/Trainee/TraineeDashboard";
 import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 import TraineeAttendance from "../Pages/Trainee/TraineeAttendance";
@@ -106,6 +108,19 @@ function AppRoutes() {
       />
       <Route path="/trainer/resources" element={<TrainerResources />} />
 
+      <Route
+        path="/trainer/assessments/all"
+        element={<TrainerAllAssessments />}
+      />
+      <Route
+        path="/trainer/progress"
+        element={
+          <Layout role="Trainer">
+            <TrainerProgress />
+          </Layout>
+        }
+      />
+
       {/* =========================
           TRAINEE ROUTES
           ========================= */}
@@ -138,7 +153,7 @@ function AppRoutes() {
         }
       />
 
-  {/* Trainee Assessments Route */}
+      {/* Trainee Assessments Route */}
       <Route
         path="/trainee/assessments"
         element={
@@ -149,13 +164,13 @@ function AppRoutes() {
       />
 
       <Route
-  path="/trainee/teams"
-  element={
-    <Layout role="Trainee">
-      <TraineeTeams />
-    </Layout>
-  }
-/>
+        path="/trainee/teams"
+        element={
+          <Layout role="Trainee">
+            <TraineeTeams />
+          </Layout>
+        }
+      />
 
       {/* =========================
           DEFAULT ROUTE

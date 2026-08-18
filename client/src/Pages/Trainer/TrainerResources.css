@@ -707,3 +707,16 @@
     width: 100%;
   }
 }
+.resources-back-btn svg {
+  font-size: 12px;
+}
+
+.resources-back-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #2563eb;
+}
+
+.resources-back-btn:active {
+  transform: translateX(-2px);
+}
