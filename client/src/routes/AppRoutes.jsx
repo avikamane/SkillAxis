@@ -5,6 +5,7 @@ import FeatureTrainer from "../Pages/Admin/feature-trainer";
 import FeatureTrainee from "../Pages/Admin/feature-trainee";
 import FeatureAttendance from "../Pages/Admin/feature-attendance";
 import FeatureAssesment from "../Pages/Admin/feature-assesment";
+import FeatureSessions from "../Pages/Admin/feature-sessions";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TrainerTeams from "../Pages/Trainer/TrainerTeams";
@@ -61,6 +62,14 @@ function AppRoutes() {
   element={
     <Layout role="Admin">
       <FeatureAssesment />
+    </Layout>
+  }
+/>
+<Route
+  path="/admin/sessions"
+  element={
+    <Layout role="Admin">
+      <FeatureSessions />
     </Layout>
   }
 />
