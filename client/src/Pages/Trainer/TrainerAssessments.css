@@ -25,7 +25,6 @@
   font-size: 28px;
   color: #111;
 }
-
 .assessment-page-header p {
   margin: 0;
   color: #555;
@@ -1332,24 +1331,44 @@
    VIEW MORE RESOURCES
 ===================================================== */
 
+/* =====================================================
+   VIEW MORE BUTTONS
+===================================================== */
+
+.view-more-assessments-btn,
 .view-more-resources-btn {
   width: 100%;
-  margin-top: 12px;
-  padding: 10px 14px;
+  margin-top: 15px;
+  padding: 11px 15px;
+
   border: 1px solid #d8deea;
-  border-radius: 7px;
+  border-radius: 8px;
+
   background: #f5f7fb;
   color: #5775aa;
+
   font-size: 13px;
   font-weight: 600;
+
   cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
 
   transition: 0.2s ease;
+}
+
+.view-more-assessments-btn:hover,
+.view-more-resources-btn:hover {
+  background: #e9edf6;
+  border-color: #5775aa;
+}
+
+.view-more-assessments-btn svg,
+.view-more-resources-btn svg {
+  font-size: 11px;
 }
 
 .view-more-resources-btn:hover {
@@ -1359,4 +1378,9 @@
 
 .view-more-resources-btn svg {
   font-size: 11px;
+}
+
+.view-more-assessments-btn:hover,
+.view-more-resources-btn:hover {
+  background: #dce3f2;
 }

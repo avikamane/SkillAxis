@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   FaBookOpen,
   FaSearch,
+  FaArrowLeft,
   FaFilter,
   FaExternalLinkAlt,
   FaEdit,
@@ -163,6 +164,13 @@ function TrainerResources() {
       {/* ================================================= */}
 
       <div className="resources-page-header">
+        <button
+          className="resources-back-btn"
+          onClick={() => window.history.back()}
+        >
+          <FaArrowLeft />
+          Back to Assessments
+        </button>
         <div className="resources-page-heading">
           <div className="resources-page-icon">
             <FaBookOpen />

@@ -25,7 +25,10 @@ import { resources as initialResources } from "../../Info/resourceData";
 import "./TrainerAssessments.css";
 
 function TrainerAssessments() {
-  // Change this according to the logged-in trainer
+  // ==================================================
+  // LOGGED-IN TRAINER
+  // ==================================================
+
   const loggedInTrainerId = 1;
   const navigate = useNavigate();
 
@@ -63,7 +66,6 @@ function TrainerAssessments() {
   const [resources, setResources] = useState(initialResources);
 
   const [showResourceForm, setShowResourceForm] = useState(false);
-
   const [editingResourceId, setEditingResourceId] = useState(null);
 
   const [newResource, setNewResource] = useState({
@@ -76,7 +78,7 @@ function TrainerAssessments() {
   });
 
   // ==================================================
-  // TRAINER'S SESSIONS
+  // TRAINER SESSIONS
   // ==================================================
 
   const trainerSessions = sessions.filter(
@@ -84,15 +86,18 @@ function TrainerAssessments() {
   );
 
   // ==================================================
-  // TRAINER'S ASSESSMENTS
+  // TRAINER ASSESSMENTS
   // ==================================================
 
   const trainerAssessments = assessments.filter(
     (assessment) => assessment.trainerId === loggedInTrainerId,
   );
 
+  // Only show latest 3 on the main page
+  const recentAssessments = trainerAssessments.slice(0, 3);
+
   // ==================================================
-  // TRAINER'S RESOURCES
+  // TRAINER RESOURCES
   // ==================================================
 
   const trainerResources = resources.filter(
@@ -370,7 +375,6 @@ function TrainerAssessments() {
       ...prev,
       [name]: value,
 
-      // Clear file when changing resource type
       ...(name === "type" && {
         file: null,
       }),
@@ -428,7 +432,6 @@ function TrainerAssessments() {
       return;
     }
 
-    // PDF / Word require file
     if (
       (newResource.type === "PDF" || newResource.type === "Word") &&
       !newResource.file &&
@@ -442,7 +445,6 @@ function TrainerAssessments() {
       return;
     }
 
-    // Link / Video require URL
     if (
       (newResource.type === "Link" || newResource.type === "Video") &&
       !newResource.link
@@ -454,7 +456,6 @@ function TrainerAssessments() {
     let resourceLink = newResource.link || "";
     let fileName = newResource.file?.name || "";
 
-    // Create temporary browser URL for PDF / Word files
     if (
       (newResource.type === "PDF" || newResource.type === "Word") &&
       newResource.file
@@ -462,10 +463,7 @@ function TrainerAssessments() {
       resourceLink = URL.createObjectURL(newResource.file);
     }
 
-    // ==================================================
-    // EDIT RESOURCE
-    // ==================================================
-
+    // EDIT
     if (editingResourceId !== null) {
       setResources((prev) =>
         prev.map((resource) =>
@@ -476,11 +474,7 @@ function TrainerAssessments() {
                 sessionId: Number(newResource.sessionId),
                 description: newResource.description,
                 type: newResource.type,
-
-                // Keep old link if no new file was selected
                 link: newResource.file ? resourceLink : resource.link,
-
-                // Keep old filename if no new file was selected
                 fileName: fileName || resource.fileName || "",
               }
             : resource,
@@ -490,9 +484,7 @@ function TrainerAssessments() {
       setEditingResourceId(null);
     }
 
-    // ==================================================
-    // ADD RESOURCE
-    // ==================================================
+    // ADD
     else {
       const newId =
         resources.length > 0
@@ -513,7 +505,6 @@ function TrainerAssessments() {
       setResources((prev) => [...prev, newResourceObject]);
     }
 
-    // Reset form
     setNewResource({
       title: "",
       sessionId: "",
@@ -600,7 +591,7 @@ function TrainerAssessments() {
   };
 
   // ==================================================
-  // RETURN
+  // RENDER
   // ==================================================
 
   return (
@@ -620,12 +611,12 @@ function TrainerAssessments() {
       </div>
 
       {/* ================================================= */}
-      {/* MAIN CONTENT */}
+      {/* MAIN LAYOUT */}
       {/* ================================================= */}
 
       <div className="assessment-layout">
         {/* ================================================= */}
-        {/* LEFT SIDE */}
+        {/* LEFT COLUMN */}
         {/* ================================================= */}
 
         <div className="assessment-left-column">
@@ -750,7 +741,7 @@ function TrainerAssessments() {
           )}
 
           {/* ================================================= */}
-          {/* EMPTY ASSESSMENT STATE */}
+          {/* EMPTY ADD ASSESSMENT CARD */}
           {/* ================================================= */}
 
           {!showAddForm && (
@@ -774,7 +765,7 @@ function TrainerAssessments() {
           )}
 
           {/* ================================================= */}
-          {/* RESOURCES CARD */}
+          {/* RESOURCES */}
           {/* ================================================= */}
 
           <div className="resources-card">
@@ -806,9 +797,7 @@ function TrainerAssessments() {
               </button>
             </div>
 
-            {/* ================================================= */}
             {/* RESOURCE FORM */}
-            {/* ================================================= */}
 
             {showResourceForm && (
               <form className="resource-form" onSubmit={handleSaveResource}>
@@ -819,8 +808,6 @@ function TrainerAssessments() {
                       : "Add Resource"}
                   </h3>
                 </div>
-
-                {/* TITLE */}
 
                 <div className="form-group">
                   <label>
@@ -835,8 +822,6 @@ function TrainerAssessments() {
                     onChange={handleResourceChange}
                   />
                 </div>
-
-                {/* SESSION */}
 
                 <div className="form-group">
                   <label>
@@ -858,8 +843,6 @@ function TrainerAssessments() {
                   </select>
                 </div>
 
-                {/* RESOURCE TYPE */}
-
                 <div className="form-group">
                   <label>Resource Type</label>
 
@@ -877,8 +860,6 @@ function TrainerAssessments() {
                     <option value="Video">Video</option>
                   </select>
                 </div>
-
-                {/* FILE / LINK */}
 
                 {newResource.type === "PDF" || newResource.type === "Word" ? (
                   <div className="form-group">
@@ -920,8 +901,6 @@ function TrainerAssessments() {
                   </div>
                 )}
 
-                {/* DESCRIPTION */}
-
                 <div className="form-group">
                   <label>Description</label>
 
@@ -933,8 +912,6 @@ function TrainerAssessments() {
                     rows="3"
                   />
                 </div>
-
-                {/* ACTIONS */}
 
                 <div className="resource-form-actions">
                   <button
@@ -956,9 +933,7 @@ function TrainerAssessments() {
               </form>
             )}
 
-            {/* ================================================= */}
             {/* RESOURCE LIST */}
-            {/* ================================================= */}
 
             {!showResourceForm && trainerResources.length > 0 && (
               <>
@@ -1026,7 +1001,8 @@ function TrainerAssessments() {
                   })}
                 </div>
 
-                {/* VIEW MORE */}
+                {/* VIEW MORE RESOURCES */}
+
                 {trainerResources.length > 3 && (
                   <button
                     className="view-more-resources-btn"
@@ -1042,7 +1018,7 @@ function TrainerAssessments() {
         </div>
 
         {/* ================================================= */}
-        {/* RIGHT SIDE - ASSESSMENT LIST */}
+        {/* RIGHT COLUMN - ASSESSMENTS */}
         {/* ================================================= */}
 
         <div className="assessment-right-column">
@@ -1064,133 +1040,157 @@ function TrainerAssessments() {
               <p>Create your first assessment using the button on the left.</p>
             </div>
           ) : (
-            <div className="assessment-list">
-              {trainerAssessments.map((assessment) => {
-                const session = getSession(assessment.sessionId);
+            <>
+              {/* ONLY SHOW 3 ON MAIN PAGE */}
 
-                return (
-                  <div className="assessment-card" key={assessment.id}>
-                    <div className="assessment-card-top">
-                      <div className="assessment-icon">
-                        <FaClipboardList />
+              <div className="assessment-list">
+                {recentAssessments.map((assessment) => {
+                  const session = getSession(assessment.sessionId);
+
+                  return (
+                    <div className="assessment-card" key={assessment.id}>
+                      <div className="assessment-card-top">
+                        <div className="assessment-icon">
+                          <FaClipboardList />
+                        </div>
+
+                        <div className="assessment-title-area">
+                          <h3>{assessment.title}</h3>
+
+                          <p>
+                            {session ? session.title : "Session unavailable"}
+                          </p>
+                        </div>
+
+                        <span
+                          className={`assessment-status ${assessment.status.toLowerCase()}`}
+                        >
+                          {assessment.status}
+                        </span>
                       </div>
 
-                      <div className="assessment-title-area">
-                        <h3>{assessment.title}</h3>
-
-                        <p>{session ? session.title : "Session unavailable"}</p>
+                      <div className="assessment-description">
+                        {assessment.description || "No description provided."}
                       </div>
 
-                      <span
-                        className={`assessment-status ${assessment.status.toLowerCase()}`}
-                      >
-                        {assessment.status}
-                      </span>
-                    </div>
+                      <div className="assessment-meta">
+                        <div>
+                          <span>Due Date</span>
 
-                    <div className="assessment-description">
-                      {assessment.description || "No description provided."}
-                    </div>
+                          <strong>{assessment.dueDate}</strong>
+                        </div>
 
-                    <div className="assessment-meta">
-                      <div>
-                        <span>Due Date</span>
+                        <div>
+                          <span>Total Marks</span>
 
-                        <strong>{assessment.dueDate}</strong>
-                      </div>
+                          <strong>{assessment.totalMarks}</strong>
+                        </div>
 
-                      <div>
-                        <span>Total Marks</span>
+                        <div>
+                          <span>Trainees</span>
 
-                        <strong>{assessment.totalMarks}</strong>
-                      </div>
-
-                      <div>
-                        <span>Trainees</span>
-
-                        <strong>{assessment.performance.length}</strong>
-                      </div>
-                    </div>
-
-                    {/* TOTAL MARKS EDIT */}
-
-                    {editingMarksId === assessment.id ? (
-                      <div className="marks-edit-box">
-                        <label>Total Marks</label>
-
-                        <input
-                          type="number"
-                          min="1"
-                          value={editedTotalMarks}
-                          onChange={(e) => setEditedTotalMarks(e.target.value)}
-                        />
-
-                        <div className="marks-edit-actions">
-                          <button
-                            className="save-marks-btn"
-                            onClick={() => handleSaveTotalMarks(assessment.id)}
-                          >
-                            <FaSave />
-                            Save Changes
-                          </button>
-
-                          <button
-                            className="cancel-marks-btn"
-                            onClick={cancelEditingMarks}
-                          >
-                            Cancel
-                          </button>
+                          <strong>{assessment.performance.length}</strong>
                         </div>
                       </div>
-                    ) : (
-                      <button
-                        className="edit-total-marks-btn"
-                        onClick={() => startEditingMarks(assessment)}
-                      >
-                        <FaEdit />
-                        Edit Total Marks
-                      </button>
-                    )}
 
-                    {/* ASSESSMENT ACTIONS */}
+                      {/* TOTAL MARKS */}
 
-                    <div className="assessment-actions">
-                      <button
-                        className="view-assessment-btn"
-                        onClick={() => setSelectedAssessment(assessment)}
-                      >
-                        <FaEye />
-                        View
-                      </button>
+                      {editingMarksId === assessment.id ? (
+                        <div className="marks-edit-box">
+                          <label>Total Marks</label>
 
-                      <a
-                        className="open-quiz-btn"
-                        href={assessment.quizLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaExternalLinkAlt />
-                        Open Quiz
-                      </a>
+                          <input
+                            type="number"
+                            min="1"
+                            value={editedTotalMarks}
+                            onChange={(e) =>
+                              setEditedTotalMarks(e.target.value)
+                            }
+                          />
 
-                      <button
-                        className="delete-assessment-btn"
-                        onClick={() => handleDeleteAssessment(assessment.id)}
-                      >
-                        <FaTrash />
-                        Delete
-                      </button>
+                          <div className="marks-edit-actions">
+                            <button
+                              className="save-marks-btn"
+                              onClick={() =>
+                                handleSaveTotalMarks(assessment.id)
+                              }
+                            >
+                              <FaSave />
+                              Save Changes
+                            </button>
+
+                            <button
+                              className="cancel-marks-btn"
+                              onClick={cancelEditingMarks}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          className="edit-total-marks-btn"
+                          onClick={() => startEditingMarks(assessment)}
+                        >
+                          <FaEdit />
+                          Edit Total Marks
+                        </button>
+                      )}
+
+                      {/* ACTIONS */}
+
+                      <div className="assessment-actions">
+                        <button
+                          className="view-assessment-btn"
+                          onClick={() => setSelectedAssessment(assessment)}
+                        >
+                          <FaEye />
+                          View
+                        </button>
+
+                        <a
+                          className="open-quiz-btn"
+                          href={assessment.quizLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaExternalLinkAlt />
+                          Open Quiz
+                        </a>
+
+                        <button
+                          className="delete-assessment-btn"
+                          onClick={() => handleDeleteAssessment(assessment.id)}
+                        >
+                          <FaTrash />
+                          Delete
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+
+              {/* ================================================= */}
+              {/* VIEW MORE ASSESSMENTS */}
+              {/* ================================================= */}
+
+              {trainerAssessments.length > 3 && (
+                <button
+                  className="view-more-assessments-btn"
+                  onClick={() => navigate("/trainer/assessments/all")}
+                >
+                  View More Assessments
+                  <FaExternalLinkAlt />
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
 
       {/* ================================================= */}
-      {/* VIEW ASSESSMENT MODAL */}
+      {/* ASSESSMENT MODAL */}
       {/* ================================================= */}
 
       {selectedAssessment && (
@@ -1220,8 +1220,6 @@ function TrainerAssessments() {
             </div>
 
             <div className="modal-body">
-              {/* DETAILS */}
-
               <div className="assessment-details">
                 <div className="detail-item">
                   <span>Description</span>
@@ -1255,8 +1253,6 @@ function TrainerAssessments() {
                 </div>
               </div>
 
-              {/* QUIZ LINK */}
-
               <a
                 href={selectedAssessment.quizLink}
                 target="_blank"
@@ -1266,8 +1262,6 @@ function TrainerAssessments() {
                 <FaExternalLinkAlt />
                 Open Quiz
               </a>
-
-              {/* PERFORMANCE */}
 
               <div className="performance-section">
                 <div className="performance-header">
