@@ -20,6 +20,7 @@ import TraineeSessions from "../Pages/Trainee/TraineeSessions";
 import TraineeAttendance from "../Pages/Trainee/TraineeAttendance";
 import TraineeAssessments from "../Pages/Trainee/TraineeAssessments";
 import TraineeTeams from "../Pages/Trainee/TraineeTeams";
+import TraineeResources from "../Pages/Trainee/TraineeResources";
 
 function AppRoutes() {
   return (
@@ -50,29 +51,29 @@ function AppRoutes() {
         }
       />
       <Route
-  path="/admin/attendance"
-  element={
-    <Layout role="Admin">
-      <FeatureAttendance />
-    </Layout>
-  }
-/>
-<Route
-  path="/admin/assessments"
-  element={
-    <Layout role="Admin">
-      <FeatureAssesment />
-    </Layout>
-  }
-/>
-<Route
-  path="/admin/sessions"
-  element={
-    <Layout role="Admin">
-      <FeatureSessions />
-    </Layout>
-  }
-/>
+        path="/admin/attendance"
+        element={
+          <Layout role="Admin">
+            <FeatureAttendance />
+          </Layout>
+        }
+      />
+      <Route
+        path="/admin/assessments"
+        element={
+          <Layout role="Admin">
+            <FeatureAssesment />
+          </Layout>
+        }
+      />
+      <Route
+        path="/admin/sessions"
+        element={
+          <Layout role="Admin">
+            <FeatureSessions />
+          </Layout>
+        }
+      />
 
       {/* Trainer */}
       <Route
@@ -186,6 +187,16 @@ function AppRoutes() {
         element={
           <Layout role="Trainee">
             <TraineeTeams />
+          </Layout>
+        }
+      />
+
+      {/* Trainee Resources Route */}
+      <Route
+        path="/trainee/resources"
+        element={
+          <Layout role="Trainee">
+            <TraineeResources />
           </Layout>
         }
       />
