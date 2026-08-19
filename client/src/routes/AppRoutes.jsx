@@ -6,6 +6,9 @@ import FeatureTrainee from "../Pages/Admin/feature-trainee";
 import FeatureAttendance from "../Pages/Admin/feature-attendance";
 import FeatureAssesment from "../Pages/Admin/feature-assesment";
 import FeatureSessions from "../Pages/Admin/feature-sessions";
+import FeatureProgress from "../Pages/Admin/feature-progress";
+import FeatureReports from "../Pages/Admin/feature-report";
+import AdminProfile from "../Pages/Admin/feature-profile";
 import TrainerDashboard from "../Pages/Trainer/TrainerDashboard";
 import TrainerSessions from "../Pages/Trainer/TrainerSession";
 import TrainerTeams from "../Pages/Trainer/TrainerTeams";
@@ -74,6 +77,30 @@ function AppRoutes() {
           </Layout>
         }
       />
+      <Route
+        path="/admin/progress"
+        element={
+          <Layout role="Admin">
+            <FeatureProgress />
+          </Layout>
+        }
+      />
+      <Route
+        path="/admin/reports"
+        element={
+          <Layout role="Admin">
+            <FeatureReports />
+          </Layout>
+        }
+      />
+    <Route
+  path="/admin/profile"
+  element={
+    <Layout role="Admin">
+      <AdminProfile />
+    </Layout>
+  }
+/>
 
       {/* Trainer */}
       <Route
