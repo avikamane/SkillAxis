@@ -1,0 +1,387 @@
+/* =========================================
+   TRAINEE PROFILE
+========================================= */
+
+.trainee-profile-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px 32px 40px;
+  background: #f6f8fc;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.trainee-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.trainee-profile-header h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.trainee-profile-header p {
+  margin: 0;
+  color: #737d91;
+  font-size: 14px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.profile-edit-btn,
+.profile-save-btn,
+.profile-cancel-btn,
+.change-password-btn {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: 0.2s ease;
+}
+
+.profile-edit-btn {
+  padding: 11px 18px;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-edit-btn:hover {
+  background: #1d4ed8;
+}
+
+/* =========================================
+   COMMON CARD
+========================================= */
+
+.trainee-profile-card {
+  background: #ffffff;
+  border: 1px solid #e5e9f2;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(25, 42, 70, 0.04);
+}
+
+/* =========================================
+   PROFILE MAIN CARD
+========================================= */
+
+.profile-main-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaf1ff;
+  color: #2563eb;
+  font-size: 76px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-avatar svg {
+  width: 82px;
+  height: 82px;
+}
+
+.profile-main-info h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #172033;
+}
+
+.profile-main-info p {
+  margin: 0 0 10px;
+  color: #737d91;
+  font-size: 14px;
+}
+
+.trainee-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #eaf1ff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.trainee-profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trainee-profile-content > .trainee-profile-card {
+  padding: 24px;
+}
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.profile-card-header h2 {
+  margin: 0 0 5px;
+  font-size: 18px;
+  color: #172033;
+}
+
+.profile-card-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #7b8496;
+}
+
+.profile-header-icon {
+  color: #2563eb;
+  font-size: 22px;
+}
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3b4558;
+}
+
+.profile-field input {
+  width: 100%;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 0 13px;
+  border: 1px solid #dce2ec;
+  border-radius: 7px;
+  outline: none;
+  font-size: 14px;
+  color: #263247;
+  background: #ffffff;
+}
+
+.profile-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================================
+   READ ONLY VALUES
+========================================= */
+
+.profile-value {
+  min-height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid #edf0f5;
+  border-radius: 7px;
+  background: #f8faff;
+  color: #303b4f;
+  font-size: 14px;
+}
+
+.profile-value svg {
+  color: #2563eb;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.profile-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #edf0f5;
+}
+
+.profile-cancel-btn {
+  padding: 10px 17px;
+  border-radius: 7px;
+  background: #f1f3f7;
+  color: #4c5668;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-cancel-btn:hover {
+  background: #e6e9ef;
+}
+
+.profile-save-btn {
+  padding: 10px 17px;
+  border-radius: 7px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-save-btn:hover {
+  background: #1d4ed8;
+}
+
+/* =========================================
+   SECURITY
+========================================= */
+
+.security-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.security-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.security-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef4ff;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.security-info strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #263247;
+  font-size: 14px;
+}
+
+.security-info p {
+  margin: 0;
+  color: #7b8496;
+  font-size: 13px;
+}
+
+.change-password-btn {
+  padding: 10px 15px;
+  border-radius: 7px;
+  background: white;
+  border: 1px solid #d9dfeb;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.change-password-btn:hover {
+  background: #f2f6ff;
+  border-color: #2563eb;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+  .trainee-profile-page {
+    padding: 20px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .security-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .change-password-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .trainee-profile-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .profile-edit-btn {
+    width: 100%;
+  }
+
+  .profile-main-card {
+    align-items: flex-start;
+  }
+
+  .profile-avatar {
+    width: 65px;
+    height: 65px;
+    font-size: 60px;
+  }
+
+  .profile-avatar svg {
+    width: 65px;
+    height: 65px;
+  }
+}

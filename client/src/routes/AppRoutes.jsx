@@ -21,6 +21,7 @@ import TraineeAttendance from "../Pages/Trainee/TraineeAttendance";
 import TraineeAssessments from "../Pages/Trainee/TraineeAssessments";
 import TraineeTeams from "../Pages/Trainee/TraineeTeams";
 import TraineeResources from "../Pages/Trainee/TraineeResources";
+import TraineeProfile from "../Pages/Trainee/TraineeProfile";
 
 function AppRoutes() {
   return (
@@ -197,6 +198,16 @@ function AppRoutes() {
         element={
           <Layout role="Trainee">
             <TraineeResources />
+          </Layout>
+        }
+      />
+
+      {/* Trainee Profile Route */}
+      <Route
+        path="/trainee/profile"
+        element={
+          <Layout role="Trainee">
+            <TraineeProfile />
           </Layout>
         }
       />
