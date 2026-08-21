@@ -280,3 +280,784 @@
     min-width: 650px;
   }
 }
+
+/* =====================================================
+   ADD TRAINER MODAL - PROFESSIONAL DESIGN
+   ===================================================== */
+
+.trainer-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(2px);
+}
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+.trainer-modal {
+  width: 100%;
+  max-width: 620px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.20),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+
+  animation: trainerModalOpen 0.2s ease-out;
+}
+
+@keyframes trainerModalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.trainer-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 28px 20px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.trainer-modal-header h2 {
+  margin: 0 0 6px;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  color: #172033;
+}
+
+.trainer-modal-header p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Close */
+.trainer-modal-close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #f1f3f6;
+  color: #4b5563;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.trainer-modal-close:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.trainer-form {
+  padding: 24px 28px 8px;
+
+  max-height: 65vh;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* Scrollbar */
+.trainer-form::-webkit-scrollbar {
+  width: 6px;
+}
+
+.trainer-form::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.trainer-form::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* =====================================================
+   FORM GROUP
+   ===================================================== */
+
+.trainer-form-group {
+  margin-bottom: 20px;
+}
+
+.trainer-form-group:last-child {
+  margin-bottom: 8px;
+}
+
+.trainer-form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* Required star if used */
+.trainer-form-group label span {
+  color: #ef4444;
+}
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+.trainer-form-group input,
+.trainer-form-group select,
+.trainer-form-group textarea {
+  width: 100%;
+  height: 44px;
+
+  box-sizing: border-box;
+
+  padding: 0 13px;
+
+  border: 1px solid #d5dbe5;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #1f2937;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.trainer-form-group input:hover,
+.trainer-form-group select:hover,
+.trainer-form-group textarea:hover {
+  border-color: #b8c2d1;
+}
+
+.trainer-form-group input:focus,
+.trainer-form-group select:focus,
+.trainer-form-group textarea:focus {
+  border-color: #2874e8;
+
+  box-shadow: 0 0 0 3px rgba(40, 116, 232, 0.10);
+
+  background: #ffffff;
+}
+
+/* Placeholder */
+.trainer-form-group input::placeholder,
+.trainer-form-group textarea::placeholder {
+  color: #9aa4b5;
+}
+
+/* Textarea */
+.trainer-form-group textarea {
+  height: 100px;
+
+  padding: 12px;
+
+  resize: vertical;
+}
+
+/* =====================================================
+   OPTIONAL TWO-COLUMN FORM
+   Use .trainer-form-row around two fields
+   ===================================================== */
+
+.trainer-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.trainer-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 18px 28px;
+
+  border-top: 1px solid #e5e7eb;
+
+  background: #fafbfc;
+}
+
+/* =====================================================
+   CANCEL BUTTON
+   ===================================================== */
+
+.trainer-cancel-btn {
+  height: 40px;
+
+  padding: 0 18px;
+
+  border: 1px solid #d8dee8;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #4b5563;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.trainer-cancel-btn:hover {
+  background: #f3f4f6;
+  border-color: #c7ced9;
+  color: #1f2937;
+}
+
+/* =====================================================
+   ADD TRAINER BUTTON
+   ===================================================== */
+
+.trainer-submit-btn {
+  height: 40px;
+
+  min-width: 125px;
+
+  padding: 0 19px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #1677e8;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 5px rgba(22, 119, 232, 0.20);
+
+  transition: all 0.2s ease;
+}
+
+.trainer-submit-btn:hover {
+  background: #0868d5;
+
+  box-shadow: 0 4px 9px rgba(22, 119, 232, 0.25);
+
+  transform: translateY(-1px);
+}
+
+.trainer-submit-btn:active {
+  transform: translateY(0);
+}
+
+.trainer-submit-btn svg {
+  font-size: 12px;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .trainer-modal-overlay {
+    padding: 12px;
+  }
+
+  .trainer-modal {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .trainer-modal-header {
+    padding: 20px;
+  }
+
+  .trainer-modal-header h2 {
+    font-size: 19px;
+  }
+
+  .trainer-form {
+    padding: 20px 20px 5px;
+  }
+
+  .trainer-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .trainer-modal-footer {
+    padding: 16px 20px;
+  }
+
+  .trainer-cancel-btn,
+  .trainer-submit-btn {
+    height: 40px;
+  }
+}
+
+
+/* =====================================================
+   PROFESSIONAL EMAIL COLUMN
+   ===================================================== */
+
+.trainer-table td:nth-child(2) {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.trainer-table td:nth-child(2):hover {
+  color: #1769d2;
+}
+/* =====================================================
+   PROFESSIONAL TRAINER TABLE
+   ===================================================== */
+
+.trainer-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.trainer-table th {
+  padding: 14px 16px;
+  background: #f5f7fa;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1px solid #d9dee7;
+}
+
+.trainer-table td {
+  padding: 15px 16px;
+  height: auto;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.trainer-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.trainer-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Trainer name */
+.trainer-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trainer-name span {
+  color: #1f2937;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Avatar */
+.trainer-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e8f0ff;
+  color: #2563eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Email */
+.trainer-table td:nth-child(2) {
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Team */
+.trainer-table td:nth-child(3) {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Action column */
+.trainer-table td:nth-child(4) {
+  text-align: left;
+}
+
+.action-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.action-icons button {
+  border: none;
+  background: transparent;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.view-btn {
+  color: #374151;
+}
+
+.view-btn:hover {
+  color: #2563eb;
+}
+
+.edit-btn {
+  color: #4b5563;
+}
+
+.edit-btn:hover {
+  color: #2563eb;
+}
+
+.delete-btn {
+  color: #ef4444;
+}
+
+.delete-btn:hover {
+  color: #dc2626;
+}
+/* =========================================================
+   ADD TRAINER MODAL - FORM ONLY
+   Does NOT change existing Trainer Management styling
+   ========================================================= */
+
+/* Modal container */
+.trainer-modal {
+  width: 600px;
+  max-width: calc(100vw - 40px);
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Modal header */
+.trainer-modal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.trainer-modal .modal-header h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.trainer-modal .modal-header p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Close button */
+.trainer-modal .modal-close {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  background: #f1f4f8;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.trainer-modal .modal-close:hover {
+  background: #e5e9ef;
+  color: #172033;
+}
+
+/* Form */
+.trainer-modal form {
+  padding: 24px 28px 26px;
+}
+
+/* Form group */
+.trainer-modal .form-group {
+  margin-bottom: 18px;
+}
+
+.trainer-modal .form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #263247;
+}
+
+/* Inputs */
+.trainer-modal .form-group input {
+  width: 100%;
+  height: 42px;
+  padding: 0 13px;
+  box-sizing: border-box;
+
+  border: 1px solid #d5dce6;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #172033;
+
+  font-size: 13px;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.trainer-modal .form-group input::placeholder {
+  color: #9aa6b8;
+}
+
+.trainer-modal .form-group input:focus {
+  border-color: #2874e8;
+  box-shadow: 0 0 0 3px rgba(40, 116, 232, 0.10);
+}
+
+/* Footer */
+.trainer-modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Cancel button */
+.trainer-modal .modal-footer .cancel-btn {
+  height: 40px;
+  padding: 0 18px;
+
+  border: 1px solid #d9e0e8;
+  border-radius: 7px;
+
+  background: #f4f6f8;
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.trainer-modal .modal-footer .cancel-btn:hover {
+  background: #e9edf2;
+}
+
+/* Add Trainer button */
+.trainer-modal .modal-footer .submit-btn {
+  height: 40px;
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #2874e8;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.trainer-modal .modal-footer .submit-btn:hover {
+  background: #1764d6;
+}
+
+.trainer-modal .modal-footer .submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .trainer-modal {
+    width: calc(100vw - 24px);
+  }
+
+  .trainer-modal .modal-header {
+    padding: 20px;
+  }
+
+  .trainer-modal form {
+    padding: 20px;
+  }
+
+  .trainer-modal .modal-footer {
+    justify-content: stretch;
+  }
+
+  .trainer-modal .modal-footer button {
+    flex: 1;
+  }
+}
+/* ADD TRAINER MODAL - BUTTON FIX ONLY */
+
+.add-trainer-modal .form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e6ed;
+}
+
+.add-trainer-modal .cancel-btn {
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid #d6dce5;
+  border-radius: 7px;
+  background: #f5f7fa;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-sizing: border-box;
+}
+
+.add-trainer-modal .cancel-btn:hover {
+  background: #eef1f5;
+}
+
+.add-trainer-modal .submit-btn {
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 7px;
+  background: #1689e8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-sizing: border-box;
+}
+
+.add-trainer-modal .submit-btn:hover {
+  background: #0878d1;
+}
+
+.add-trainer-modal .submit-btn svg,
+.add-trainer-modal .cancel-btn svg {
+  font-size: 13px;
+}
