@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
+import LandingPage from "../Pages/LandingPage";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
 import FeatureTrainee from "../Pages/Admin/feature-trainee";
@@ -252,7 +253,7 @@ function AppRoutes() {
           DEFAULT ROUTE
           ========================= */}
 
-      <Route path="*" element={<Navigate to="/admin" replace />} />
+      <Route path="*" element={<Navigate to="/LandingPage" replace />} />
     </Routes>
   );
 }

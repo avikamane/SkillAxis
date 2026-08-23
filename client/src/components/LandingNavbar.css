@@ -1,0 +1,220 @@
+/* =========================================
+   SKILLAXIS LANDING NAVBAR
+   ========================================= */
+
+.landing-navbar {
+  width: 100%;
+  height: 90px;
+  padding: 0 70px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+}
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.landing-logo {
+  display: flex;
+  align-items: center;
+}
+
+.landing-logo img {
+  width: 225px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* =========================================
+   NAVIGATION LINKS
+   ========================================= */
+
+.landing-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-left: auto;
+  margin-right: 65px;
+}
+
+.landing-nav-link {
+  position: relative;
+
+  text-decoration: none;
+  color: #17233f;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  padding: 34px 0 28px;
+
+  transition: color 0.2s ease;
+}
+
+.landing-nav-link:hover {
+  color: #1268df;
+}
+
+.landing-nav-link.active {
+  color: #1268df;
+}
+
+/* Blue line under Home */
+
+.landing-nav-link.active::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+
+  height: 3px;
+  border-radius: 3px;
+
+  background: #1268df;
+}
+
+/* =========================================
+   NAVIGATION BUTTONS
+   ========================================= */
+
+.landing-nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.landing-login-btn,
+.landing-get-started-btn {
+  height: 50px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  box-sizing: border-box;
+
+  transition: 0.2s ease;
+}
+
+/* Login */
+
+.landing-login-btn {
+  min-width: 110px;
+
+  color: #1268df;
+  background: #ffffff;
+
+  border: 1.5px solid #1268df;
+}
+
+.landing-login-btn:hover {
+  background: #f1f7ff;
+}
+
+/* Get Started */
+
+.landing-get-started-btn {
+  min-width: 150px;
+
+  color: #ffffff;
+  background: #1268df;
+
+  border: 1.5px solid #1268df;
+}
+
+.landing-get-started-btn:hover {
+  background: #095bc9;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1100px) {
+  .landing-navbar {
+    padding: 0 35px;
+  }
+
+  .landing-nav-links {
+    gap: 25px;
+    margin-right: 30px;
+  }
+
+  .landing-logo img {
+    width: 190px;
+  }
+}
+
+@media (max-width: 850px) {
+  .landing-navbar {
+    height: auto;
+    min-height: 80px;
+    padding: 15px 25px;
+
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .landing-nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    gap: 25px;
+  }
+
+  .landing-nav-link {
+    padding: 10px 0 15px;
+  }
+
+  .landing-nav-link.active::after {
+    bottom: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-navbar {
+    padding: 15px;
+  }
+
+  .landing-logo img {
+    width: 160px;
+  }
+
+  .landing-nav-buttons {
+    gap: 8px;
+  }
+
+  .landing-login-btn,
+  .landing-get-started-btn {
+    height: 42px;
+    padding: 0 15px;
+    font-size: 13px;
+  }
+
+  .landing-nav-links {
+    gap: 15px;
+    overflow-x: auto;
+  }
+
+  .landing-nav-link {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
