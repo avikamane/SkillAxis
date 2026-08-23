@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   FaHome,
@@ -14,6 +14,7 @@ import {
   FaUsers,
   FaFolderOpen,
 } from "react-icons/fa";
+import { logoutUser } from "../utils/Auth";
 
 const menuItems = {
   Admin: [
@@ -122,6 +123,12 @@ const routes = {
 };
 
 function Sidebar({ role = "Admin" }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/login", { replace: true });
+  };
   const location = useLocation();
 
   const items = menuItems[role] || menuItems.Admin;
@@ -167,14 +174,8 @@ function Sidebar({ role = "Admin" }) {
           LOGOUT
           =============================== */}
 
-      <button
-        className="logout-button"
-        onClick={() => {
-          console.log("Logout clicked");
-        }}
-      >
+      <button className="logout-button" onClick={handleLogout}>
         <FaSignOutAlt className="sidebar-icon" />
-
         <span>Logout</span>
       </button>
     </aside>
