@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import LandingPage from "../Pages/landingPage/LandingPage";
 import Login from "../Pages/Auth/Login";
 import Layout from "../components/Layout";
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -8,7 +9,6 @@ import ProtectedRoute from "../components/ProtectedRoute";
 // ADMIN
 // =========================
 
-import LandingPage from "../Pages/LandingPage";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import FeatureTrainer from "../Pages/Admin/feature-trainer";
 import FeatureTrainee from "../Pages/Admin/feature-trainee";
@@ -49,6 +49,12 @@ import TraineeProfile from "../Pages/Trainee/TraineeProfile";
 function AppRoutes() {
   return (
     <Routes>
+
+    <>
+      // =========================
+      // LANDING PAGE
+      // =========================
+      <Route path="/" element={<LandingPage />} /><Route path="/LandingPage" element={<LandingPage />} /></>
       {/* =========================
           LOGIN
       ========================= */}
@@ -314,7 +320,6 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to="/login" replace />} />
 
       <Route path="*" element={<Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to="/LandingPage" replace />} />
     </Routes>
   );
 }
