@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import LandingPage from "../Pages/landingPage/LandingPage";
 import Login from "../Pages/Auth/Login";
 import Layout from "../components/Layout";
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -48,6 +49,12 @@ import TraineeProfile from "../Pages/Trainee/TraineeProfile";
 function AppRoutes() {
   return (
     <Routes>
+
+    <>
+      // =========================
+      // LANDING PAGE
+      // =========================
+      <Route path="/" element={<LandingPage />} /><Route path="/LandingPage" element={<LandingPage />} /></>
       {/* =========================
           LOGIN
       ========================= */}
