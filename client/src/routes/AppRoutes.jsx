@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import LandingPage from "../Pages/landingPage/LandingPage";
 import Login from "../Pages/Auth/Login";
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 // =========================
