@@ -563,9 +563,26 @@ function Trainers() {
                   Cancel
                 </button>
 
+                {/* ONLY THIS BUTTON IS CHANGED */}
+
                 <button
                   type="submit"
                   className="trainer-save-btn"
+                  style={{
+                    backgroundColor: "#1677e8",
+                    color: "#ffffff",
+                    border: "none",
+                    borderRadius: "7px",
+                    height: "40px",
+                    padding: "0 18px",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "7px",
+                    cursor: "pointer",
+                  }}
                 >
                   <FaPlus />
                   Add Trainer
