@@ -7,7 +7,9 @@ import {
   FaEye,
   FaTasks,
 } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SessionDetailsModal from "../../components/SessionDetailsModel";
 import { trainers } from "../../Info/trainerData";
 import { trainees } from "../../Info/traineeData";
 import { sessions } from "../../Info/sessionData";
@@ -50,6 +52,8 @@ function ActivityIcon({ type }) {
 // =========================================
 
 function TrainerDashboard() {
+  const navigate = useNavigate();
+  const [selectedSession, setSelectedSession] = useState(null);
   // Find the current trainer
   const currentTrainer = trainers.find(
     (trainer) => trainer.id === currentTrainerId,
@@ -224,18 +228,20 @@ function TrainerDashboard() {
         </div>
 
         {/* =========================
-            QUICK ACTIONS
-        ========================= */}
+          QUICK ACTIONS
+      ========================= */}
 
         <div className="quick-actions">
           <h2>Quick Actions</h2>
 
           <div className="actions-container">
             {/* Mark Attendance */}
-
-            <button className="action-card action-blue" type="button">
+            <button
+              className="action-card action-blue"
+              type="button"
+              onClick={() => navigate("/trainer/attendance")}
+            >
               <FaUserCheck />
-
               <span>
                 Mark
                 <br />
@@ -244,10 +250,12 @@ function TrainerDashboard() {
             </button>
 
             {/* View Trainees */}
-
-            <button className="action-card action-yellow" type="button">
+            <button
+              className="action-card action-yellow"
+              type="button"
+              onClick={() => navigate("/trainer/trainees")}
+            >
               <FaUsers />
-
               <span>
                 View
                 <br />
@@ -256,10 +264,12 @@ function TrainerDashboard() {
             </button>
 
             {/* View Sessions */}
-
-            <button className="action-card action-purple" type="button">
+            <button
+              className="action-card action-purple"
+              type="button"
+              onClick={() => navigate("/trainer/sessions")}
+            >
               <FaEye />
-
               <span>
                 View My
                 <br />
@@ -325,7 +335,11 @@ function TrainerDashboard() {
                   {/* Action */}
 
                   <td>
-                    <button className="view-button" type="button">
+                    <button
+                      className="view-button"
+                      type="button"
+                      onClick={() => setSelectedSession(session)}
+                    >
                       <FaEye />
                       View
                     </button>
@@ -336,6 +350,12 @@ function TrainerDashboard() {
           </table>
         </div>
       </section>
+      {selectedSession && (
+        <SessionDetailsModal
+          session={selectedSession}
+          onClose={() => setSelectedSession(null)}
+        />
+      )}
     </div>
   );
 }

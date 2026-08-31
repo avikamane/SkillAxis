@@ -378,15 +378,6 @@ function TrainerResources() {
                   </a>
 
                   <button
-                    className="resource-page-edit-btn"
-                    onClick={() => handleEditResource(resource)}
-                    title="Edit Resource"
-                  >
-                    <FaEdit />
-                    <span>Edit</span>
-                  </button>
-
-                  <button
                     className="resource-page-delete-btn"
                     onClick={() => handleDeleteResource(resource.id)}
                     title="Delete Resource"

@@ -101,20 +101,28 @@
    STAT ICONS
 ========================================= */
 
+/* =========================================
+   STAT ICONS
+========================================= */
+
 .stat-icon {
-  width: 55px;
-  height: 55px;
+  width: 45px !important;
+  height: 45px !important;
+  min-width: 45px !important;
+  min-height: 45px !important;
+  max-width: 45px !important;
+  max-height: 45px !important;
+
+  flex: 0 0 45px;
 
   border-radius: 50%;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  font-size: 25px;
+  font-size: 22px;
 }
-
 .blue-icon {
   background: #d9efff;
 
