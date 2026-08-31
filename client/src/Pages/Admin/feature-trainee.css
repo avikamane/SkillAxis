@@ -1,0 +1,619 @@
+/* =================================
+   TRAINEE MANAGEMENT
+   Same styling as Trainer
+   ================================= */
+
+.trainees-page {
+  width: 100%;
+  padding: 18px 24px 30px;
+  box-sizing: border-box;
+  background: #f4f6fa;
+  min-height: calc(100vh - 64px);
+}
+
+
+/* =================================
+   HEADER
+   ================================= */
+
+.trainees-header {
+  margin-bottom: 14px;
+}
+
+.trainees-header h1 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.trainees-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #222;
+}
+
+
+/* =================================
+   ACTION BAR
+   ================================= */
+
+.trainee-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.trainee-search {
+  width: 150px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #d6dce5;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.trainee-search svg {
+  font-size: 13px;
+  color: #9aa8bd;
+}
+
+.trainee-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  color: #333;
+}
+
+.trainee-search input::placeholder {
+  color: #9aa8bd;
+}
+
+
+/* =================================
+   BUTTONS
+   ================================= */
+
+.trainee-buttons {
+  display: flex;
+  gap: 18px;
+}
+
+.trainee-buttons button {
+  height: 36px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.delete-all-trainee-btn {
+  background: #ff3b3b;
+}
+
+.delete-all-trainee-btn:hover {
+  background: #e52e2e;
+}
+
+.add-trainee-btn {
+  background: #0789f9;
+}
+
+.add-trainee-btn:hover {
+  background: #0578df;
+}
+
+
+/* =================================
+   TABLE
+   ================================= */
+
+.trainee-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: #f1f4f8;
+}
+
+.trainee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.trainee-table thead {
+  background: #eef2f7;
+}
+
+.trainee-table th {
+  height: 42px;
+  padding: 0 14px;
+  text-align: left;
+
+  background: #f5f7fa;
+  color: #000000;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 2px solid #c9d0da;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trainee-table td {
+  height: 46px;
+  padding: 0 14px;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #d8dee7;
+
+  color: #202020;
+  background: #f4f6fa;
+
+  font-size: 13px;
+}
+
+
+/* =================================
+   TRAINEE NAME
+   ================================= */
+
+.trainee-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trainee-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0e3e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #555;
+  flex-shrink: 0;
+}
+
+
+/* =================================
+   ACTION ICONS
+   ================================= */
+
+.trainee-action-icons {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.trainee-action-icons button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.trainee-view-btn {
+  color: #111;
+}
+
+.trainee-delete-btn {
+  color: #ff3333;
+}
+
+.trainee-edit-btn {
+  color: #333;
+}
+
+.trainee-action-icons button:hover {
+  transform: scale(1.1);
+}
+
+
+/* =================================
+   STATUS
+   ================================= */
+
+.trainee-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.trainee-status.active {
+  background: #e7f7ed;
+  color: #168544;
+}
+
+.trainee-status.inactive {
+  background: #fce8e8;
+  color: #d83232;
+}
+
+
+/* =================================
+   EMPTY STATE
+   ================================= */
+
+.no-trainees {
+  text-align: center !important;
+  padding: 30px !important;
+  color: #777 !important;
+}
+
+
+/* =================================
+   PAGINATION
+   ================================= */
+
+.trainee-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.trainee-pagination button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.trainee-pagination .active-trainee-page {
+  background: #2463eb;
+  color: white;
+  border-radius: 2px;
+}
+
+
+/* =================================
+   RESPONSIVE
+   ================================= */
+
+@media (max-width: 800px) {
+  .trainee-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .trainee-search {
+    width: 100%;
+  }
+
+  .trainee-buttons {
+    justify-content: flex-end;
+  }
+
+  .trainee-table {
+    min-width: 650px;
+  }
+}
+
+/* FORCE TRAINEE TABLE TO MATCH TRAINER TABLE */
+
+.trainees-page .trainees-header h1 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+  color: #111827 !important;
+}
+
+.trainees-page .trainees-header p {
+  font-size: 13px !important;
+  margin: 0 !important;
+  color: #222 !important;
+}
+
+.trainees-page .trainee-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 12px !important;
+}
+
+.trainees-page .trainee-table th {
+  height: 42px !important;
+  padding: 0 14px !important;
+  background: #f5f7fa !important;
+  color: #000000 !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 2px solid #c9d0da !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+
+.trainees-page .trainee-table td {
+  height: 46px !important;
+  padding: 0 14px !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 1px solid #d8dee7 !important;
+  color: #202020 !important;
+  background: #f4f6fa !important;
+  font-size: 13px !important;
+}
+
+/* =========================================
+   TRAINEE MODALS / FORMS
+   Only for Add, Edit & View
+   ========================================= */
+
+.trainee-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.trainee-modal {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ---------- MODAL HEADER ---------- */
+
+.trainee-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 28px;
+  border-bottom: 1px solid #e2e6ed;
+}
+
+.trainee-modal-header h2 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.trainee-modal-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #7a8495;
+}
+
+.trainee-modal-close {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  background: #f1f4f8;
+  color: #596273;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.trainee-modal-close:hover {
+  background: #e6eaf0;
+  color: #1f2937;
+}
+
+/* ---------- FORM ---------- */
+
+.trainee-modal-form {
+  padding: 24px 28px 10px;
+}
+
+.trainee-form-field {
+  margin-bottom: 20px;
+}
+
+.trainee-form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.trainee-form-field input,
+.trainee-form-field select {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #d2d9e3;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #273142;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.trainee-form-field input::placeholder {
+  color: #9aa6b8;
+}
+
+.trainee-form-field input:focus,
+.trainee-form-field select:focus {
+  border-color: #1689e8;
+  box-shadow: 0 0 0 3px rgba(22, 137, 232, 0.10);
+}
+
+/* ---------- FOOTER ---------- */
+
+.trainee-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px 22px;
+  margin-top: 5px;
+  border-top: 1px solid #e5e8ed;
+}
+
+.trainee-cancel-btn,
+.trainee-save-btn {
+  height: 40px;
+  padding: 0 17px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Cancel */
+
+.trainee-cancel-btn {
+  border: 1px solid #d4dae3;
+  background: #f7f8fa;
+  color: #4b5563;
+}
+
+.trainee-cancel-btn:hover {
+  background: #eef1f5;
+}
+
+/* Add / Save */
+
+.trainee-save-btn {
+  border: 1px solid #1689e8;
+  background: #1689e8;
+  color: #ffffff;
+}
+
+.trainee-save-btn:hover {
+  background: #0878d1;
+  border-color: #0878d1;
+}
+
+/* ---------- VIEW MODAL ---------- */
+
+.trainee-view-modal {
+  max-width: 560px;
+}
+
+.trainee-view-details {
+  padding: 25px 28px;
+}
+
+.trainee-view-avatar {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: #eaf2ff;
+  color: #2771bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.trainee-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  border-bottom: 1px solid #edf0f4;
+  gap: 20px;
+}
+
+.trainee-detail-row:last-child {
+  border-bottom: none;
+}
+
+.trainee-detail-row span {
+  color: #7a8495;
+  font-size: 13px;
+}
+
+.trainee-detail-row strong {
+  color: #202938;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* ---------- STATUS INSIDE VIEW ---------- */
+
+.trainee-detail-row .trainee-status {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+  .trainee-modal {
+    max-width: 100%;
+  }
+
+  .trainee-modal-header {
+    padding: 18px 20px;
+  }
+
+  .trainee-modal-form,
+  .trainee-view-details {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .trainee-modal-footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .trainee-detail-row {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .trainee-detail-row strong {
+    text-align: left;
+  }
+}

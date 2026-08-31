@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   FaHome,
@@ -14,8 +14,7 @@ import {
   FaUsers,
   FaFolderOpen,
 } from "react-icons/fa";
-
-
+import { logoutUser } from "../utils/Auth";
 
 const menuItems = {
   Admin: [
@@ -102,8 +101,9 @@ const routes = {
   },
 
   Trainer: {
-    Dashboard: "/trainer",
+    Dashboard: "/trainer/dashboard",
     Sessions: "/trainer/sessions",
+    Teams: "/trainer/teams",
     Trainees: "/trainer/trainees",
     Attendance: "/trainer/attendance",
     Assessments: "/trainer/assessments",
@@ -112,7 +112,7 @@ const routes = {
   },
 
   Trainee: {
-    Dashboard: "/trainee",
+    Dashboard: "/trainee/dashboard",
     "My Sessions": "/trainee/sessions",
     Attendance: "/trainee/attendance",
     Assessments: "/trainee/assessments",
@@ -123,6 +123,12 @@ const routes = {
 };
 
 function Sidebar({ role = "Admin" }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/login", { replace: true });
+  };
   const location = useLocation();
 
   const items = menuItems[role] || menuItems.Admin;
@@ -130,7 +136,6 @@ function Sidebar({ role = "Admin" }) {
 
   return (
     <aside className="sidebar">
-
       {/* ===============================
           MENU
           =============================== */}
@@ -148,9 +153,7 @@ function Sidebar({ role = "Admin" }) {
           return (
             <Link
               to={path || "#"}
-              className={`sidebar-item ${
-                isActive ? "active" : ""
-              }`}
+              className={`sidebar-item ${isActive ? "active" : ""}`}
               key={item.label}
             >
               <Icon className="sidebar-icon" />
@@ -171,17 +174,10 @@ function Sidebar({ role = "Admin" }) {
           LOGOUT
           =============================== */}
 
-      <button
-        className="logout-button"
-        onClick={() => {
-          console.log("Logout clicked");
-        }}
-      >
+      <button className="logout-button" onClick={handleLogout}>
         <FaSignOutAlt className="sidebar-icon" />
-
         <span>Logout</span>
       </button>
-
     </aside>
   );
 }
