@@ -12,7 +12,7 @@ import {
   FaGraduationCap,
 } from "react-icons/fa";
 import { initializeUsers, loginUser } from "../../utils/Auth";
-import logo from "../../assets/logo/SkillAxis-logo.png";
+import logo from "../../assets/logo/skillAxis-logo.png";
 // Place your desk & laptop illustration here:
 import heroIllustration from "../../assets/logo/heroIllustration.png";
 import "./Login.css";
