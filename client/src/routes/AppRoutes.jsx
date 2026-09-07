@@ -49,12 +49,14 @@ import TraineeProfile from "../Pages/Trainee/TraineeProfile";
 function AppRoutes() {
   return (
     <Routes>
-      <>
-        // ========================= // LANDING PAGE //
-        =========================
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/LandingPage" element={<LandingPage />} />
-      </>
+
+      {/* =========================
+          LANDING PAGE
+      ========================= */}
+
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/LandingPage" element={<LandingPage />} />
+
       {/* =========================
           LOGIN
       ========================= */}
@@ -66,6 +68,7 @@ function AppRoutes() {
       ========================= */}
 
       <Route element={<ProtectedRoute allowedRole="Admin" />}>
+
         <Route
           path="/admin"
           element={
@@ -146,6 +149,7 @@ function AppRoutes() {
             </Layout>
           }
         />
+
       </Route>
 
       {/* =========================
@@ -153,6 +157,7 @@ function AppRoutes() {
       ========================= */}
 
       <Route element={<ProtectedRoute allowedRole="Trainer" />}>
+
         <Route
           path="/trainer/dashboard"
           element={
@@ -242,6 +247,7 @@ function AppRoutes() {
             </Layout>
           }
         />
+
       </Route>
 
       {/* =========================
@@ -249,6 +255,7 @@ function AppRoutes() {
       ========================= */}
 
       <Route element={<ProtectedRoute allowedRole="Trainee" />}>
+
         <Route
           path="/trainee/dashboard"
           element={
@@ -311,15 +318,15 @@ function AppRoutes() {
             </Layout>
           }
         />
+
       </Route>
 
       {/* =========================
           DEFAULT ROUTE
       ========================= */}
 
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
 
-      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }

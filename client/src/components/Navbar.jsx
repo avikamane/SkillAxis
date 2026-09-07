@@ -1,4 +1,5 @@
-import logo from "../assets/logo/skillaxis-logo.png";
+import logo from "../assets/logo/skillAxis-logo.png";
+import { FaUserCircle } from "react-icons/fa";
 
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 
