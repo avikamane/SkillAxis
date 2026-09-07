@@ -122,7 +122,7 @@ const routes = {
   },
 };
 
-function Sidebar({ role = "Admin" }) {
+function Sidebar({ role = "Admin", sidebarOpen = false, onClose }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -135,7 +135,7 @@ function Sidebar({ role = "Admin" }) {
   const roleRoutes = routes[role] || routes.Admin;
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
       {/* ===============================
           MENU
           =============================== */}
@@ -155,6 +155,7 @@ function Sidebar({ role = "Admin" }) {
               to={path || "#"}
               className={`sidebar-item ${isActive ? "active" : ""}`}
               key={item.label}
+              onClick={onClose}
             >
               <Icon className="sidebar-icon" />
 

@@ -59,7 +59,13 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   background-color: var(--bg-page);
   color: var(--text-primary);
   line-height: 1.5;
@@ -123,8 +129,7 @@ a {
 }
 
 .skillaxis-logo {
-  height: 380
-px;
+  height: 380 px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
@@ -155,7 +160,9 @@ px;
   font-size: 30px;
   cursor: pointer;
   border-radius: 50%;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .profile-button:hover {
@@ -198,7 +205,9 @@ px;
   border-radius: var(--radius-md);
   font-size: 15px;
   font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .sidebar-item:hover {
@@ -241,7 +250,9 @@ px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .logout-button:hover {
@@ -314,10 +325,18 @@ px;
   font-weight: 700;
 }
 
-.stat-value.blue   { color: #0284c7; }
-.stat-value.teal   { color: #0f766e; }
-.stat-value.olive  { color: #65a30d; }
-.stat-value.dark   { color: var(--text-primary); }
+.stat-value.blue {
+  color: #0284c7;
+}
+.stat-value.teal {
+  color: #0f766e;
+}
+.stat-value.olive {
+  color: #65a30d;
+}
+.stat-value.dark {
+  color: var(--text-primary);
+}
 
 /* =========================================================
    8. MIDDLE PANELS: ACTIVITIES & QUICK ACTIONS
@@ -392,7 +411,9 @@ px;
   cursor: pointer;
   text-align: center;
   line-height: 1.2;
-  transition: transform 0.15s ease, filter 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    filter 0.2s ease;
 }
 
 .action-btn:hover {
@@ -400,9 +421,18 @@ px;
   filter: brightness(0.95);
 }
 
-.action-btn.bg-teal   { background-color: #a7f3d0; color: #065f46; }
-.action-btn.bg-yellow { background-color: #fef08a; color: #854d0e; }
-.action-btn.bg-purple { background-color: #e9d5ff; color: #6b21a8; }
+.action-btn.bg-teal {
+  background-color: #a7f3d0;
+  color: #065f46;
+}
+.action-btn.bg-yellow {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+.action-btn.bg-purple {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
 
 /* =========================================================
    9. SESSIONS TABLE SECTION
@@ -466,9 +496,43 @@ px;
 }
 
 /* =========================================================
-   10. RESPONSIVE BREAKPOINTS
+   10. RESPONSIVE NAVIGATION
    ========================================================= */
-@media (max-width: 1100px) {
+
+/* Hamburger button - hidden on desktop */
+.mobile-menu-button {
+  display: none;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 28px 24px;
+  }
+
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -476,35 +540,224 @@ px;
   .panel-grid {
     grid-template-columns: 1fr;
   }
+
+  .navbar {
+    padding: 0 24px 0 20px;
+  }
+
+  .navbar-logo {
+    width: 200px;
+  }
+
+  .skillaxis-logo {
+    max-width: 160px;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 768px) {
   :root {
-    --sidebar-width: 64px;
+    --navbar-height: 60px;
+    .navbar {
+      padding: 0 16px;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar-logo {
+      width: auto;
+    }
+
+    .skillaxis-logo {
+      height: 100px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+    }
+
+    .mobile-menu-button {
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
+    }
   }
 
-  .sidebar-item span,
-  .user-role,
-  .logout-button span {
-    display: none;
+  /* -------------------------
+     NAVBAR
+     ------------------------- */
+
+  .navbar {
+    height: var(--navbar-height);
+    padding: 0 16px;
   }
+
+  .navbar-left {
+    gap: 8px;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .navbar-logo {
+    width: auto;
+    height: 100%;
+  }
+
+  .skillaxis-logo {
+    height: 42px;
+    max-width: 145px;
+  }
+
+  .navbar-user {
+    gap: 6px;
+  }
+
+  .user-role {
+    font-size: 13px;
+  }
+
+  .profile-button {
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+  }
+
+  /* -------------------------
+     SIDEBAR
+     ------------------------- */
 
   .sidebar {
-    padding: 16px 8px;
-    align-items: center;
+    width: 250px;
+    height: calc(100vh - var(--navbar-height));
+
+    top: var(--navbar-height);
+
+    transform: translateX(-100%);
+
+    transition: transform 0.3s ease;
+
+    padding: 20px 14px;
+
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+
+    z-index: 1100;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* Keep sidebar text visible on mobile */
+
+  .sidebar-item span,
+  .logout-button span {
+    display: inline;
   }
 
   .sidebar-item,
   .logout-button {
-    justify-content: center;
-    padding: 10px 0;
+    justify-content: flex-start;
+    padding: 11px 16px;
   }
 
-  .main-content {
-    padding: 20px 16px;
+  /* -------------------------
+     OVERLAY
+     ------------------------- */
+
+  .sidebar-overlay {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height));
+
+    background: rgba(0, 0, 0, 0.4);
+
+    z-index: 1050;
   }
+
+  /* -------------------------
+     MAIN CONTENT
+     ------------------------- */
+
+  .main-content {
+    margin-left: 0;
+    margin-top: var(--navbar-height);
+    padding: 20px 16px;
+    min-height: calc(100vh - var(--navbar-height));
+  }
+
+  /* -------------------------
+     DASHBOARD CARDS
+     ------------------------- */
 
   .stat-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .panel-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  /* -------------------------
+     TABLE
+     ------------------------- */
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .common-table {
+    min-width: 650px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .skillaxis-logo {
+    max-width: 125px;
+    height: 38px;
+  }
+
+  .user-role {
+    display: none;
+  }
+
+  .profile-button {
+    font-size: 24px;
+  }
+
+  .main-content {
+    padding: 16px 12px;
+  }
+
+  .welcome-header h1 {
+    font-size: 17px;
+  }
+
+  .card {
+    padding: 18px 16px;
   }
 }
