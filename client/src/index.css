@@ -59,7 +59,13 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   background-color: var(--bg-page);
   color: var(--text-primary);
   line-height: 1.5;
@@ -123,8 +129,7 @@ a {
 }
 
 .skillaxis-logo {
-  height: 380
-px;
+  height: 380 px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
@@ -155,7 +160,9 @@ px;
   font-size: 30px;
   cursor: pointer;
   border-radius: 50%;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .profile-button:hover {
@@ -198,7 +205,9 @@ px;
   border-radius: var(--radius-md);
   font-size: 15px;
   font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .sidebar-item:hover {
@@ -241,7 +250,9 @@ px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .logout-button:hover {
@@ -314,10 +325,18 @@ px;
   font-weight: 700;
 }
 
-.stat-value.blue   { color: #0284c7; }
-.stat-value.teal   { color: #0f766e; }
-.stat-value.olive  { color: #65a30d; }
-.stat-value.dark   { color: var(--text-primary); }
+.stat-value.blue {
+  color: #0284c7;
+}
+.stat-value.teal {
+  color: #0f766e;
+}
+.stat-value.olive {
+  color: #65a30d;
+}
+.stat-value.dark {
+  color: var(--text-primary);
+}
 
 /* =========================================================
    8. MIDDLE PANELS: ACTIVITIES & QUICK ACTIONS
@@ -392,7 +411,9 @@ px;
   cursor: pointer;
   text-align: center;
   line-height: 1.2;
-  transition: transform 0.15s ease, filter 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    filter 0.2s ease;
 }
 
 .action-btn:hover {
@@ -400,9 +421,18 @@ px;
   filter: brightness(0.95);
 }
 
-.action-btn.bg-teal   { background-color: #a7f3d0; color: #065f46; }
-.action-btn.bg-yellow { background-color: #fef08a; color: #854d0e; }
-.action-btn.bg-purple { background-color: #e9d5ff; color: #6b21a8; }
+.action-btn.bg-teal {
+  background-color: #a7f3d0;
+  color: #065f46;
+}
+.action-btn.bg-yellow {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+.action-btn.bg-purple {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
 
 /* =========================================================
    9. SESSIONS TABLE SECTION
@@ -466,57 +496,39 @@ px;
 }
 
 /* =========================================================
-   10. RESPONSIVE BREAKPOINTS
+   10. RESPONSIVE NAVIGATION
    ========================================================= */
-@media (max-width: 1100px) {
-  .stat-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
-  .panel-grid {
-    grid-template-columns: 1fr;
-  }
+/* Hamburger button - hidden on desktop */
+.mobile-menu-button {
+  display: none;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
 }
 
-@media (max-width: 768px) {
-  :root {
-    --sidebar-width: 64px;
-  }
+.mobile-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
-  .sidebar-item span,
-  .user-role,
-  .logout-button span {
-    display: none;
-  }
-
-  .sidebar {
-    padding: 16px 8px;
-    align-items: center;
-  }
-
-  .sidebar-item,
-  .logout-button {
-    justify-content: center;
-    padding: 10px 0;
-  }
-
-  .main-content {
-    padding: 20px 16px;
-  }
-
-  .stat-grid {
-    grid-template-columns: 1fr;
-  }
+.navbar-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 /* =========================================================
-   GLOBAL RESPONSIVE DESIGN
-   Works for Laptop, Tablet & Mobile
+   TABLET
    ========================================================= */
 
-/* ---------- TABLET / SMALL LAPTOP ---------- */
-@media (max-width: 1100px) {
-
+@media (max-width: 1024px) {
   .main-content {
     padding: 28px 24px;
   }
@@ -529,41 +541,167 @@ px;
     grid-template-columns: 1fr;
   }
 
-  .action-buttons {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .common-table {
-    min-width: 700px;
-  }
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
   .navbar {
-    padding: 0 18px;
+    padding: 0 24px 0 20px;
   }
 
   .navbar-logo {
-    width: 180px;
+    width: 200px;
   }
+
+  .skillaxis-logo {
+    max-width: 160px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 60px;
+    .navbar {
+      padding: 0 16px;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar-logo {
+      width: auto;
+    }
+
+    .skillaxis-logo {
+      height: 100px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+    }
+
+    .mobile-menu-button {
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
+    }
+  }
+
+  /* -------------------------
+     NAVBAR
+     ------------------------- */
+
+  .navbar {
+    height: var(--navbar-height);
+    padding: 0 16px;
+  }
+
+  .navbar-left {
+    gap: 8px;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .navbar-logo {
+    width: auto;
+    height: 100%;
+  }
+
+  .skillaxis-logo {
+    height: 42px;
+    max-width: 145px;
+  }
+
+  .navbar-user {
+    gap: 6px;
+  }
+
+  .user-role {
+    font-size: 13px;
+  }
+
+  .profile-button {
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+  }
+
+  /* -------------------------
+     SIDEBAR
+     ------------------------- */
+
+  .sidebar {
+    width: 250px;
+    height: calc(100vh - var(--navbar-height));
+
+    top: var(--navbar-height);
+
+    transform: translateX(-100%);
+
+    transition: transform 0.3s ease;
+
+    padding: 20px 14px;
+
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+
+    z-index: 1100;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* Keep sidebar text visible on mobile */
+
+  .sidebar-item span,
+  .logout-button span {
+    display: inline;
+  }
+
+  .sidebar-item,
+  .logout-button {
+    justify-content: flex-start;
+    padding: 11px 16px;
+  }
+
+  /* -------------------------
+     OVERLAY
+     ------------------------- */
+
+  .sidebar-overlay {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height));
+
+    background: rgba(0, 0, 0, 0.4);
+
+    z-index: 1050;
+  }
+
+  /* -------------------------
+     MAIN CONTENT
+     ------------------------- */
 
   .main-content {
-    padding: 24px 20px;
+    margin-left: 0;
+    margin-top: var(--navbar-height);
+    padding: 20px 16px;
+    min-height: calc(100vh - var(--navbar-height));
   }
 
+  /* -------------------------
+     DASHBOARD CARDS
+     ------------------------- */
+
   .stat-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 14px;
   }
 
@@ -573,54 +711,34 @@ px;
   }
 
   .action-buttons {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
-  .card {
-    padding: 20px;
+  /* -------------------------
+     TABLE
+     ------------------------- */
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .common-table {
+    min-width: 650px;
   }
 }
 
-
 /* =========================================================
-   MOBILE
+   SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 768px) {
-
-  :root {
-    --navbar-height: 60px;
-    --sidebar-width: 0px;
-  }
-
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-
-  /* ---------- NAVBAR ---------- */
-
+@media (max-width: 480px) {
   .navbar {
-    height: var(--navbar-height);
     padding: 0 12px;
   }
 
-  .navbar-logo {
-    width: auto;
-    max-width: 160px;
-  }
-
   .skillaxis-logo {
-    height: 42px;
-    width: auto;
-    max-width: 150px;
-  }
-
-  .navbar-user {
-    gap: 5px;
+    max-width: 125px;
+    height: 38px;
   }
 
   .user-role {
@@ -628,218 +746,18 @@ px;
   }
 
   .profile-button {
-    width: 36px;
-    height: 36px;
-    font-size: 26px;
+    font-size: 24px;
   }
-
-
-  /* ---------- SIDEBAR ---------- */
-
-  .sidebar {
-    width: 0;
-    padding: 0;
-    overflow: hidden;
-    border: none;
-  }
-
-  .sidebar-item,
-  .logout-button {
-    display: none;
-  }
-
-
-  /* ---------- MAIN CONTENT ---------- */
 
   .main-content {
-    width: 100%;
-    min-width: 0;
-    margin-left: 0;
-    margin-top: var(--navbar-height);
-    padding: 18px 14px;
-  }
-
-
-  /* ---------- WELCOME ---------- */
-
-  .welcome-header {
-    margin-bottom: 18px;
+    padding: 16px 12px;
   }
 
   .welcome-header h1 {
     font-size: 17px;
   }
 
-  .welcome-header p {
-    font-size: 12px;
-  }
-
-
-  /* ---------- STAT CARDS ---------- */
-
-  .stat-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .stat-card {
-    width: 100%;
-    padding: 16px;
-  }
-
-  .stat-label {
-    font-size: 12px;
-  }
-
-  .stat-value {
-    font-size: 20px;
-  }
-
-
-  /* ---------- PANELS ---------- */
-
-  .panel-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
   .card {
-    width: 100%;
-    min-width: 0;
-    padding: 18px 14px;
-  }
-
-  .card h2 {
-    font-size: 15px;
-  }
-
-
-  /* ---------- QUICK ACTIONS ---------- */
-
-  .action-buttons {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
-  }
-
-  .action-btn {
-    width: 100%;
-    min-height: 52px;
-    padding: 12px 8px;
-    font-size: 10px;
-  }
-
-
-  /* ---------- TABLES ---------- */
-
-  .table-container {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .common-table {
-    width: 700px;
-    min-width: 700px;
-  }
-
-  .common-table th,
-  .common-table td {
-    white-space: nowrap;
-  }
-
-  .common-table th {
-    padding: 11px 12px;
-    font-size: 12px;
-  }
-
-  .common-table td {
-    padding: 12px;
-    font-size: 12px;
-  }
-
-
-  /* ---------- SECTION HEADINGS ---------- */
-
-  .section-heading {
-    font-size: 15px;
-    margin-bottom: 12px;
-  }
-
-
-  /* ---------- STATUS BADGES ---------- */
-
-  .status-badge {
-    padding: 4px 10px;
-    font-size: 10px;
-  }
-
-
-  /* ---------- GENERAL BUTTONS ---------- */
-
-  button {
-    max-width: 100%;
-  }
-
-  input,
-  select,
-  textarea {
-    max-width: 100%;
-  }
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-  .navbar {
-    padding: 0 9px;
-  }
-
-  .skillaxis-logo {
-    height: 36px;
-    max-width: 130px;
-  }
-
-  .main-content {
-    padding: 15px 10px;
-  }
-
-  .welcome-header h1 {
-    font-size: 16px;
-  }
-
-  .welcome-header p {
-    font-size: 11px;
-  }
-
-  .stat-card {
-    padding: 14px;
-  }
-
-  .stat-value {
-    font-size: 18px;
-  }
-
-  .card {
-    padding: 15px 11px;
-  }
-
-  .action-buttons {
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
-  }
-
-  .action-btn {
-    min-height: 48px;
-    font-size: 9px;
-    padding: 10px 5px;
-  }
-
-  .section-heading {
-    font-size: 14px;
+    padding: 18px 16px;
   }
 }
