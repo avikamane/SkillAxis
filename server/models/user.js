@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
   {
@@ -35,8 +36,17 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
+// Hash password before saving
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) {
+    return;
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 // Allow only one Admin account
 userSchema.index(
@@ -44,7 +54,7 @@ userSchema.index(
   {
     unique: true,
     partialFilterExpression: { role: "Admin" },
-  }
+  },
 );
 
 const User = mongoose.model("User", userSchema);
