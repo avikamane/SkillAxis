@@ -6,6 +6,7 @@ import {
   getUserById,
   updateUser,
   deleteUser,
+  getTrainerTrainees,
 } from "../controller/userController.js";
 
 import { protect, authorizeRoles } from "../middleware/authMiddleware.js";
@@ -21,5 +22,12 @@ router.get("/users/:id", protect, authorizeRoles("Admin"), getUserById);
 router.put("/users/:id", protect, authorizeRoles("Admin"), updateUser);
 
 router.delete("/users/:id", protect, authorizeRoles("Admin"), deleteUser);
+
+router.get(
+  "/trainer/trainees",
+  protect,
+  authorizeRoles("Trainer"),
+  getTrainerTrainees,
+);
 
 export default router;
