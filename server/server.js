@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import appRoutes from "./routes/AppRoutes.js";
 
 dotenv.config();
 
@@ -15,6 +16,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("SkillAxis Backend is running!");
 });
+
+// API Routes
+app.use("/api", appRoutes);
 
 // MongoDB connection
 mongoose
