@@ -41,7 +41,6 @@ export const createUser = async (req, res) => {
   }
 };
 
-
 // Get all Trainers and Trainees
 export const getUsers = async (req, res) => {
   try {
@@ -57,7 +56,6 @@ export const getUsers = async (req, res) => {
     });
   }
 };
-
 
 // Get a single user
 export const getUserById = async (req, res) => {
@@ -78,7 +76,6 @@ export const getUserById = async (req, res) => {
     });
   }
 };
-
 
 // Update Trainer or Trainee
 export const updateUser = async (req, res) => {
@@ -131,7 +128,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-
 // Delete Trainer or Trainee
 export const deleteUser = async (req, res) => {
   try {
@@ -157,6 +153,24 @@ export const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Failed to delete user",
+      error: error.message,
+    });
+  }
+};
+
+//get trainer trainee (all trainees for now)
+
+export const getTrainerTrainees = async (req, res) => {
+  try {
+    const trainees = await User.find({
+      role: "Trainee",
+      status: "Active",
+    }).select("-password");
+
+    res.status(200).json(trainees);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch trainees",
       error: error.message,
     });
   }
