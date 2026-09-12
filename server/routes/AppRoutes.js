@@ -8,12 +8,18 @@ import {
   deleteUser,
 } from "../controller/userController.js";
 
+import { protect, authorizeRoles } from "../middleware/authMiddleware.js";
+
 const router = express.Router();
 
-router.post("/users", createUser);
-router.get("/users", getUsers);
-router.get("/users/:id", getUserById);
-router.put("/users/:id", updateUser);
-router.delete("/users/:id", deleteUser);
+router.post("/users", protect, authorizeRoles("Admin"), createUser);
+
+router.get("/users", protect, authorizeRoles("Admin"), getUsers);
+
+router.get("/users/:id", protect, authorizeRoles("Admin"), getUserById);
+
+router.put("/users/:id", protect, authorizeRoles("Admin"), updateUser);
+
+router.delete("/users/:id", protect, authorizeRoles("Admin"), deleteUser);
 
 export default router;

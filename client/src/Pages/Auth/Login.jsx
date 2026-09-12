@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaEnvelope,
@@ -11,7 +11,7 @@ import {
   FaUserGraduate,
   FaGraduationCap,
 } from "react-icons/fa";
-import { initializeUsers, loginUser } from "../../utils/Auth";
+import { saveLoginData } from "../../utils/Auth";
 import logo from "../../assets/logo/skillAxis-logo.png";
 // Place your desk & laptop illustration here:
 import heroIllustration from "../../assets/logo/heroIllustration.png";
@@ -29,26 +29,19 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    initializeUsers();
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    setError("");
   };
-
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
     setError("");
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -67,35 +60,61 @@ function Login() {
 
     setIsLoading(true);
 
-    const result = loginUser(email, password);
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    if (!result.success) {
-      setError(result.message);
-      setIsLoading(false);
-      return;
-    }
+      const data = await response.json();
 
-    if (result.user.role !== selectedRole) {
-      setError(
-        `This account is registered as ${result.user.role}. Please select the correct role.`,
-      );
-      setIsLoading(false);
-      return;
-    }
-
-    switch (result.user.role) {
-      case "Admin":
-        navigate("/admin");
-        break;
-      case "Trainer":
-        navigate("/trainer/dashboard");
-        break;
-      case "Trainee":
-        navigate("/trainee/dashboard");
-        break;
-      default:
-        setError("Invalid user role.");
+      if (!response.ok) {
+        setError(data.message || "Login failed.");
         setIsLoading(false);
+        return;
+      }
+
+      // Check selected role
+      if (data.user.role !== selectedRole) {
+        setError(
+          `This account is registered as ${data.user.role}. Please select the correct role.`,
+        );
+        setIsLoading(false);
+        return;
+      }
+
+      // Save JWT + user information
+      saveLoginData(data.token, data.user);
+
+      // Redirect according to role
+      switch (data.user.role) {
+        case "Admin":
+          navigate("/admin");
+          break;
+
+        case "Trainer":
+          navigate("/trainer/dashboard");
+          break;
+
+        case "Trainee":
+          navigate("/trainee/dashboard");
+          break;
+
+        default:
+          setError("Invalid user role.");
+          setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Unable to connect to the server.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
