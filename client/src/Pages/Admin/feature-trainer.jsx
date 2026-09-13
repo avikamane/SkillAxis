@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaSearch,
   FaTrash,
@@ -9,6 +9,7 @@ import {
   FaEnvelope,
   FaUsers,
 } from "react-icons/fa";
+import { getToken } from "../../utils/Auth";
 
 import "./feature-trainer.css";
 
@@ -59,6 +60,56 @@ function Trainers() {
       team: "App dev",
     },
   ]);
+  useEffect(() => {
+  fetchTrainers();
+}, []);
+
+const fetchTrainers = async () => {
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      "http://localhost:5000/api/users",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(
+        data.message || "Failed to fetch trainers"
+      );
+      return;
+    }
+
+    const trainerUsers = data
+      .filter((user) => user.role === "Trainer")
+      .map((user) => ({
+        id: user._id,
+        initials: user.name
+          .split(" ")
+          .map((word) => word[0])
+          .join("")
+          .substring(0, 2)
+          .toUpperCase(),
+        name: user.name,
+        email: user.email,
+        team: "Web dev",
+      }));
+
+    setTrainers(trainerUsers);
+  } catch (error) {
+    console.error(
+      "Failed to connect to server:",
+      error
+    );
+  }
+};
 
   /* ================================
      MODAL STATES
@@ -75,11 +126,10 @@ function Trainers() {
      ================================ */
 
   const [newTrainer, setNewTrainer] = useState({
-    name: "",
-    email: "",
-    team: "",
-  });
-
+  name: "",
+  email: "",
+  password: "",
+});
   /* ================================
      FILTER
      ================================ */
@@ -98,38 +148,94 @@ function Trainers() {
      DELETE TRAINER
      ================================ */
 
-  const deleteTrainer = (id) => {
-    const trainer = trainers.find((item) => item.id === id);
+ const deleteTrainer = async (id) => {
+  const trainer = trainers.find((item) => item.id === id);
 
-    const confirmDelete = window.confirm(
-      `Are you sure you want to delete ${trainer.name}?`
+  if (!trainer) return;
+
+  const confirmDelete = window.confirm(
+    `Are you sure you want to delete ${trainer.name}?`
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      `http://localhost:5000/api/users/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
-    if (confirmDelete) {
-      setTrainers((prev) =>
-        prev.filter((trainer) => trainer.id !== id)
-      );
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Failed to delete trainer.");
+      return;
     }
-  };
+
+    alert("Trainer deleted successfully!");
+
+    await fetchTrainers();
+
+    if (selectedTrainer && selectedTrainer.id === id) {
+      setShowViewModal(false);
+      setShowEditModal(false);
+      setSelectedTrainer(null);
+    }
+  } catch (error) {
+    console.error("Delete trainer error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ================================
      DELETE ALL
      ================================ */
 
-  const deleteAllTrainers = () => {
-    if (trainers.length === 0) {
-      alert("No trainers available.");
-      return;
-    }
+ const deleteAllTrainers = async () => {
+  if (trainers.length === 0) {
+    alert("No trainers available.");
+    return;
+  }
 
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete all trainers?"
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete all trainers?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const token = getToken();
+
+    await Promise.all(
+      trainers.map((trainer) =>
+        fetch(`http://localhost:5000/api/users/${trainer.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      )
     );
 
-    if (confirmDelete) {
-      setTrainers([]);
-    }
-  };
+    alert("All trainers deleted successfully!");
+
+    await fetchTrainers();
+
+    setSelectedTrainer(null);
+    setShowViewModal(false);
+    setShowEditModal(false);
+  } catch (error) {
+    console.error("Delete all trainers error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ================================
      VIEW TRAINER
@@ -169,43 +275,54 @@ function Trainers() {
      SAVE EDIT
      ================================ */
 
-  const saveEdit = (e) => {
-    e.preventDefault();
+  const saveEdit = async (e) => {
+  e.preventDefault();
 
-    if (
-      !selectedTrainer.name.trim() ||
-      !selectedTrainer.email.trim() ||
-      !selectedTrainer.team.trim()
-    ) {
-      alert("Please fill all fields.");
+  if (
+    !selectedTrainer.name.trim() ||
+    !selectedTrainer.email.trim() ||
+    !selectedTrainer.team.trim()
+  ) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      `http://localhost:5000/api/users/${selectedTrainer.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: selectedTrainer.name.trim(),
+          email: selectedTrainer.email.trim(),
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Failed to update trainer.");
       return;
     }
 
-    setTrainers((prev) =>
-      prev.map((trainer) =>
-        trainer.id === selectedTrainer.id
-          ? {
-              ...trainer,
-              name: selectedTrainer.name,
-              email: selectedTrainer.email,
-              team: selectedTrainer.team,
-              initials: selectedTrainer.name
-                .split(" ")
-                .map((word) => word[0])
-                .join("")
-                .substring(0, 2)
-                .toUpperCase(),
-            }
-          : trainer
-      )
-    );
+    alert("Trainer updated successfully!");
+
+    await fetchTrainers();
 
     setShowEditModal(false);
     setSelectedTrainer(null);
-
-    alert("Trainer updated successfully!");
-  };
-
+  } catch (error) {
+    console.error("Update trainer error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
   /* ================================
      ADD TRAINER
      ================================ */
@@ -219,50 +336,62 @@ function Trainers() {
     }));
   };
 
-  const addTrainer = (e) => {
-    e.preventDefault();
+  const addTrainer = async (e) => {
+  e.preventDefault();
 
-    if (
-      !newTrainer.name.trim() ||
-      !newTrainer.email.trim() ||
-      !newTrainer.team.trim()
-    ) {
-      alert("Please fill all fields.");
+  if (
+    !newTrainer.name.trim() ||
+    !newTrainer.email.trim() ||
+    !newTrainer.password.trim()
+  ) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      "http://localhost:5000/api/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: newTrainer.name.trim(),
+          email: newTrainer.email.trim(),
+          password: newTrainer.password,
+          role: "Trainer",
+          status: "Active",
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Failed to add trainer.");
       return;
     }
 
-    const newId =
-      trainers.length > 0
-        ? Math.max(...trainers.map((trainer) => trainer.id)) + 1
-        : 1;
+    alert("Trainer added successfully!");
 
-    const initials = newTrainer.name
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .substring(0, 2)
-      .toUpperCase();
-
-    const trainerToAdd = {
-      id: newId,
-      initials,
-      name: newTrainer.name,
-      email: newTrainer.email,
-      team: newTrainer.team,
-    };
-
-    setTrainers((prev) => [...prev, trainerToAdd]);
+    await fetchTrainers();
 
     setNewTrainer({
       name: "",
       email: "",
-      team: "",
+      password: "",
     });
 
     setShowAddModal(false);
-
-    alert("Trainer added successfully!");
-  };
+  } catch (error) {
+    console.error("Add trainer error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ================================
      CLOSE MODALS
@@ -540,16 +669,17 @@ function Trainers() {
 
               <div className="trainer-form-group">
 
-                <label>Team</label>
+              
 
-                <input
-                  type="text"
-                  name="team"
-                  placeholder="Enter team"
-                  value={newTrainer.team}
-                  onChange={handleNewTrainerChange}
-                />
+                <label>Password</label>
 
+<input
+  type="password"
+  name="password"
+  placeholder="Enter temporary password"
+  value={newTrainer.password}
+  onChange={handleNewTrainerChange}
+/>
               </div>
 
               <div className="trainer-modal-actions">
@@ -742,12 +872,12 @@ function Trainers() {
 
               <div className="trainer-form-group">
 
-                <label>Team</label>
+                <label>Password</label>
 
                 <input
                   type="text"
-                  name="team"
-                  value={selectedTrainer.team}
+                  name="password"
+                  value={selectedTrainer.password}
                   onChange={handleEditChange}
                 />
 

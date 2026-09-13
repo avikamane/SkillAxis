@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaSearch,
   FaTrash,
@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import { trainees as traineeData } from "../../Info/traineeData";
+import { getToken } from "../../utils/Auth";
 import "./feature-trainee.css";
 
 function FeatureTrainee() {
@@ -25,10 +26,47 @@ function FeatureTrainee() {
   const emptyForm = {
     name: "",
     email: "",
+    password: "",
     status: "Active",
   };
 
   const [formData, setFormData] = useState(emptyForm);
+  useEffect(() => {
+  fetchTrainees();
+}, []);
+
+const fetchTrainees = async () => {
+  try {
+    const token = getToken();
+
+    const response = await fetch("http://localhost:5000/api/users", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(data.message || "Failed to fetch trainees");
+      return;
+    }
+
+    const traineeUsers = data
+      .filter((user) => user.role === "Trainee")
+      .map((user) => ({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        status: user.status,
+      }));
+
+    setTrainees(traineeUsers);
+  } catch (error) {
+    console.error("Failed to connect to server:", error);
+  }
+};
 
   /* ===============================
      SEARCH
@@ -66,35 +104,54 @@ function FeatureTrainee() {
     setShowAdd(true);
   };
 
-  const handleAddTrainee = (e) => {
-    e.preventDefault();
+const handleAddTrainee = async (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.email) {
-      alert("Please fill all required fields.");
+  if (
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.password.trim()
+  ) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  try {
+    const token = getToken();
+
+    const response = await fetch("http://localhost:5000/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+        role: "Trainee",
+        status: formData.status,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Failed to add trainee.");
       return;
     }
 
-    const newTrainee = {
-      id:
-        trainees.length > 0
-          ? Math.max(...trainees.map((trainee) => trainee.id)) + 1
-          : 1,
-
-      name: formData.name,
-      email: formData.email,
-      status: formData.status,
-    };
-
-    setTrainees((currentTrainees) => [
-      ...currentTrainees,
-      newTrainee,
-    ]);
-
-    setShowAdd(false);
-    setFormData(emptyForm);
-
     alert("Trainee added successfully!");
-  };
+
+    await fetchTrainees();
+
+    setFormData(emptyForm);
+    setShowAdd(false);
+  } catch (error) {
+    console.error("Add trainee error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ===============================
      VIEW TRAINEE
@@ -121,80 +178,140 @@ function FeatureTrainee() {
     setShowEdit(true);
   };
 
-  const handleUpdateTrainee = (e) => {
-    e.preventDefault();
+  const handleUpdateTrainee = async (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.email) {
-      alert("Please fill all required fields.");
+  if (!formData.name.trim() || !formData.email.trim()) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      `http://localhost:5000/api/users/${selectedTrainee.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          status: formData.status,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Failed to update trainee.");
       return;
     }
 
-    setTrainees((currentTrainees) =>
-      currentTrainees.map((trainee) =>
-        trainee.id === selectedTrainee.id
-          ? {
-              ...trainee,
-              name: formData.name,
-              email: formData.email,
-              status: formData.status,
-            }
-          : trainee
-      )
-    );
+    alert("Trainee updated successfully!");
+
+    await fetchTrainees();
 
     setShowEdit(false);
     setSelectedTrainee(null);
-
-    alert("Trainee updated successfully!");
-  };
-
+    setFormData(emptyForm);
+  } catch (error) {
+    console.error("Update trainee error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
   /* ===============================
      DELETE TRAINEE
      =============================== */
 
-  const deleteTrainee = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this trainee?"
+ const deleteTrainee = async (id) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this trainee?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const token = getToken();
+
+    const response = await fetch(
+      `http://localhost:5000/api/users/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
-    if (!confirmDelete) return;
+    const data = await response.json();
 
-    setTrainees((currentTrainees) =>
-      currentTrainees.filter(
-        (trainee) => trainee.id !== id
-      )
-    );
-
-    if (
-      selectedTrainee &&
-      selectedTrainee.id === id
-    ) {
-      setShowView(false);
-      setSelectedTrainee(null);
+    if (!response.ok) {
+      alert(data.message || "Failed to delete trainee.");
+      return;
     }
 
     alert("Trainee deleted successfully!");
-  };
+
+    await fetchTrainees();
+
+    if (selectedTrainee && selectedTrainee.id === id) {
+      setShowView(false);
+      setSelectedTrainee(null);
+    }
+  } catch (error) {
+    console.error("Delete trainee error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ===============================
      DELETE ALL
      =============================== */
 
-  const deleteAllTrainees = () => {
-    if (trainees.length === 0) {
-      alert("There are no trainees to delete.");
-      return;
-    }
+ const deleteAllTrainees = async () => {
+  if (trainees.length === 0) {
+    alert("There are no trainees to delete.");
+    return;
+  }
 
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete all trainees?"
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete all trainees?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const token = getToken();
+
+    // Delete every trainee from the database
+    await Promise.all(
+      trainees.map((trainee) =>
+        fetch(`http://localhost:5000/api/users/${trainee.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      )
     );
 
-    if (confirmDelete) {
-      setTrainees([]);
-      alert("All trainees deleted successfully!");
-    }
-  };
+    alert("All trainees deleted successfully!");
+
+    // Refresh the trainee list
+    await fetchTrainees();
+
+    setSelectedTrainee(null);
+    setShowView(false);
+  } catch (error) {
+    console.error("Delete all trainees error:", error);
+    alert("Unable to connect to the server.");
+  }
+};
 
   /* ===============================
      CLOSE MODALS
@@ -471,6 +588,23 @@ function FeatureTrainee() {
                 />
 
               </div>
+              <div className="trainee-form-field">
+
+  <label>
+    Password *
+  </label>
+
+  <input
+    type="password"
+    name="password"
+    placeholder="Enter temporary password"
+    value={formData.password}
+    onChange={handleChange}
+  />
+
+</div>
+
+
 
               <div className="trainee-form-field">
 
@@ -749,6 +883,6 @@ function FeatureTrainee() {
 
     </div>
   );
-}
 
+}
 export default FeatureTrainee;
