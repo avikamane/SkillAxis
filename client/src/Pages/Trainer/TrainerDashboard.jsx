@@ -8,10 +8,9 @@ import {
   FaTasks,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SessionDetailsModal from "../../components/SessionDetailsModel";
-import { trainers } from "../../Info/trainerData";
-import { trainees } from "../../Info/traineeData";
+import { getCurrentUser, getToken } from "../../utils/Auth";
 import { sessions } from "../../Info/sessionData";
 
 import "./TrainerDashboard.css";
@@ -19,10 +18,6 @@ import "./TrainerDashboard.css";
 // =========================================
 // CURRENT TRAINER
 // =========================================
-
-// Temporary for demo.
-// Later this will come from login/authentication.
-const currentTrainerId = 1;
 
 // =========================================
 // ACTIVITY ICON
@@ -55,17 +50,44 @@ function TrainerDashboard() {
   const navigate = useNavigate();
   const [selectedSession, setSelectedSession] = useState(null);
   // Find the current trainer
-  const currentTrainer = trainers.find(
-    (trainer) => trainer.id === currentTrainerId,
-  );
+  const currentUser = getCurrentUser();
 
+  const [trainees, setTrainees] = useState([]);
+  const [loadingTrainees, setLoadingTrainees] = useState(true);
+
+  useEffect(() => {
+    const fetchTrainees = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/trainer/trainees",
+          {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          },
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch trainees");
+        }
+
+        setTrainees(data);
+      } catch (error) {
+        console.error("Error fetching trainees:", error);
+      } finally {
+        setLoadingTrainees(false);
+      }
+    };
+
+    fetchTrainees();
+  }, []);
   // =========================================
   // TRAINER'S SESSIONS
   // =========================================
 
-  const mySessions = sessions.filter(
-    (session) => session.trainerId === currentTrainerId,
-  );
+  const mySessions = sessions;
 
   // =========================================
   // UPCOMING SESSIONS
@@ -86,14 +108,6 @@ function TrainerDashboard() {
   // =========================================
   // TRAINER'S TRAINEES
   // =========================================
-
-  const traineeIds = [
-    ...new Set(mySessions.flatMap((session) => session.traineeIds)),
-  ];
-
-  const myTrainees = trainees.filter((trainee) =>
-    traineeIds.includes(trainee.id),
-  );
 
   // =========================================
   // RECENT ACTIVITIES
@@ -131,8 +145,7 @@ function TrainerDashboard() {
 
       <section className="welcome-section">
         <h1>
-          WELCOME,{" "}
-          {currentTrainer ? currentTrainer.name.toUpperCase() : "TRAINER"}
+          WELCOME, {currentUser ? currentUser.name.toUpperCase() : "TRAINER"}
         </h1>
 
         <p>Here's an overview of your training activities.</p>
@@ -197,7 +210,9 @@ function TrainerDashboard() {
           <div>
             <h2>Assigned Trainees</h2>
 
-            <span className="stat-number purple">{myTrainees.length}</span>
+            <span className="stat-number purple">
+              {loadingTrainees ? "..." : trainees.length}
+            </span>
           </div>
         </div>
       </section>
