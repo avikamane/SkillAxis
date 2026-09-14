@@ -11,6 +11,7 @@ import {
 import { sessions } from "../../Info/sessionData";
 import { trainees } from "../../Info/traineeData";
 import { trainers } from "../../Info/trainerData";
+import { getCurrentUser } from "../../utils/Auth";
 
 import "./TraineeDashboard.css";
 
@@ -22,17 +23,16 @@ const TraineeDashboard = () => {
   const traineesList = trainees || [];
   const trainersList = trainers || [];
 
-  // Current logged-in trainee ID
-  const currentTraineeId = 1;
-  const currentTrainee = traineesList.find(
-    (t) => t.id === currentTraineeId
-  );
+  // Get currently logged-in user from localStorage
+  const currentUser = getCurrentUser();
+
+  const currentTraineeId = currentUser?.id;
 
   // Filter sessions assigned to current trainee
   const assignedSessions = sessionsList.filter(
     (session) =>
       Array.isArray(session?.traineeIds) &&
-      session.traineeIds.includes(currentTraineeId)
+      session.traineeIds.includes(currentTraineeId),
   );
 
   // Use assigned sessions if available, otherwise display all sessions
@@ -41,15 +41,11 @@ const TraineeDashboard = () => {
 
   // Dynamic Statistics
   const upcomingCount = displaySessions.filter(
-    (s) =>
-      s?.status &&
-      String(s.status).toLowerCase() === "upcoming"
+    (s) => s?.status && String(s.status).toLowerCase() === "upcoming",
   ).length;
 
   const completedCount = displaySessions.filter(
-    (s) =>
-      s?.status &&
-      String(s.status).toLowerCase() === "completed"
+    (s) => s?.status && String(s.status).toLowerCase() === "completed",
   ).length;
 
   // Helper to map trainerId to Trainer Name
@@ -76,14 +72,11 @@ const TraineeDashboard = () => {
 
   return (
     <div className="dashboard">
-
       {/* WELCOME SECTION */}
       <section className="welcome-section">
         <h1>
           WELCOME,{" "}
-          {currentTrainee?.name
-            ? currentTrainee.name.toUpperCase()
-            : "TRAINEE"}
+          {currentUser?.name ? currentUser.name.toUpperCase() : "TRAINEE"}
         </h1>
 
         <p>
@@ -93,7 +86,6 @@ const TraineeDashboard = () => {
 
       {/* STATS SECTION */}
       <section className="stats-container">
-
         <div className="stat-card">
           <div className="stat-icon blue-icon">
             <FaCalendarAlt />
@@ -101,9 +93,7 @@ const TraineeDashboard = () => {
 
           <div>
             <h2>Upcoming Sessions</h2>
-            <span className="stat-number blue">
-              {upcomingCount}
-            </span>
+            <span className="stat-number blue">{upcomingCount}</span>
           </div>
         </div>
 
@@ -114,9 +104,7 @@ const TraineeDashboard = () => {
 
           <div>
             <h2>Completed Sessions</h2>
-            <span className="stat-number green">
-              {completedCount}
-            </span>
+            <span className="stat-number green">{completedCount}</span>
           </div>
         </div>
 
@@ -127,9 +115,7 @@ const TraineeDashboard = () => {
 
           <div>
             <h2>Attendance</h2>
-            <span className="stat-number yellow">
-              92%
-            </span>
+            <span className="stat-number yellow">92%</span>
           </div>
         </div>
 
@@ -140,23 +126,18 @@ const TraineeDashboard = () => {
 
           <div>
             <h2>Assessments</h2>
-            <span className="stat-number purple">
-              5
-            </span>
+            <span className="stat-number purple">5</span>
           </div>
         </div>
-
       </section>
 
       {/* MIDDLE SECTION */}
       <section className="middle-section">
-
         {/* RECENT ACTIVITIES */}
         <div className="recent-activities">
           <h2>Recent Activities</h2>
 
           <div className="activities-list">
-
             <div className="activity-item">
               <span className="activity-icon">✔</span>
               <span>Session completed</span>
@@ -171,7 +152,6 @@ const TraineeDashboard = () => {
               <span className="activity-icon">✔</span>
               <span>Attendance marked</span>
             </div>
-
           </div>
         </div>
 
@@ -180,7 +160,6 @@ const TraineeDashboard = () => {
           <h2>Quick Actions</h2>
 
           <div className="actions-container">
-
             <button
               type="button"
               className="action-card action-blue"
@@ -207,10 +186,8 @@ const TraineeDashboard = () => {
               <FaCalendarAlt />
               <span>View Resources</span>
             </button>
-
           </div>
         </div>
-
       </section>
 
       {/* SESSIONS TABLE */}
@@ -219,7 +196,6 @@ const TraineeDashboard = () => {
 
         <div className="table-container">
           <table>
-
             <thead>
               <tr>
                 <th>Session</th>
@@ -233,39 +209,26 @@ const TraineeDashboard = () => {
 
             <tbody>
               {displaySessions.map((session, index) => {
-
                 const statusString = session?.status
                   ? String(session.status)
                   : "Upcoming";
 
-                const isUpcoming =
-                  statusString.toLowerCase() === "upcoming";
+                const isUpcoming = statusString.toLowerCase() === "upcoming";
 
                 return (
                   <tr key={session?.id || index}>
+                    <td>{session?.title || "Untitled Session"}</td>
 
-                    <td>
-                      {session?.title || "Untitled Session"}
-                    </td>
+                    <td>{getTrainerName(session?.trainerId)}</td>
 
-                    <td>
-                      {getTrainerName(session?.trainerId)}
-                    </td>
+                    <td>{session?.date || "N/A"}</td>
 
-                    <td>
-                      {session?.date || "N/A"}
-                    </td>
-
-                    <td>
-                      {session?.startTime || "N/A"}
-                    </td>
+                    <td>{session?.startTime || "N/A"}</td>
 
                     <td>
                       <span
                         className={`status ${
-                          isUpcoming
-                            ? "upcoming"
-                            : "completed"
+                          isUpcoming ? "upcoming" : "completed"
                         }`}
                       >
                         {statusString}
@@ -276,23 +239,18 @@ const TraineeDashboard = () => {
                       <button
                         type="button"
                         className="view-button"
-                        onClick={() =>
-                          navigate("/trainee/sessions")
-                        }
+                        onClick={() => navigate("/trainee/sessions")}
                       >
                         View
                       </button>
                     </td>
-
                   </tr>
                 );
               })}
             </tbody>
-
           </table>
         </div>
       </section>
-
     </div>
   );
 };
