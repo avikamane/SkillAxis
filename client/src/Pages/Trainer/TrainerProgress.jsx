@@ -658,8 +658,13 @@ function TrainerProgress() {
               </div>
 
               <button
+                type="button"
                 className="progress-modal-close"
-                onClick={() => setSelectedTrainee(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedTrainee(null);
+                }}
+                aria-label="Close"
               >
                 <FaTimes />
               </button>
