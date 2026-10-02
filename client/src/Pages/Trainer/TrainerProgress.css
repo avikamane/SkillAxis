@@ -471,23 +471,26 @@
 .progress-modal-close {
   width: 34px;
   height: 34px;
-
   border: none;
   border-radius: 6px;
-
   background: rgba(255, 255, 255, 0.15);
-
   color: white;
-
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  transition:
+    transform 0.3s ease,
+    background 0.2s ease;
 }
 
 .progress-modal-close:hover {
   background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
 }
 
 /* =========================================================
